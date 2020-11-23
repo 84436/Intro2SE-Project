@@ -1,0 +1,25 @@
+{
+  "name": "Intro2SE-Project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss build src/styles.css -o dist/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/84436/Intro2SE-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/84436/Intro2SE-Project/issues"
+  },
+  "homepage": "https://github.com/84436/Intro2SE-Project#readme",
+  "dependencies": {
+    "autoprefixer": "^10.0.2",
+    "postcss": "^8.1.9",
+    "tailwindcss": "^2.0.1"
+  }
+}

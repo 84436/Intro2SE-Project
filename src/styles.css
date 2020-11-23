@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-lblue-700 {
+    background-color: #0288d1;
+}
+
+#bg-image {
+    background-image: url(/img/image.png);
+    @apply bg-cover;
+    @apply h-screen;
+    @apply w-screen;
+    @apply relative;
+    @apply z-0;
+    @apply bg-center;
+}
+
+#bg-overlay {
+    @apply absolute;
+    @apply z-10;
+    @apply top-0;
+    @apply left-0;
+    @apply bg-lblue-700;
+    @apply h-screen;
+    @apply w-screen;
+    mix-blend-mode: overlay;
+}
+
+#sidebar {
+    @apply absolute;
+    @apply z-20;
+    @apply top-0;
+    @apply left-0;
+    @apply h-screen;
+    @apply w-screen;
+    @apply flex;
+    @apply justify-center;
+    @apply flex-col;
+    background-color: rgba(2, 136, 209, 0.9);
+}
+
+#sidebar-content {
+    margin: auto 64px auto 64px;
+}
+
+#header {
+    font-family: 'Exo', sans-serif;
+    font-size: 72px;
+    @apply text-white;
+}
+
+#description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    @apply text-white;
+    @apply break-words;
+    margin-bottom: 32px;
+}
+
+#button-container {
+    @apply grid;
+    @apply grid-cols-2;
+    width: fit-content;
+    column-gap: 48px;
+}
+
+.btn {
+    width: 128px;
+    height: 48px;
+    @apply bg-white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    @apply text-black;
+    @apply uppercase;
+    border-radius: 50px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.btn:active {
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+#btn-sign-in {
+    border: none;
+    outline: none;
+    background-color: #29B6F6;
+    @apply text-white;
+}
+
+#btn-sign-up {
+    border: none;
+    outline: none;
+    background-color: white;
+    color: #29B6F6;
+}
+
+@media screen and (min-width: 1280px) {
+    #sidebar {
+        width: 37.5%;
+    }
+}
