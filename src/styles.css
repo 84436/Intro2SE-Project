@@ -2,9 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+/*Custom components*/
+
 .bg-lblue-700 {
     background-color: #0288d1;
 }
+
+.form {
+    font-family: 'Montserrat', sans-serif;
+    font-size: medium;
+}
+
+.form input {
+    display: flex;
+    text-indent: 10px;
+    margin-bottom: 32px;
+    @apply h-14;
+    @apply border-0;
+    @apply outline-none;
+    @apply text-black;
+    @apply rounded-md;
+    @apply mt-1;
+    @apply block;
+    @apply w-full;
+}
+
+.btn {
+    width: calc(2.25 * 56px);
+    height: 56px;
+    @apply bg-white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    @apply text-black;
+    @apply uppercase;
+    border-radius: 50px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.btn:active {
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+#back-button {
+    border: none;
+    outline: none;
+    @apply border-0;
+    @apply rounded-full;
+    @apply text-2xl;
+    margin-top: 12.5px;
+    height: 48px;
+    width: 48px;
+    background-color: white;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#back-button:active {
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+/*Template style for Onboarding screen*/
 
 #bg-image {
     background-image: url(/img/image.png);
@@ -39,75 +95,41 @@
     @apply flex-col;
     background-color: rgba(2, 136, 209, 0.9);
 }
-#back-button:active {
-    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
-}
+
 #sidebar-content {
     margin: auto 64px auto 64px;
 }
+
+.header {
+    font-family: 'Exo', sans-serif;
+    @apply text-white;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.sign-header {
+    font-size: 54px;
+    @apply font-semibold;
+    margin-bottom: 32px;
+    margin-left: 32px;
+}
+
+
+/*Specfic screen styles*/
+
 #head {
     @apply flex;
 }
 
-#back-button {
-    @apply border-0;
-    @apply outline-none;
-    @apply rounded-full;
-    @apply text-2xl;
-    margin-top: 12.5px;
-    height: 48px;
-    width: 48px;
-    background-color: white;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-#header {
-    font-family: 'Exo', sans-serif;
+#onboarding-header {
     font-size: 72px;
-    @apply text-white;
 }
 
-#sign-in-header {
-    font-family: 'Exo', sans-serif;
-    font-size: 54px;
-    @apply text-white;
-    @apply font-semibold;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    margin-bottom: 32px;
-    margin-left: 32px;
-}
-#sign-up-header {
-    font-family: 'Exo', sans-serif;
-    font-size: 54px;
-    @apply text-white;
-    @apply font-semibold;
-    margin-bottom: 32px;
-    margin-left: 32px;
-}
 #description {
     font-family: 'Montserrat', sans-serif;
     font-size: 24px;
     @apply text-white;
     @apply break-words;
     margin-bottom: 32px;
-}
-#form {
-    font-family: 'Montserrat', sans-serif;
-    font-size: medium;
-    margin-bottom: 32px;
-}
-#form input {
-    display: flex;
-    text-indent: 10px;
-    margin-bottom: 32px;
-    @apply h-14;
-    @apply border-0;
-    @apply outline-none;
-    @apply text-black;
-    @apply rounded-md;
-    @apply mt-1;
-    @apply block;
-    @apply w-full;
 }
 
 #button-container {
@@ -117,52 +139,31 @@
     column-gap: 48px;
 }
 
-.btn {
-    width: 128px;
-    height: 48px;
-    @apply bg-white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    @apply text-black;
-    @apply uppercase;
-    border-radius: 50px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.btn:active {
-    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
-}
-
-#btn-sign-in {
+#btn-sign-in, #btn-submit-in, #btn-submit-up {
     border: none;
     outline: none;
     background-color: #29B6F6;
     @apply text-white;
 }
 
-#btn-sign-up {
+#btn-sign-up, #btn-help {
     border: none;
     outline: none;
     background-color: white;
     color: #29B6F6;
 }
 
-#btn-send-help {
-    border: none;
-    outline: none;
-    background-color: white;
-    color: #29B6F6;
-}
 
-#btn-finish-sign-up {
-    border: none;
-    outline: none;
-    background-color: #29B6F6;
-    @apply text-white;
+/*Responsice design styles*/
+
+@media screen and (max-width: 1280px) and (min-width: 960px)  {
+    #sidebar {
+        width: 50%;
+    }   
 }
 
 @media screen and (min-width: 1280px) {
     #sidebar {
         width: 37.5%;
-    }
+    }   
 }
