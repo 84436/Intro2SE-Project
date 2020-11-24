@@ -39,25 +39,26 @@
     @apply flex-col;
     background-color: rgba(2, 136, 209, 0.9);
 }
-#back-button {
-    @apply fixed;
-    @apply z-40;
-    @apply top-16;
-    @apply left-16;
-    @apply border-0;
-    @apply outline-none;
-    @apply rounded-full;
-    @apply text-2xl;
-    height: 48px;
-    width: 48px;
-    background-color: white;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
 #back-button:active {
     filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
 }
 #sidebar-content {
     margin: auto 64px auto 64px;
+}
+#head {
+    @apply flex;
+}
+
+#back-button {
+    @apply border-0;
+    @apply outline-none;
+    @apply rounded-full;
+    @apply text-2xl;
+    margin-top: 12.5px;
+    height: 48px;
+    width: 48px;
+    background-color: white;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 #header {
@@ -70,14 +71,18 @@
     font-family: 'Exo', sans-serif;
     font-size: 54px;
     @apply text-white;
+    @apply font-semibold;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     margin-bottom: 32px;
+    margin-left: 32px;
 }
 #sign-up-header {
     font-family: 'Exo', sans-serif;
     font-size: 54px;
     @apply text-white;
+    @apply font-semibold;
     margin-bottom: 32px;
+    margin-left: 32px;
 }
 #description {
     font-family: 'Montserrat', sans-serif;
@@ -100,6 +105,9 @@
     @apply outline-none;
     @apply text-black;
     @apply rounded-md;
+    @apply mt-1;
+    @apply block;
+    @apply w-full;
 }
 
 #button-container {

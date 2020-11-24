@@ -18,13 +18,15 @@
         <div id="app">
             <div id="sidebar">
                 <div id="sidebar-content">
-                    <button id="back-button"><i class="fas fa-angle-left"></i></button>
-                    <p class="font-semibold" id="sign-up-header">Sign up</p>
+                    <div id="head">
+                        <button id="back-button" ><i class="fas fa-angle-left"></i></button>
+                        <p id="sign-up-header">Sign up</p>
+                    </div>
                     <div id="form">
-                        <input type="text" class="form-input mt-1 block w-full" id="username" placeholder="Username">
-                        <input type="password" class="form-input mt-1 block w-full" id="password" placeholder="Password">
-                        <input type="password" class="form-input mt-1 block w-full" id="confirm-password" placeholder="Confirm Password">
-                        <input type="email" class="form input mt-1 block w-full" id="email" placeholder="Email">
+                        <input type="text" id="username" placeholder="Username">
+                        <input type="password" id="password" placeholder="Password">
+                        <input type="password" id="confirm-password" placeholder="Confirm Password">
+                        <input type="email" id="email" placeholder="Email">
                     </div>
                     <div id="button-container">
                         <button type="submit" class="btn" id="btn-finish-sign-up">Next</button>

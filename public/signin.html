@@ -18,11 +18,13 @@
         <div id="app">
             <div id="sidebar">
                 <div id="sidebar-content">
-                    <button id="back-button"><i class="fas fa-angle-left"></i></button>
-                    <p class="font-semibold" id="sign-in-header">Sign in</p>
+                    <div id="head">
+                        <button id="back-button" ><i class="fas fa-angle-left"></i></button>
+                        <p id="sign-in-header">Sign in</p>
+                    </div>
                     <div id="form">
-                        <input type="text" class="form-input mt-1 block w-full" id="username" placeholder="Username">
-                        <input type="password" class="form-input mt-1 block w-full" id="password" placeholder="Password">
+                        <input type="text" id="username" placeholder="Username">
+                        <input type="password"  id="password" placeholder="Password">
                     </div>
                     <div id="button-container">
                         <button type="submit" class="btn" id="btn-sign-in">Let's go</button>
