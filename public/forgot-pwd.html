@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sign up</title>
+        <title>Forgot password</title>
         <link rel="stylesheet" href="styles.css"/>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Exo:wght@600&family=Montserrat&display=swap" rel="stylesheet">         
@@ -18,19 +18,18 @@
             <div id="sidebar">
                 <div id="sidebar-content">
                     <div id="head">
-                        <button id="back-button" >
+                        <button class="redirect-button" id="back-button">
                             <i class="fas fa-angle-left"></i>
                         </button>
-                        <p class="header">Sign up</p>
+                        <p class="header">Forgot your password?</p>
                     </div>
-                    <div class="form">
-                        <input type="email" id="email" placeholder="Email">
-                        <input type="password" id="password" placeholder="Password">
-                        <input type="password" id="confirm-password" placeholder="Confirm Password">
-                        <input type="tel" id="phone" placeholder="Phone">
-                    </div>
-                    <div id="button-container">
-                        <button class="btn" id="btn-submit-up">Next</button>
+                    <div id="body">
+                        <div class="form">
+                            <input type="email" id="email" size="30px" placeholder="What is your email?">
+                        </div>
+                        <button class="redirect-button" id="forward-button">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
