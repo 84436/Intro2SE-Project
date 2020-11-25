@@ -2,16 +2,14 @@
     "name": "intransit-backend",
     "version": "1.0.0",
     "description": "The backend API and database interface used by the InTransit project.",
-    "main": "app.js",
+    "main": "index.js",
     "scripts": {
-        "dev": "nodemon app.js"
+        "dev": "node index.js"
     },
-    "author": "Hokage-Intro2SE Backend Team",
+    "author": "Hokage-Intro2SE",
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.1",
-        "mongoose": "^5.10.15",
-        "morgan": "^1.10.0",
-        "nodemon": "^2.0.6"
+        "mongoose": "^5.10.15"
     }
 }
