@@ -9,117 +9,153 @@
 }
 
 .form {
+    /* Text */
     font-family: 'Montserrat', sans-serif;
-    font-size: medium;
-}
+    @apply font-semibold;
 
-.form input {
-    display: flex;
-    text-indent: 10px;
-    margin-bottom: 32px;
-    @apply h-14;
-    @apply border-0;
-    @apply outline-none;
-    @apply text-black;
-    @apply rounded-md;
-    @apply mt-1;
-    @apply block;
+    /* Size */
     @apply w-full;
 }
 
+.form input {
+    /* Text */
+    text-indent: 10px;
+    @apply text-black;
+
+    /* Size */
+    @apply h-14 w-full;
+
+    /* Box-sizing */
+    margin-bottom: 32px;
+    @apply mt-1;
+
+    /* Border */
+    @apply rounded-md;
+
+    /* Display */
+    @apply block;
+}
+
 .btn {
+    /* Size */
     width: calc(2.25 * 56px);
     height: 56px;
+
+    /* Background */
     @apply bg-white;
+
+    /* Text */
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    @apply text-black;
-    @apply uppercase;
+    @apply text-black uppercase;
+
+    /* Border */
     border-radius: 50px;
+
+    /* Shadow */
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .btn:active {
+    /* Shadow */
     filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
 button, button:focus {
-    @apply border-none;
-    @apply outline-none;
+    /* Border */
+    @apply border-none outline-none;
 }
 
 .redirect-button {
-    @apply rounded-full;
-    @apply text-2xl;
+    /* Size */
     height: 50px;
     width: 50px;
-    background-color: white;
+
+    /* Border */
+    @apply rounded-full;
+
+    /* Text */
+    @apply text-2xl;
+
+    /* Background */
+    @apply bg-white;
+
+    /* Shadow */
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .redirect-button:active {
+    /* Shadow */
     filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
 #back-button {
+    /* Box-sizing */
     margin-top: 12.5px;
 }
 
 #forward-button {
+    /* Box-sizing */
     margin-top: 7px;
     margin-left: 21px;
 }
+
+
 /*Template style for Onboarding screen*/
 
 #bg-image {
+    /* Background */
     background-image: url(/img/image.png);
-    @apply bg-cover;
-    @apply h-screen;
-    @apply w-screen;
-    @apply relative;
-    @apply z-0;
-    @apply bg-center;
+    @apply bg-cover bg-center;
+
+    /* Size */
+    @apply h-screen w-screen;
+
+    /* Position */
+    @apply relative z-0;
 }
 
 #bg-overlay {
-    @apply absolute;
-    @apply z-10;
-    @apply top-0;
-    @apply left-0;
+    /* Position */
+    @apply absolute z-10 top-0 left-0;
+
+    /* Background */
     @apply bg-lblue-700;
-    @apply h-screen;
-    @apply w-screen;
     mix-blend-mode: overlay;
+
+    /* Size */
+    @apply h-screen w-screen;
 }
 
 #sidebar {
-    @apply absolute;
-    @apply z-20;
-    @apply top-0;
-    @apply left-0;
-    @apply h-screen;
-    @apply w-screen;
-    @apply flex;
-    @apply justify-center;
-    @apply flex-col;
+    /* Position */
+    @apply absolute z-20 top-0 left-0;
+
+    /* Size */
+    @apply h-screen w-screen;
+
+    /* Display */
+    @apply flex flex-col justify-center;
+
+    /* Background */
     background-color: rgba(2, 136, 209, 0.9);
 }
 
 #sidebar-content {
-    /* margin: auto 64px auto 64px; */
-    /* margin: auto calc(10/3 * 1vw); */
+    /* Box-sizing */
     margin: auto 5vw;
 }
 
-#email {
-    @apply flex-grow;
-}
 .header {
+    /* Text */
     font-family: 'Exo', sans-serif;
-    @apply text-white;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 54px;
-    @apply font-semibold;
+    @apply text-white font-semibold;
+
+    /* Shadow */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    /* Box-sizing */
     margin-bottom: 32px;
 }
 
@@ -127,74 +163,96 @@ button, button:focus {
 /*Specfic screen styles*/
 
 #head {
-    @apply flex;
-    @apply flex-col;
+    /* Display */
+    @apply flex flex-row;
+
+    /* Gap */
+    column-gap: 32px;
 }
 
 #onboarding-header {
+    /* Text */
     font-size: 72px;
+
+    /* Box-sizing */
+    @apply m-0;
 }
 
 #description {
+    /* Text */
     font-family: 'Montserrat', sans-serif;
     font-size: 24px;
-    @apply text-white;
-    @apply break-words;
+    @apply text-white break-words;
+
+    /* Box-sizing */
     margin-bottom: 32px;
 }
+
 #body {
-    @apply flex;
-    @apply row-auto;
+    /* Display */
+    @apply flex flex-row;
 }
+
 #button-container {
-    @apply flex;
-    @apply flex-row;
-    @apply flex-wrap;
+    /* Display */
+    @apply flex flex-row;
+
+    /* Gap */
     row-gap: 16px;
     column-gap: 48px;
 }
 
 #btn-sign-in, #btn-submit-in, #btn-submit-up {
+    /* Background */
     background-color: #29B6F6;
+
+    /* Text */
     @apply text-white;
 }
 
 #btn-sign-up, #btn-help {
+    /* Background */
     background-color: white;
+
+    /* Text */
     color: #29B6F6;
 }
 
 
-/*Responsice design styles*/
+/*Responsive design styles*/
 
 @media screen and (max-width: 1280px) and (min-width: 960px)  {
     #sidebar {
+        /* Size */
         width: 50%;
-    }
-    #head {
-        @apply flex-wrap;
     }
 }
 
 @media screen and (min-width: 1280px) {
     #sidebar {
+        /* Size */
         width: 37.5%;
     }
 
     #sidebar-content {
+        /* Box-sizing */
         margin: auto calc(10/3 * 1vw);
     }
 }
 
-@media screen and (max-width: 480px) and (min-width: 300px) {
-    #body {
+@media screen and (max-width: 480px) and (min-width: 0px) {
+    #body, #head, #button-container {
+        /* Display */
         @apply flex-col;
     }
+    
     #forward-button {
-        margin-top: 0px;
-        margin-left: 0px;
+        /* Box-sizing */
+        @apply m-0;
     }
+
     #back-button {
+        /* Box-sizing */
         margin-bottom : 8px;
     }
 }
