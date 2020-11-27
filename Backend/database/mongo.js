@@ -14,9 +14,8 @@ dbConnection.on('error', console.error.bind(console, 'Connection error:'));
 dbSchemas = {
     account: new mongoose.Schema({
         email: String,
-        name: String,
-        address: String,
-        phone: String
+        phone: String,
+        password: String
     }),
     order: new mongoose.Schema({
         id: String,
