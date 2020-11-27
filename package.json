@@ -1,16 +1,15 @@
 {
-  "name": "Intro2SE-Project",
+  "name": "intro2se-project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-css": "tailwindcss build src/styles.css -o public/styles.css"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/84436/Intro2SE-Project.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,8 +17,6 @@
   },
   "homepage": "https://github.com/84436/Intro2SE-Project#readme",
   "dependencies": {
-    "autoprefixer": "^10.0.2",
-    "postcss": "^8.1.9",
-    "tailwindcss": "^2.0.1"
+    "@vue/cli": "^4.5.9"
   }
 }

@@ -105,7 +105,7 @@ button, button:focus {
 
 #bg-image {
     /* Background */
-    background-image: url(/img/image.png);
+    background-image: url("~@/assets/image.png");
     @apply bg-cover bg-center;
 
     /* Size */
@@ -173,6 +173,7 @@ button, button:focus {
 #onboarding-header {
     /* Text */
     font-size: 72px;
+    @apply italic font-black;
 
     /* Box-sizing */
     @apply m-0;
