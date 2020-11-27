@@ -1,9 +1,6 @@
 const express = require('express')
 const app = express()
-app.use(express.urlencoded())
-app.use(express.urlencoded({
-  extended: true
-}));
+const path = require('path')
 var db
 
 function hash(params) {
@@ -12,25 +9,6 @@ function hash(params) {
 
 app.get('/', (i, o) => {
     o.status(501).send('Not implemented')
-})
-
-app.get('/:userID', (i, o) => {
-    // chua biet noi luu token : email
-    /*var userid = req.params.userid;
-    var email = ""
-    db.models..findOne({ userId: userid}, function(err, docs) {
-    if (err)
-        res.send(err);
-    email = docs.email
-    });
-
-    db.models..findOne({"email":email},function(err,docs){
-        if (docs.length > 0)
-        {
-            docs.password = ""
-            res.json(docs)
-        }
-    })*/
 })
 
 app.get('/all', async (i, o) => {
@@ -43,19 +21,8 @@ app.get('/all', async (i, o) => {
     o.send(response)
 })
 
-app.post('/login/:userId',async(i,o)=>{
-    // chua biet noi luu token : email
-    /*var userID = i.params.userId
-    await db.models.find({},(err,doc)=>{
-        if (err) return handleError(err)
-        if (doc.length > 0){
-            o.status(200).send({'Login success': true})
-            return
-        }
-    })*/
-})
-
 app.get('/login',async(i,o)=>{
+    o.status(501).send('Not implemented')
     // render file from front end
 })
 
@@ -85,7 +52,9 @@ app.post('/login',async(i,o)=>{
 })
 
 app.get('/register',async(i,o)=>{
+    o.status(501).send('Not implemented')
     // render file from front end
+    //o.sendFile(path.join(__dirname, 'signup.html'));
 })
 
 app.post('/register',async(i, o) => {
@@ -96,7 +65,7 @@ app.post('/register',async(i, o) => {
         i.body.hasOwnProperty('password'),
     ]
     test_fields.forEach(each => {test &= each})
-
+    console.log(i.body)
     if (!test) {
         o.status(400).send('One or more fields are missing')
         return
