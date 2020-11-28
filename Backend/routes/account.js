@@ -28,10 +28,8 @@ app.get('/', async(i, o) => { // OK
     if (doc && Object.keys(doc).length > 0)
     {
         await db.models.account.findOne({"email":doc.email},(err,res)=>{
-            var object =[]
-            object.push({"email":res.email,"address":res.address,"name":res.name,"phone":res.phone,"accountType":doc.accountType})
             if (res && Object.keys(res).length > 0)
-                return o.status(200).send(object)
+                return o.status(200).send({"email":res.email,"address":res.address,"name":res.name,"phone":res.phone,"accountType":doc.accountType})
             else
                 return o.status(404).send("Can not find email from this token")
         })
