@@ -15,7 +15,9 @@ dbSchemas = {
     account: new mongoose.Schema({
         email: String,
         phone: String,
-        password: String
+        password: String,
+        name: String,
+        address: String
     }),
     order: new mongoose.Schema({
         id: String,
@@ -26,6 +28,11 @@ dbSchemas = {
         address: String,
         hourOpen: Number,
         hourClose: Number
+    }),
+    token: new mongoose.Schema({
+        email: String,
+        token: String,
+        accountType: String
     })
 }
 
@@ -41,6 +48,7 @@ dbModels = {
     account: mongoose.model("account", dbSchemas.account, "accounts"),
     order: mongoose.model("order", dbSchemas.order, "orders"),
     shop: mongoose.model("shop", dbSchemas.shop, "shops"),
+    token: mongoose.model("token", dbSchemas.token, "token")
 }
 
 module.exports = {
