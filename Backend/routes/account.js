@@ -38,6 +38,44 @@ app.get('/', async(i, o) => { // OK
         return o.status(404).send('Can not find token') 
 })
 
+app.delete('/',async(i,o)=>{
+    let test = true
+    let test_fields = [
+        i.body.hasOwnProperty('token')
+    ]
+    test_fields.forEach(each => {test &= each})
+
+    if (!test) {
+        o.status(401).send('One or more fields are missing')
+        return
+    }
+    else{
+        let doc = await db.models.token.findOne({"token":i.body.token},(err)=>{
+            if (err) return o.status(500).send('Something went wrong.')
+        })
+        if (doc && Object.keys(doc).length > 0)
+        {
+            let acc = await db.models.account.findOne({"email":doc.email},(err)=>{
+                if (err) return o.status(500).send('Something went wrong.')
+            })
+            if (!(acc && Object.keys(acc).length > 0))
+                return o.status(404).send('Can not find email from token') 
+            else
+            {
+                await db.models.account.findOneAndRemove({"email":doc.email},(err)=>{
+                    if (err) return o.status(500).send('Something went wrong.')
+                })
+                await db.models.token.findOneAndRemove({"token":i.body.token},(err)=>{
+                    if (err) return o.status(500).send('Something went wrong.')
+                })
+                return o.status(200).send('Delete success')
+            }
+        }
+        else
+            return o.status(404).send('Can not find token') 
+    }
+})
+
 app.put('/', async(i, o)=>{// OK
     let test = true
     let test_fields = [
@@ -46,8 +84,7 @@ app.put('/', async(i, o)=>{// OK
     test_fields.forEach(each => {test &= each})
 
     if (!test) {
-        o.status(401).send('One or more fields are missing')
-        return
+        return o.status(401).send('One or more fields are missing')
     }
     else{
         let doc = await db.models.token.findOne({"token":i.body.token},(err)=>{
@@ -164,7 +201,7 @@ app.post('/register',async(i, o) => {// OK
     else {
         await db.models.account.findOne({ 'email': i.body.email },(err,doc)=>{
             if (err) return handleError(err)
-            if (doc.length > 0){
+            if (doc && Object.keys(doc).length  > 0){
                 o.status(404).send('Account is exsist')
                 return
             }
