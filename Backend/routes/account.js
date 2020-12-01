@@ -173,7 +173,7 @@ app.post('/login', async(i, o) => {
                 }
                 o.status(200).send({
                     'token': tok.token,
-                    'accountType': ACCOUNT_TYPE_CUSTOMER
+                    'accountType': tok.accountType
                 })
                 return
             })
