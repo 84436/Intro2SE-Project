@@ -1,33 +1,47 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Onboarding from "../views/auth/Onboarding.vue";
-import Login from "../views/auth/Login.vue"
-import Register from "../views/auth/Register.vue"
-import AuthEmail from "../views/auth/AuthEmail.vue"
-import EmailSent from "../views/auth/EmailSent.vue"
+import HomeUser from "../views/customer/Home.vue"
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
-        component: Home,
+        component: () =>
+            import(
+                /* webpackChunkName: "home" */
+                "../views/Home.vue"
+            ),
         children: [
             {
                 path: "",
-                component: Onboarding
+                component: () =>
+                    import(
+                        /* webpackChunkName: "onboardinghome" */
+                        "../views/onboarding/Onboarding.vue"
+                    ),
             },
             {
                 path: "login",
-                component: Login,
-                
+                component: () =>
+                    import(
+                        /* webpackChunkName: "login" */
+                        "../views/onboarding/Login.vue"
+                    ),
             },
             {
                 path: "register",
-                component: Register
+                component: () =>
+                    import(
+                        /* webpackChunkName: "register" */
+                        "../views/onboarding/Register.vue"
+                    ),
             },
         ],
+    },
+    {
+        path: "/user",
+        component: HomeUser,
     },
 ];
 
