@@ -164,7 +164,7 @@ app.post('/login',async(i,o)=>{ // OK
                 if (tok && Object.keys(tok).length  > 0)
                     return o.status(200).send({"token":tok.token})
                 else
-                    return o.status(404).send('Login fail')
+                    return o.status(403).send('Login fail')
             })
         }
         // login by email and password
