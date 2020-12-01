@@ -3,6 +3,7 @@ const express = require('express')
 const morgan  = require('morgan')
 const db      = require('./database/mongo')
 const router  = require('./routes/router')
+const invalid = require('./routes/invalid')
 
 // Express
 const app = express()
@@ -20,6 +21,7 @@ app.use(morgan_instance)
 db.connection.once('open', () => {
     router.setDBObject(db)
     app.use(router.routes)
+    app.use(invalid.routes)
     app.listen(port, () => {
         console.log(`InTransit API live at port ${port}. Check morgan output for incoming requests.`)
     })
