@@ -117,4 +117,3 @@ dist
 
 # Vscode workspace
 .vscode/tasks.json
-client/src/other/styles.css

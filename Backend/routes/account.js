@@ -1,17 +1,15 @@
 const express = require('express')
 const app = express()
-const mongoose = require('mongoose')
 const crypto = require('crypto')
-app.use(express.json())
-const accountModel = mongoose.model("account")
-const tokenModel = mongoose.model("token")
 var db
+
+const ACCOUNT_TYPE_CUSTOMER = 'customer'
 
 function Hash(params) {
     return crypto.createHash('sha256').update(params).digest('hex');;
 }
 
-app.get('/', async(i, o) => { // OK
+app.get('/', async(i, o) => {
     let test = true
     let test_fields = [
         i.body.hasOwnProperty('token'),
@@ -31,14 +29,14 @@ app.get('/', async(i, o) => { // OK
             if (res && Object.keys(res).length > 0)
                 return o.status(200).send({"email":res.email,"address":res.address,"name":res.name,"phone":res.phone,"accountType":doc.accountType})
             else
-                return o.status(404).send("Can not find email from this token")
+                return o.status(404).send("Cannot find email from this token")
         })
     }
     else
-        return o.status(404).send('Can not find token') 
+        return o.status(404).send('Cannot find token') 
 })
 
-app.delete('/',async(i,o)=>{
+app.delete('/', async(i, o) => {
     let test = true
     let test_fields = [
         i.body.hasOwnProperty('token')
@@ -59,7 +57,7 @@ app.delete('/',async(i,o)=>{
                 if (err) return o.status(500).send('Something went wrong.')
             })
             if (!(acc && Object.keys(acc).length > 0))
-                return o.status(404).send('Can not find email from token') 
+                return o.status(404).send('Cannot find email from token') 
             else
             {
                 await db.models.account.findOneAndRemove({"email":doc.email},(err)=>{
@@ -72,11 +70,11 @@ app.delete('/',async(i,o)=>{
             }
         }
         else
-            return o.status(404).send('Can not find token') 
+            return o.status(404).send('Cannot find token') 
     }
 })
 
-app.put('/', async(i, o)=>{// OK
+app.put('/', async(i, o) => {
     let test = true
     let test_fields = [
         i.body.hasOwnProperty('token'),
@@ -102,7 +100,7 @@ app.put('/', async(i, o)=>{// OK
                     return o.status(500).send('Something went wrong.')
                 if (!doc2)
                 {
-                    return o.status(404).send('Can not find email from this token') 
+                    return o.status(404).send('Cannot find email from this token') 
                 }
             })
             if (i.body.hasOwnProperty('name'))
@@ -128,12 +126,12 @@ app.put('/', async(i, o)=>{// OK
         }
         else
         {
-            return o.status(404).send('Can not find token') 
+            return o.status(404).send('Cannot find token') 
         }
     }
 })
 
-app.get('/all', async (i, o) => { // OK
+app.get('/all', async (i, o) => {
     let response = await db.models.account.find((error) => {
         if (error) {
             o.status(500).send('Something went wrong.')
@@ -143,7 +141,7 @@ app.get('/all', async (i, o) => { // OK
     o.send(response)
 })
 
-app.post('/login',async(i,o)=>{ // OK
+app.post('/login', async(i, o) => {
     let test = true
     let test_fields = [
         i.body.hasOwnProperty('email'),
@@ -155,77 +153,92 @@ app.post('/login',async(i,o)=>{ // OK
         o.status(401).send('One or more fields are missing')
         return
     }
+
     else
     {
-        if (i.body.hasOwnProperty('token')) // login by token
-        {
-            await db.models.token.findOne({ 'email': i.body.email},(err,tok)=>{
-                if (err) return o.status(500).send('Something went wrong.')
-                if (tok && Object.keys(tok).length  > 0)
-                    return o.status(200).send({"token":tok.token})
-                else
-                    return o.status(403).send('Login fail')
-            })
+        // Login by email and password
+        let account = {
+            'email': i.body.email,
+            'password': Hash(i.body.password)
         }
-        // login by email and password
-        let doc=await db.models.account.findOne({ 'email': i.body.email, 'password': Hash(i.body.password) },(err)=>{
-            if (err) return o.status(500).send('Something went wrong.')
+        let doc = await db.models.account.findOne(account, (err) => { // Verify password, the lazy way
+            if (err) {
+                return o.status(500).send('Something went wrong.')
+            }
         })
-        if (doc && Object.keys(doc).length  > 0){
-            await db.models.token.findOne({ 'email': i.body.email},(err,tok)=>{
-                if (err) return o.status(500).send('Something went wrong.')
-                if (tok && Object.keys(tok).length  > 0)
-                    return o.status(200).send({"token":tok.token})
-                else
-                    return o.status(404).send('Login fail')
+        if (doc && Object.keys(doc).length > 0) {
+            await db.models.token.findOne({'email': i.body.email}, (err, tok) => {
+                if (err) {
+                    return o.status(500).send('Something went wrong.')
+                }
+                o.status(200).send({
+                    'token': tok.token,
+                    'accountType': tok.accountType
+                })
+                return
             })
         }
-        else
-            return o.status(404).send('Login fail')
+        else {
+            o.status(403).send('Login failed.')
+            return
+        }
     }
 })
 
-app.post('/register',async(i, o) => {// OK
+app.post('/register', async(i, o) => {
     let test = true
     let test_fields = [
+        i.body.hasOwnProperty('name'),
         i.body.hasOwnProperty('email'),
-        i.body.hasOwnProperty('phone'),
-        i.body.hasOwnProperty('password'),
+        i.body.hasOwnProperty('password')
     ]
     test_fields.forEach(each => {test &= each})
-    let token = ""
+    
+    let token
+
     if (!test) {
         o.status(400).send('One or more fields are missing')
         return
     }
+
     else {
-        await db.models.account.findOne({ 'email': i.body.email },(err,doc)=>{
-            if (err) return handleError(err)
+        // Check if account already exists
+        await db.models.account.findOne({'email': i.body.email}, (err,doc) => {
+            if (err)
+                return handleError(err)
             if (doc && Object.keys(doc).length  > 0){
-                o.status(404).send('Account is exsist')
+                o.status(409).send('Account already exists.')
                 return
             }
         })
+
+        // Make the email and password a bit more obscure
+        token = Hash(i.body.email)
         i.body.password = Hash(i.body.password)
-        var acc = new accountModel();
-        acc.email = i.body.email
-        acc.phone = i.body.phone
-        acc.password = i.body.password
-        acc.address = null
-        acc.name = null
-        await acc.save((err,doc)=>{
+
+        // Write to Accounts
+        let acc = db.models.account({
+            'email': i.body.email,
+            'phone': null,
+            'password': i.body.password,
+            'name': i.body.name,
+            'address': null,
+        })
+        await acc.save((err, doc) => {
             if (err)
             {
                 o.status(500).send('Something went wrong.')
                 return
             }
         })
-        token = Hash(i.body.email)
-        var tok = new tokenModel()
-        tok.email = i.body.email
-        tok.token = token
-        tok.accountType = "Customer"
-        await tok.save((err,doc)=>{
+
+        // Write to Tokens
+        let tok = db.models.token({
+            'email': i.body.email,
+            'token': token,
+            'accountType': ACCOUNT_TYPE_CUSTOMER
+        })
+        await tok.save((err, doc) => {
             if (err)
             {
                 o.status(500).send('Something went wrong.')
@@ -233,7 +246,12 @@ app.post('/register',async(i, o) => {// OK
             }
         })
     }
-    o.status(200).send({'token': token})
+
+    // If everything's OK so far, throw the user that new token
+    o.status(200).send({
+        'token': token,
+        'accountType': ACCOUNT_TYPE_CUSTOMER
+    })
 })
 
 module.exports = {

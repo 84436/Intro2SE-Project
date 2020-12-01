@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/84436/Intro2SE-Project/issues"
   },
-  "homepage": "https://github.com/84436/Intro2SE-Project#readme",
-  "dependencies": {
-    "@vue/cli": "^4.5.9"
-  }
+  "homepage": "https://github.com/84436/Intro2SE-Project#readme"
 }

@@ -36,19 +36,19 @@ dbSchemas = {
     })
 }
 
-// compile schemas into models
 // models = {}
 // Object.entries(schemas).forEach((e) => {
 //     [eName, eSchema] = e
 //     models[eName] = mongoose.model(eName, eSchema)
 // })
 
+// compile schemas into models
 dbModels = {
     // {model name, schema, collection}
     account: mongoose.model("account", dbSchemas.account, "accounts"),
     order: mongoose.model("order", dbSchemas.order, "orders"),
     shop: mongoose.model("shop", dbSchemas.shop, "shops"),
-    token: mongoose.model("token", dbSchemas.token, "token")
+    token: mongoose.model("token", dbSchemas.token, "tokens")
 }
 
 module.exports = {
