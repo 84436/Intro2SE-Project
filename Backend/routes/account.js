@@ -100,7 +100,7 @@ app.put('/', async(i, o) => {
                     return o.status(500).send('Something went wrong.')
                 if (!doc2)
                 {
-                    return o.status(404).send('Can not find email from this token') 
+                    return o.status(404).send('Cannot find email from this token') 
                 }
             })
             if (i.body.hasOwnProperty('name'))
@@ -126,7 +126,7 @@ app.put('/', async(i, o) => {
         }
         else
         {
-            return o.status(404).send('Can not find token') 
+            return o.status(404).send('Cannot find token') 
         }
     }
 })
@@ -179,7 +179,7 @@ app.post('/login', async(i, o) => {
             })
         }
         else {
-            o.status(404).send('Login failed.')
+            o.status(403).send('Login failed.')
             return
         }
     }
