@@ -246,7 +246,7 @@ app.post('/register', async(i, o) => {
         // Write to Accounts
         let acc = db.models.account({
             'email': i.body.email,
-            'phone': i.body.tel,
+            'phone': i.body.phone,
             'password': i.body.password,
             'name': i.body.name,
             'address': i.body.address,
