@@ -105,17 +105,6 @@ app.put('/', async(i, o) => {
             {
                 return o.status(404).send({"error":'Cannot find email from this token'}) 
             }
-            // update email of shop
-            let doc3 = await db.models.shop.findOne({"accountEmail":doc.email}, (err) => {
-                if (err)
-                        return o.status(500).send({"error":'Something went wrong.'})
-            })
-            if (doc3 && Object.keys(doc3).length  > 0){
-                await db.models.shop.findOneAndUpdate({"accountEmail":doc.email} ,(err) => {
-                    if (err)
-                        return o.status(500).send({"error":'Something went wrong.'})
-                })
-            }
             if (i.body.hasOwnProperty('name'))
                 acc.name = i.body.name
             // update token if change email
@@ -146,6 +135,17 @@ app.put('/', async(i, o) => {
             {
                 await db.models.token.findOneAndUpdate({"token":i.body.token},{"email":i.body.email,"token":Hash(i.body.email)},(err)=>{
                     if (err) return o.status(500).send({"error":'Something went wrong.'})})
+                // update email of shop
+                let doc3 = await db.models.shop.findOne({"accountEmail":doc.email}, (err) => {
+                    if (err)
+                            return o.status(500).send({"error":'Something went wrong.'})
+                })
+                if (doc3 && Object.keys(doc3).length  > 0){
+                    await db.models.shop.findOneAndUpdate({"accountEmail":doc.email},{"accountEmail":i.body.email} ,(err) => {
+                        if (err)
+                            return o.status(500).send({"error":'Something went wrong.'})
+                    })
+                }
             }
             return o.status(200).send({"ok":'Update success'})
         }
