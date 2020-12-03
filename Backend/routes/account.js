@@ -213,9 +213,11 @@ app.post('/login', async(i, o) => {
 app.post('/register', async(i, o) => {
     let test = true
     let test_fields = [
-        i.body.hasOwnProperty('name'),
+        i.body.hasOwnProperty('phone'),
         i.body.hasOwnProperty('email'),
-        i.body.hasOwnProperty('password')
+        i.body.hasOwnProperty('password'),
+        i.body.hasOwnProperty('name'),
+        i.body.hasOwnProperty('address')
     ]
     test_fields.forEach(each => {test &= each})
     
@@ -244,10 +246,10 @@ app.post('/register', async(i, o) => {
         // Write to Accounts
         let acc = db.models.account({
             'email': i.body.email,
-            'phone': null,
+            'phone': i.body.tel,
             'password': i.body.password,
             'name': i.body.name,
-            'address': null,
+            'address': i.body.address,
         })
         await acc.save((err, doc) => {
             if (err)

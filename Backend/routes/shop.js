@@ -3,9 +3,10 @@ const app = express()
 var db
 
 function ID() {
-    var _sym = '1234567890',
-    while (true)
+    var _sym = '1234567890';
+    while(true)
     {
+        
         var str = 'SHOP-';
 
         for(var i = 0; i < 8; i++) {
@@ -15,7 +16,9 @@ function ID() {
             if (err)
                 return "Error"
             if (!(doc && Object.keys(doc).length > 0))
+            {
                 return str
+            }
         })
     }
 }
@@ -59,9 +62,9 @@ app.post('/', async(i, o) => {
             name: "",
             address: "",
             averageRate: 0,
-            hours: {},
-            menu: {},
-            coupons: {},
+            hours: null,
+            menu: null,
+            coupons: null,
         })
         let doc3 = await shop.save((err) => {
             if (err)
