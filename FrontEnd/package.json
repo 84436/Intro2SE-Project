@@ -1,0 +1,14 @@
+{
+    "name": "intransit-frontend",
+    "version": "1.0.0",
+    "description": "The frontend something used by the InTransit project.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Hokage-Intro2SE Frontend Team",
+    "license": "ISC",
+    "dependencies": {
+        "@vue/cli": "^4.5.9"
+    }
+}

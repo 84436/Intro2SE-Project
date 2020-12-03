@@ -4,11 +4,12 @@
             <div id="bg-image"></div>
             <div id="bg-overlay"></div>
         </div>
-        <div id="app">
-            <div id="sidebar">
-                <router-view/>
-            </div>
-            <div id="content"></div>
+        <div>
+            <router-view/>
         </div>
     </div>
 </template>
+
+<style>
+@import "./assets/styles/styles.css";
+</style>
