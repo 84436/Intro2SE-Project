@@ -7,7 +7,12 @@
 .bg-lblue-700 {
     background-color: #0288d1;
 }
-
+.bg-lblue-900 {
+    background-color: #01579b;
+}
+.text-lblue-900 {
+    color: #01579b;
+}
 .form {
     /* Text */
     font-family: 'Montserrat', sans-serif;
@@ -126,7 +131,26 @@ button, button:focus {
     /* Size */
     @apply h-screen w-screen;
 }
+/* Customer UI */
+#navbar {
+    /* Position */
+    @apply absolute z-10 top-0 left-0;
 
+    /* Size */
+    @apply h-screen w-36;
+
+    /* Display */
+    @apply flex flex-col justify-center place-content-center;
+
+    /* Background */
+    @apply bg-lblue-900;
+
+}
+
+#navbar-container {
+    @apply flex;
+}
+/*  */
 #sidebar {
     /* Position */
     @apply absolute z-20 top-0 left-0;
@@ -159,6 +183,62 @@ button, button:focus {
     margin-bottom: 32px;
 }
 
+/* Template for Customer UI styles */
+#customer-ui {
+    /* Flex */
+    @apply flex flex-row;
+    @apply grid grid-cols-2 grid-flow-row gap-4;
+}
+
+#navbar-btn-container {
+    /* Margin */
+    margin-left: 2.33em;
+
+    /* Font color */
+    @apply text-white;
+
+    /* Display */
+    @apply flex flex-col;
+}
+
+#content-container {
+    @apply grid grid-cols-2 grid-rows-2 grid-flow-row gap-4;
+}
+.ui-btn {
+    /* Button size */
+    height: 64px;
+    width: 64px;
+
+        margin-bottom: 50px;
+
+    /* Icon size */
+    @apply text-5xl;
+}
+#home-btn {
+    /* Opacity */
+    @apply text-lblue-900;
+
+    /* Background */
+    @apply bg-white;
+
+    /* Border radius */
+    @apply rounded-full;
+
+    /* Button size */
+    height: 64px;
+    width: 64px;
+
+    /* Icon size */
+    @apply text-5xl;
+
+    /* Margin */
+    margin-bottom: 50px;
+}
+/* Exception: User button */
+
+#account-btn {
+    padding: 7.5px;
+}
 
 /*Specfic screen styles*/
 
