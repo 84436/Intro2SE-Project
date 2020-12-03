@@ -24,10 +24,14 @@ dbSchemas = {
         price: Number
     }),
     shop: new mongoose.Schema({
-        id: String,
+        ID: String,
+        accountEmail: String,
+        name: String,
         address: String,
-        hourOpen: Number,
-        hourClose: Number
+        averageRate: Number,
+        hours: Object,
+        menu: Object,
+        coupons: Object,
     }),
     token: new mongoose.Schema({
         email: String,

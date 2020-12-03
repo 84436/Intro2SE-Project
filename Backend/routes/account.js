@@ -17,11 +17,12 @@ app.get('/', async(i, o) => {
     test_fields.forEach(each => {test &= each})
 
     if (!test) {
-        o.status(401).send('One or more fields are missing')
+        o.status(401).send({"error":'One or more fields are missing'})
         return
     }
+    // lấy thông tin account
     let doc = await db.models.token.findOne({"token":i.body.token},(err)=>{
-        if (err) return o.status(500).send('Something went wrong.')
+        if (err) return o.status(500).send({"error":'Something went wrong.'})
     })
     if (doc && Object.keys(doc).length > 0)
     {
@@ -29,11 +30,11 @@ app.get('/', async(i, o) => {
             if (res && Object.keys(res).length > 0)
                 return o.status(200).send({"email":res.email,"address":res.address,"name":res.name,"phone":res.phone,"accountType":doc.accountType})
             else
-                return o.status(404).send("Cannot find email from this token")
+                return o.status(404).send({"error":"Cannot find email from this token"})
         })
     }
     else
-        return o.status(404).send('Cannot find token') 
+        return o.status(404).send({"error":'Cannot find token'}) 
 })
 
 app.delete('/', async(i, o) => {
@@ -44,33 +45,34 @@ app.delete('/', async(i, o) => {
     test_fields.forEach(each => {test &= each})
 
     if (!test) {
-        o.status(401).send('One or more fields are missing')
+        o.status(401).send({"error":'One or more fields are missing'})
         return
     }
     else{
         let doc = await db.models.token.findOne({"token":i.body.token},(err)=>{
-            if (err) return o.status(500).send('Something went wrong.')
+            if (err) return o.status(500).send({"error":'Something went wrong.'})
         })
         if (doc && Object.keys(doc).length > 0)
         {
+            // find and remove
             let acc = await db.models.account.findOne({"email":doc.email},(err)=>{
-                if (err) return o.status(500).send('Something went wrong.')
+                if (err) return o.status(500).send({"error":'Something went wrong.'})
             })
             if (!(acc && Object.keys(acc).length > 0))
-                return o.status(404).send('Cannot find email from token') 
+                return o.status(404).send({"error":'Cannot find email from token'}) 
             else
             {
                 await db.models.account.findOneAndRemove({"email":doc.email},(err)=>{
-                    if (err) return o.status(500).send('Something went wrong.')
+                    if (err) return o.status(500).send({"error":'Something went wrong.'})
                 })
                 await db.models.token.findOneAndRemove({"token":i.body.token},(err)=>{
-                    if (err) return o.status(500).send('Something went wrong.')
+                    if (err) return o.status(500).send({"error":'Something went wrong.'})
                 })
-                return o.status(200).send('Delete success')
+                return o.status(200).send({"ok":'Delete success'})
             }
         }
         else
-            return o.status(404).send('Cannot find token') 
+            return o.status(404).send({"error":'Cannot find token'}) 
     }
 })
 
@@ -86,7 +88,7 @@ app.put('/', async(i, o) => {
     }
     else{
         let doc = await db.models.token.findOne({"token":i.body.token},(err)=>{
-            if (err) return o.status(500).send('Something went wrong.')
+            if (err) return o.status(500).send({"error":'Something went wrong.'})
         })
         if (doc && Object.keys(doc).length > 0)
         {
@@ -98,35 +100,58 @@ app.put('/', async(i, o) => {
             let acc = await db.models.account.findOne({"email":doc.email},(err,doc2)=>{
                 if (err)
                     return o.status(500).send('Something went wrong.')
-                if (!doc2)
+                if (!(doc2 && Object.keys(doc2).length > 0))
                 {
-                    return o.status(404).send('Cannot find email from this token') 
+                    return o.status(404).send({"error":'Cannot find email from this token'}) 
                 }
             })
+            // update email of shop
+            let doc3 = await db.models.shop.findOne({"accountEmail":doc.email}, (err) => {
+                if (err)
+                        return o.status(500).send({"error":'Something went wrong.'})
+            })
+            if (doc3 && Object.keys(doc3).length  > 0){
+                await db.models.shop.findOneAndUpdate({"accountEmail":doc.email} ,(err) => {
+                    if (err)
+                        return o.status(500).send({"error":'Something went wrong.'})
+                })
+            }
             if (i.body.hasOwnProperty('name'))
                 acc.name = i.body.name
+            // update token if change email
             if (i.body.hasOwnProperty('email'))
+            {
                 acc.email = i.body.email
+                await db.models.account.findOne({'email': i.body.email}, (err,doc4) => {
+                    if (err)
+                        return o.status(500).send({"error":'Something went wrong.'})
+                    if (doc4 && Object.keys(doc4).length  > 0){
+                        o.status(409).send({"error":'Email update is already exists.'})
+                        return
+                    }
+                })
+            }
             if (i.body.hasOwnProperty('address'))
                 acc.address = i.body.address
             if (i.body.hasOwnProperty('password'))
                 acc.password = Hash(i.body.password)
             if (i.body.hasOwnProperty('phone'))
                 acc.phone = i.body.phone
+            // update
             await db.models.account.findOneAndUpdate({"email":doc.email},acc,(err)=>{
                 if (err)
-                    return o.status(500).send('Something went wrong.')
+                    return o.status(500).send({"error":'Something went wrong.'})
             })
             if (i.body.hasOwnProperty('email'))
             {
                 await db.models.token.findOneAndUpdate({"token":i.body.token},{"email":i.body.email,"token":Hash(i.body.email)},(err)=>{
-                    if (err) return o.status(500).send('Something went wrong.')})
+                    if (err) return o.status(500).send({"error":'Something went wrong.'})})
             }
-            return o.status(200).send('Update success')
+            return o.status(200).send({"ok":'Update success'})
         }
         else
         {
-            return o.status(404).send('Cannot find token') 
+            return o.status(404).send({"error":'Cannot find token'}) 
         }
     }
 })
@@ -134,7 +159,7 @@ app.put('/', async(i, o) => {
 app.get('/all', async (i, o) => {
     let response = await db.models.account.find((error) => {
         if (error) {
-            o.status(500).send('Something went wrong.')
+            o.status(500).send({"error":'Something went wrong.'})
             return
         }
     })
@@ -150,7 +175,7 @@ app.post('/login', async(i, o) => {
     test_fields.forEach(each => {test &= each})
 
     if (!test) {
-        o.status(401).send('One or more fields are missing')
+        o.status(401).send({"error":'One or more fields are missing'})
         return
     }
 
@@ -163,13 +188,13 @@ app.post('/login', async(i, o) => {
         }
         let doc = await db.models.account.findOne(account, (err) => { // Verify password, the lazy way
             if (err) {
-                return o.status(500).send('Something went wrong.')
+                return o.status(500).send({"error":'Something went wrong.'})
             }
         })
         if (doc && Object.keys(doc).length > 0) {
             await db.models.token.findOne({'email': i.body.email}, (err, tok) => {
                 if (err) {
-                    return o.status(500).send('Something went wrong.')
+                    return o.status(500).send({"error":'Something went wrong.'})
                 }
                 o.status(200).send({
                     'token': tok.token,
@@ -179,7 +204,7 @@ app.post('/login', async(i, o) => {
             })
         }
         else {
-            o.status(403).send('Login failed.')
+            o.status(403).send({"error":'Login failed.'})
             return
         }
     }
@@ -197,7 +222,7 @@ app.post('/register', async(i, o) => {
     let token
 
     if (!test) {
-        o.status(400).send('One or more fields are missing')
+        o.status(400).send({"error":'One or more fields are missing'})
         return
     }
 
@@ -207,7 +232,7 @@ app.post('/register', async(i, o) => {
             if (err)
                 return handleError(err)
             if (doc && Object.keys(doc).length  > 0){
-                o.status(409).send('Account already exists.')
+                o.status(409).send({"error":'Account already exists.'})
                 return
             }
         })
@@ -227,7 +252,7 @@ app.post('/register', async(i, o) => {
         await acc.save((err, doc) => {
             if (err)
             {
-                o.status(500).send('Something went wrong.')
+                o.status(500).send({"error":'Something went wrong.'})
                 return
             }
         })
@@ -241,10 +266,11 @@ app.post('/register', async(i, o) => {
         await tok.save((err, doc) => {
             if (err)
             {
-                o.status(500).send('Something went wrong.')
+                o.status(500).send({"error":'Something went wrong.'})
                 return
             }
         })
+        o.status(200).send({"ok":'Register success'})
     }
 
     // If everything's OK so far, throw the user that new token
