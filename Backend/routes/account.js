@@ -97,14 +97,14 @@ app.put('/', async(i, o) => {
                 await db.models.token.findOneAndUpdate({"token":i.body.token},{"accountType":i.body.accountType},(err)=>{
                     if (err) return o.status(500).send('Something went wrong.')
             })}
-            let acc = await db.models.account.findOne({"email":doc.email},(err,doc2)=>{
+            let acc = await db.models.account.findOne({"email":doc.email},(err)=>{
                 if (err)
                     return o.status(500).send('Something went wrong.')
-                if (!(doc2 && Object.keys(doc2).length > 0))
-                {
-                    return o.status(404).send({"error":'Cannot find email from this token'}) 
-                }
             })
+            if (!(acc && Object.keys(acc).length > 0))
+            {
+                return o.status(404).send({"error":'Cannot find email from this token'}) 
+            }
             // update email of shop
             let doc3 = await db.models.shop.findOne({"accountEmail":doc.email}, (err) => {
                 if (err)
@@ -122,14 +122,14 @@ app.put('/', async(i, o) => {
             if (i.body.hasOwnProperty('email'))
             {
                 acc.email = i.body.email
-                await db.models.account.findOne({'email': i.body.email}, (err,doc4) => {
+                let doc4 = await db.models.account.findOne({'email': i.body.email}, (err) => {
                     if (err)
                         return o.status(500).send({"error":'Something went wrong.'})
-                    if (doc4 && Object.keys(doc4).length  > 0){
-                        o.status(409).send({"error":'Email update is already exists.'})
-                        return
-                    }
                 })
+                if (doc4 && Object.keys(doc4).length  > 0){
+                    o.status(409).send({"error":'Email update is already exists.'})
+                    return
+                }
             }
             if (i.body.hasOwnProperty('address'))
                 acc.address = i.body.address
@@ -230,15 +230,14 @@ app.post('/register', async(i, o) => {
 
     else {
         // Check if account already exists
-        await db.models.account.findOne({'email': i.body.email}, (err,doc) => {
+        let doc = await db.models.account.findOne({'email': i.body.email}, (err) => {
             if (err)
-                return handleError(err)
-            if (doc && Object.keys(doc).length  > 0){
-                o.status(409).send({"error":'Account already exists.'})
-                return
-            }
+                return o.status(500).send({"error":'Something went wrong.'})
         })
-
+        if (doc && Object.keys(doc).length  > 0){
+            o.status(409).send({"error":'Account already exists.'})
+            return
+        }
         // Make the email and password a bit more obscure
         token = Hash(i.body.email)
         i.body.password = Hash(i.body.password)
@@ -251,7 +250,7 @@ app.post('/register', async(i, o) => {
             'name': i.body.name,
             'address': i.body.address,
         })
-        await acc.save((err, doc) => {
+        await acc.save((err) => {
             if (err)
             {
                 o.status(500).send({"error":'Something went wrong.'})
@@ -265,7 +264,7 @@ app.post('/register', async(i, o) => {
             'token': token,
             'accountType': ACCOUNT_TYPE_CUSTOMER
         })
-        await tok.save((err, doc) => {
+        await tok.save((err) => {
             if (err)
             {
                 o.status(500).send({"error":'Something went wrong.'})
