@@ -38,12 +38,14 @@
 
 <script>
 import AccountService from "../../services/AccountService";
+import store from "../../store/store"
 
 export default {
     data() {
         return {
             email: "",
             password: "",
+            error: null
         };
     },
     methods: {
@@ -52,7 +54,11 @@ export default {
                 email: this.email,
                 password: this.password,
             });
-            console.log(respond);
+
+            store.dispatch("setToken", respond.data.token);
+            store.dispatch("setType", respond.data.accountType);
+
+            this.$router.push('/user');
         },
     },
 };

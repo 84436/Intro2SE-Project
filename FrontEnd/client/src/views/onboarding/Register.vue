@@ -13,20 +13,83 @@
             </div>
         </div>
         <div class="form">
-            <input type="email" id="email" placeholder="Email" />
-            <input type="password" id="password" placeholder="Password" />
+            <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                v-model="email"
+            />
+            <input
+                type="text"
+                id="name"
+                placeholder="Full name"
+                v-model="name"
+            />
+            <input
+                type="text"
+                id="address"
+                placeholder="Address"
+                v-model="address"
+            />
+            <input type="tel" id="phone" placeholder="Phone" v-model="phone" />
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                v-model="password"
+            />
             <input
                 type="password"
                 id="confirm-password"
                 placeholder="Confirm Password"
+                v-model="cfpassword"
             />
-            <input type="tel" id="phone" placeholder="Phone" />
         </div>
         <div id="button-container">
-            <button class="btn" id="btn-submit-up">Next</button>
+            <button class="btn" id="btn-submit-up" @click="register">
+                Next
+            </button>
         </div>
     </div>
 </template>
+
+<script>
+import AccountService from "../../services/AccountService";
+import store from "../../store/store";
+
+export default {
+    data() {
+        return {
+            email: "",
+            name: "",
+            address: "",
+            password: "",
+            cfpassword: "",
+            phone: "",
+            error: null
+        };
+    },
+    methods: {
+        async register() {
+            if(this.password !== this.cfpassword){
+                // Error here
+            }
+            const respond = await AccountService.register({
+                email: this.email,
+                name: this.name,
+                address: this.address,
+                phone: this.phone,
+                password: this.password,
+            });
+
+            store.dispatch("setToken", respond.data.token);
+            store.dispatch("setType", respond.data.accountType);
+
+            this.$router.push("/user");
+        },
+    },
+};
+</script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Exo:wght@600&family=Montserrat&display=swap");
