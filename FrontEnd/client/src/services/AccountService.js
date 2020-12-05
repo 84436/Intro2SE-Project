@@ -3,7 +3,6 @@ import Api from "@/services/Api";
 const apiBase = Api()
 
 class AccountService {
-    const;
     static login(credentials) {
         return apiBase.post("account/login", credentials);
     }

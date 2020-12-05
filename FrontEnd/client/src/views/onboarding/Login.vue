@@ -12,40 +12,66 @@
                 <p class="header">Sign in</p>
             </div>
         </div>
-        <div class="form">
-            <input
-                type="email"
-                id="email"
-                placeholder="Email"
-                autofocus
-                v-model="email"
-            />
-            <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                v-model="password"
-            />
-        </div>
-        <div id="button-container">
-            <button class="btn" id="btn-submit-in" @click="login">
-                Let's go
-            </button>
-            <button class="btn" id="btn-help">Send help</button>
-        </div>
+        <ValidationObserver v-slot="{ handleSubmit }" tag="div">
+            <form @submit.prevent="handleSubmit(login)">
+                <ValidationProvider
+                    name="Email"
+                    rules="required|email"
+                    v-slot="{ errors }"
+                    tag="div"
+                    class="form-control"
+                >
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Email"
+                        autofocus
+                        v-model="email"
+                    />
+                    <span class="form-error">{{ errors[0] }}</span>
+                </ValidationProvider>
+
+                <ValidationProvider
+                    name="Password"
+                    rules="required"
+                    v-slot="{ errors }"
+                    tag="div"
+                    class="form-control"
+                >
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        v-model="password"
+                    />
+                    <span class="form-error">{{ errors[0] }}</span>
+                </ValidationProvider>
+
+                <div id="button-container">
+                    <button class="btn" id="btn-submit-in" type="submit">
+                        Let's go
+                    </button>
+                    <button class="btn" id="btn-help">Send help</button>
+                </div>
+            </form>
+        </ValidationObserver>
     </div>
 </template>
 
 <script>
 import AccountService from "../../services/AccountService";
-import store from "../../store/store"
+import store from "../../store/store";
+import { ValidationProvider, ValidationObserver } from "vee-validate";
 
 export default {
+    components: {
+        ValidationProvider,
+        ValidationObserver,
+    },
     data() {
         return {
             email: "",
             password: "",
-            error: null
         };
     },
     methods: {
@@ -58,7 +84,13 @@ export default {
             store.dispatch("setToken", respond.data.token);
             store.dispatch("setType", respond.data.accountType);
 
-            this.$router.push('/user');
+            if (respond.data.accountType === "customer") {
+                this.$router.push("/customer");
+            } else if (respond.data.accountType === "shopowner") {
+                this.$router.push("/shopowner");
+            } else if (respond.data.accountType === "admin") {
+                this.$router.push("/admin");
+            }
         },
     },
 };

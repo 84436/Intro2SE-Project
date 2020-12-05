@@ -13,7 +13,12 @@
 .text-lblue-900 {
     color: #01579b;
 }
-.form {
+
+.error-red-a200 {
+    color: #FF5252;
+}
+
+form {
     /* Text */
     font-family: 'Montserrat', sans-serif;
     @apply font-semibold;
@@ -22,7 +27,7 @@
     @apply w-full;
 }
 
-.form input {
+form input {
     /* Text */
     text-indent: 10px;
     @apply text-black;
@@ -31,7 +36,6 @@
     @apply h-14 w-full;
 
     /* Box-sizing */
-    margin-bottom: 32px;
     @apply mt-1;
 
     /* Border */
@@ -39,6 +43,14 @@
 
     /* Display */
     @apply block;
+}
+
+.form-control {
+    margin-bottom: 32px;
+}
+
+.form-error {
+    @apply error-red-a200;
 }
 
 .btn {
