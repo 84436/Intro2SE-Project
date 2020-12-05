@@ -231,22 +231,27 @@ button, button:focus {
 
     /* Background */
     @apply bg-white;
-
+    
+    /* Flex */
+    @apply flex flex-col;
 }
 
 #settings-btn {
     /* Position */
     @apply relative top-0 right-0;
 
+    @apply float-right;
+
     /* Margin */
     margin-top: 20px;
+    margin-right: 20px;
 
     /* Button size */
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 
     /* Icon size */
-    @apply text-2xl;
+    @apply text-xl;
     
     /* Border radius */
     @apply rounded-full;
