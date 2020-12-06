@@ -78,7 +78,7 @@ form input {
     filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
-button, button:focus {
+button, button:focus, form input, form input:focus {
     /* Border */
     @apply border-none outline-none;
 }
@@ -123,9 +123,10 @@ button, button:focus {
     @apply absolute;
     z-index: -1;
 }
+
 #bg-image {
     /* Background */
-    background-image: url("assets/image.png");
+    background-image: url("~@/assets/image.png");
     @apply bg-cover bg-center;
 
     /* Size */
@@ -281,7 +282,7 @@ button, button:focus {
 
 #avatar {
     /* Image */
-    background-image: url("assets/phake.jpg");
+    background-image: url("~@/assets/phake.jpg");
 
     /* Position */
     @apply bg-top;

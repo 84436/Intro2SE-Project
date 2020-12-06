@@ -1,4 +1,4 @@
-import { required, confirmed, email } from "vee-validate/dist/rules";
+import { required, confirmed, email, numeric } from "vee-validate/dist/rules";
 import { extend } from "vee-validate";
 
 extend("required", {
@@ -16,3 +16,19 @@ extend("confirmed", {
     message: "Confirm password does not match",
 });
 
+extend("numeric", {
+    ...numeric,
+    message: "This field must be a valid phone number",
+});
+
+extend("name", {
+    message: "This field must only contain Vietnamese/English letters",
+    validate: value => {
+        var vi_regex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/
+        var test = vi_regex.test(value);
+        if (!test) {
+            return false;
+        }
+        return true;
+    }
+});

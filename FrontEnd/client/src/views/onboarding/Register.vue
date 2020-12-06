@@ -32,7 +32,7 @@
 
                 <ValidationProvider
                     name="Name"
-                    rules="required"
+                    rules="required|name"
                     v-slot="{ errors }"
                     tag="div"
                     class="form-control"
@@ -64,7 +64,7 @@
 
                 <ValidationProvider
                     name="Phone"
-                    rules="required"
+                    rules="required|numeric"
                     v-slot="{ errors }"
                     tag="div"
                     class="form-control"
