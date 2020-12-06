@@ -119,10 +119,13 @@ button, button:focus {
 
 
 /*Template style for Onboarding screen*/
-
+#bg {
+    @apply absolute;
+    z-index: -1;
+}
 #bg-image {
     /* Background */
-    background-image: url("~@/assets/image.png");
+    background-image: url("assets/image.png");
     @apply bg-cover bg-center;
 
     /* Size */
@@ -146,10 +149,10 @@ button, button:focus {
 /* Customer UI */
 #navbar {
     /* Position */
-    @apply absolute z-10 top-0 left-0;
+    @apply top-0 left-0;
 
     /* Size */
-    @apply h-screen w-36;
+    @apply h-screen w-40;
 
     /* Display */
     @apply flex flex-col justify-center place-content-center;
@@ -157,12 +160,14 @@ button, button:focus {
     /* Background */
     @apply bg-lblue-900;
 
+    /* Grid */
+    @apply col-span-1;
 }
 
 #navbar-container {
     @apply flex;
 }
-/*  */
+
 #sidebar {
     /* Position */
     @apply absolute z-20 top-0 left-0;
@@ -197,14 +202,17 @@ button, button:focus {
 
 /* Template for Customer UI styles */
 #customer-ui {
+    @apply relative z-10; 
+
     /* Flex */
     @apply flex flex-row;
-    @apply grid grid-cols-2 grid-flow-row gap-4;
+
+    @apply grid grid-cols-9;
 }
 
 #navbar-btn-container {
     /* Margin */
-    margin-left: 2.33em;
+    margin-left: 2.75em;
 
     /* Font color */
     @apply text-white;
@@ -213,15 +221,123 @@ button, button:focus {
     @apply flex flex-col;
 }
 
-#content-container {
-    @apply grid grid-cols-2 grid-rows-2 grid-flow-row gap-4;
+#bg-content {
+    @apply bg-white;
 }
+
+#content-container {
+    /* Grid */
+    @apply col-span-8;
+    @apply grid grid-cols-8 gap-4;
+
+    /* Padding */
+    padding: 1.5em 1.5em 1.5em 0;
+}
+
+#profile {
+    /* Grid */
+    @apply col-span-4;
+    
+    /* Border */
+    @apply shadow-2xl;
+
+    /* Background */
+    @apply bg-white;
+    
+    /* Flex */
+    @apply flex flex-col;
+}
+
+#settings-btn {
+    /* Position */
+    @apply relative top-0 right-0;
+
+    @apply float-right;
+
+    /* Margin */
+    margin-top: 20px;
+    margin-right: 20px;
+
+    /* Button size */
+    width: 40px;
+    height: 40px;
+
+    /* Icon size */
+    @apply text-xl;
+    
+    /* Border radius */
+    @apply rounded-full;
+
+    /* Text */
+    @apply text-black;
+
+    /* Background */
+    @apply bg-gray-200;
+
+    /* Shadow */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+}
+
+#avatar {
+    /* Image */
+    background-image: url("assets/phake.jpg");
+
+    /* Position */
+    @apply bg-top;
+
+    /* Radius */
+    @apply rounded-full;
+}
+
+#realname {
+    /* Font */
+    font-family: 'Montserrat', sans-serif;
+    @apply text-2xl;
+}
+#username {
+    /* Flex */
+    @apply flex justify-between;
+}
+
+#profile-content {
+    /* Flex */
+    @apply flex flex-col flex-wrap content-center;
+}
+
+.detail {
+    /* Flex */
+    @apply flex flex-row justify-between flex-grow;
+}
+
+#info {
+    /* Flex */
+    @apply flex flex-col;
+}
+#statistic {
+    /* Grid */
+    @apply col-span-4;
+
+    /* Border */
+    @apply shadow-2xl;
+
+    /* Background */
+    @apply bg-white;
+
+    /* Flex */
+    @apply flex justify-center;
+
+    /* Scrolling */
+    @apply overflow-scroll;
+}
+
 .ui-btn {
     /* Button size */
     height: 64px;
     width: 64px;
 
-        margin-bottom: 50px;
+    /* Button spacing */
+    margin-bottom: 55px;
 
     /* Icon size */
     @apply text-5xl;
@@ -250,6 +366,25 @@ button, button:focus {
 
 #account-btn {
     padding: 7.5px;
+
+    /* Opacity */
+    @apply text-lblue-900;
+
+    /* Background */
+    @apply bg-white;
+
+    /* Border radius */
+    @apply rounded-full;
+
+    /* Button size */
+    height: 64px;
+    width: 64px;
+
+    /* Icon size */
+    @apply text-5xl;
+
+    /* Margin */
+    margin-bottom: 50px;
 }
 
 /*Specfic screen styles*/
