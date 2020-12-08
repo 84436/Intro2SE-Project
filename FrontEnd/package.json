@@ -8,7 +8,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-css": "tailwindcss build src/styles.css -o src/assets/styles/styles.css"
+    "build-css": "tailwindcss build src/utils/tailwind.css -o src/styles.css"
   },
   "dependencies": {
     "autoprefixer": "^10.0.2",
