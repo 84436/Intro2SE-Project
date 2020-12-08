@@ -113,7 +113,7 @@ button, button:focus {
 }
 #bg-image {
     /* Background */
-    background-image: url("assets/image.png");
+    background-image: url("../assets/image.png");
     @apply bg-cover bg-center;
 
     /* Size */
@@ -270,6 +270,10 @@ button, button:focus {
 
 }
 
+#settings-btn:active {
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+}
+
 #button-container-ui {
     /* Flex */
     @apply flex;
@@ -303,7 +307,7 @@ button, button:focus {
 
 #avatar {
     /* Image */
-    background-image: url("assets/phake.jpg");
+    background-image: url("../assets/phake.jpg");
 
     /* Position */
     @apply bg-top;
@@ -362,7 +366,7 @@ button, button:focus {
     @apply bg-white;
 
     /* Scrolling */
-    @apply overflow-scroll;
+    @apply overflow-y-scroll;
 
     /* Gap */
     @apply gap-y-8;

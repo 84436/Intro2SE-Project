@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Order</title>
+        <link rel="stylesheet" href="../src/assets/styles/styles.css"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Exo:wght@600&family=Montserrat&display=swap" rel="stylesheet">         
+        <link rel="stylesheet" href="../icon/css/all.min.css"/>
+    </head>
+    <body>
+        <div id="bg">
+            <div id="bg-image"></div>
+            <div id="bg-overlay"></div>
+        </div>
+        <div id="customer-ui">
+            <div id="navbar">
+                <div id="navbar-content">
+                    <div id="navbar-btn-container">
+                        <div>
+                            <button class ="btn-ui"><i class="fal fa-user-circle"></i></button>
+                        </div>
+                        <div>
+                            <button class ="btn-ui" ><i class="fal fa-home-alt"></i></button>
+                        </div>
+                        <div>
+                            <button id ="btn-order" ><i class="fal fa-utensils-alt"></i></button>
+                        </div>
+                        <div>
+                            <button class ="btn-ui" ><i class="fal fa-shopping-basket"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content-container">
+                <div id="info">
+                    <div id="search-bar">
+                        <i class="fal fa-search"></i>
+                        <input id="search-input" type="text" size="75" placeholder="What are you looking for?">
+                    </div>
+                    <div id="order-list">
+                        <div class="order-item">
+                            <div class="order-name">Bún chả</div>
+                            <div class="order-sth">Something</div>
+                            <div class="order-price">69000</div>
+                            <button id="btn-choose">
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
