@@ -1,3 +1,6 @@
+# GitHub Node.gitignore template
+# https://github.com/github/gitignore/blob/master/Node.gitignore
+
 # Logs
 logs
 *.log
@@ -114,3 +117,24 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+#### CUSTOM ENTRIES START HERE
+
+# VSCode workspace
+.vscode
+
+# IntelliJ IDEA workspace
+.idea
+
+# Visual Studio (?) solution files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# macOS metadata
+.DS_Store
+
+# Front-end: Tailwind builds
+FrontEnd/src/assets/styles
