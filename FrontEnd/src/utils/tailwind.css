@@ -13,12 +13,7 @@
 .text-lblue-900 {
     color: #01579b;
 }
-
-.error-red-a200 {
-    color: #FF5252;
-}
-
-form {
+.form {
     /* Text */
     font-family: 'Montserrat', sans-serif;
     @apply font-semibold;
@@ -27,7 +22,7 @@ form {
     @apply w-full;
 }
 
-form input {
+.form input {
     /* Text */
     text-indent: 10px;
     @apply text-black;
@@ -36,6 +31,7 @@ form input {
     @apply h-14 w-full;
 
     /* Box-sizing */
+    margin-bottom: 32px;
     @apply mt-1;
 
     /* Border */
@@ -43,14 +39,6 @@ form input {
 
     /* Display */
     @apply block;
-}
-
-.form-control {
-    margin-bottom: 32px;
-}
-
-.form-error {
-    @apply error-red-a200;
 }
 
 .btn {
@@ -78,7 +66,7 @@ form input {
     filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
-button, button:focus, form input, form input:focus {
+button, button:focus {
     /* Border */
     @apply border-none outline-none;
 }
@@ -123,10 +111,9 @@ button, button:focus, form input, form input:focus {
     @apply absolute;
     z-index: -1;
 }
-
 #bg-image {
     /* Background */
-    background-image: url("~@/assets/image.png");
+    background-image: url("assets/image.png");
     @apply bg-cover bg-center;
 
     /* Size */
@@ -167,6 +154,8 @@ button, button:focus, form input, form input:focus {
 
 #navbar-container {
     @apply flex;
+    /* Background */
+    background-color: rgb(255,255,255);
 }
 
 #sidebar {
@@ -208,7 +197,12 @@ button, button:focus, form input, form input:focus {
     /* Flex */
     @apply flex flex-row;
 
+    /* Grid */
     @apply grid grid-cols-9;
+
+    /* Background */
+    background-color: rgb(255,255,255);
+    
 }
 
 #navbar-btn-container {
@@ -233,21 +227,17 @@ button, button:focus, form input, form input:focus {
 
     /* Padding */
     padding: 1.5em 1.5em 1.5em 0;
+
+    /* Background */
+    background-color: rgb(255,255,255);    
+
 }
 
 #profile {
-    /* Grid */
-    @apply col-span-4;
-    
-    /* Border */
-    @apply shadow-2xl;
-
-    /* Background */
-    @apply bg-white;
-    
     /* Flex */
     @apply flex flex-col;
 }
+/* Account frame */
 
 #settings-btn {
     /* Position */
@@ -280,9 +270,40 @@ button, button:focus, form input, form input:focus {
 
 }
 
+#button-container-ui {
+    /* Flex */
+    @apply flex;
+
+    /* Position */
+    @apply absolute bottom-8;
+
+    width:100%;
+}
+
+#btn-log-out {
+    /* Background */
+    background-color: #c7c6c6;
+
+    /* Text */
+    @apply text-black;
+
+    margin-left: 30px;
+}
+
+#btn-delete-account {
+    /* Background */
+    background-color: #c7c6c6;
+
+    /* Text */
+    @apply text-black;
+
+    @apply relative;
+    left: 60%;
+}
+
 #avatar {
     /* Image */
-    background-image: url("~@/assets/phake.jpg");
+    background-image: url("assets/phake.jpg");
 
     /* Position */
     @apply bg-top;
@@ -296,6 +317,7 @@ button, button:focus, form input, form input:focus {
     font-family: 'Montserrat', sans-serif;
     @apply text-2xl;
 }
+
 #username {
     /* Flex */
     @apply flex justify-between;
@@ -304,6 +326,8 @@ button, button:focus, form input, form input:focus {
 #profile-content {
     /* Flex */
     @apply flex flex-col flex-wrap content-center;
+
+    font-family: "Montserrat", "sans-serif";
 }
 
 .detail {
@@ -312,9 +336,21 @@ button, button:focus, form input, form input:focus {
 }
 
 #info {
+
+    @apply relative;
+    /* Grid */
+    @apply col-span-4;
+
+    /* Border */
+    @apply shadow-2xl;
+
+    /* Background */
+    @apply bg-white;
+    
     /* Flex */
     @apply flex flex-col;
 }
+
 #statistic {
     /* Grid */
     @apply col-span-4;
@@ -325,14 +361,110 @@ button, button:focus, form input, form input:focus {
     /* Background */
     @apply bg-white;
 
-    /* Flex */
-    @apply flex justify-center;
-
     /* Scrolling */
     @apply overflow-scroll;
+
+    /* Gap */
+    @apply gap-y-8;
 }
 
-.ui-btn {
+.order-card {
+    /* Margin */
+    @apply m-auto;
+    margin-top: 30px;
+
+    /* Flex */
+    @apply flex flex-col;
+
+    /* Center text */
+    @apply text-center;
+    
+    /* Shadow */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    /* Background color */
+    background-color: #dddddd;
+
+    /* Text */
+    @apply text-black;
+    font-family: "Montserrat", sans-serif;
+
+    /* Width */
+    width: 90%;
+}
+/* Order frame */
+
+#search-bar i {
+    /* Position */
+    @apply absolute;
+
+    /* Padding */
+    padding: 15px;
+
+    /* Flex */
+    @apply flex justify-start;
+}
+
+#search-input {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 35px;
+    @apply text-left;
+}
+
+#search-bar {
+    @apply relative top-12 left-24;
+
+    /* Flex */
+    @apply flex;
+
+    /* Shadow */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    width: 90%;
+}
+
+#order-list {
+    @apply relative top-28;
+    @apply flex flex-col;
+}
+
+.order-item {
+    @apply relative left-16;
+
+    @apply grid grid-cols-6;
+
+    @apply gap-y-8;
+
+    @apply shadow-2xl;
+
+    width: 80%
+}
+
+/* .order-item:active {
+
+} */
+
+.order-name {
+    @apply col-span-2;
+}
+
+.order-sth {
+    @apply col-span-2;
+}
+
+.order-price {
+    @apply col-span-1;
+}
+
+#btn-choose {
+    @apply col-span-1;  
+}
+
+
+/* Navigation bar buttons */
+
+.btn-ui {
     /* Button size */
     height: 64px;
     width: 64px;
@@ -343,7 +475,7 @@ button, button:focus, form input, form input:focus {
     /* Icon size */
     @apply text-5xl;
 }
-#home-btn {
+#btn-home {
     /* Opacity */
     @apply text-lblue-900;
 
@@ -363,9 +495,31 @@ button, button:focus, form input, form input:focus {
     /* Margin */
     margin-bottom: 50px;
 }
+
+#btn-order {
+    /* Opacity */
+    @apply text-lblue-900;
+
+    /* Background */
+    @apply bg-white;
+
+    /* Border radius */
+    @apply rounded-full;
+
+    /* Button size */
+    height: 72px;
+    width: 72px;
+
+    /* Icon size */
+    @apply text-5xl;
+
+    /* Margin */
+    margin-bottom: 50px;
+}
+
 /* Exception: User button */
 
-#account-btn {
+#btn-account {
     padding: 7.5px;
 
     /* Opacity */
@@ -387,6 +541,7 @@ button, button:focus, form input, form input:focus {
     /* Margin */
     margin-bottom: 50px;
 }
+
 
 /*Specfic screen styles*/
 
