@@ -11,5 +11,5 @@
 </template>
 
 <style>
-@import "./styles.css";
+@import "./utils/styles.css";
 </style>
