@@ -192,7 +192,7 @@ button, button:focus, , form input, form input:focus {
 
 #sidebar {
     /* Size */
-    @apply h-screen;
+    @apply h-screen w-screen;
 
     /* Display */
     @apply flex flex-col justify-center;
@@ -615,7 +615,7 @@ button, button:focus, , form input, form input:focus {
 @media screen and (min-width: 1280px) {
     #sidebar {
         /* Size */
-        /* width: 37.5%; */
+        width: 37.5%;
     }
 
     #sidebar-content {
