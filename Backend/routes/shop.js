@@ -2,57 +2,27 @@ const express = require('express')
 const app = express()
 var db
 
-async function ID() {
-    var _sym = '1234567890';
-    var str = 'SHOP-';
-    while(true)
-    {
-        str = 'SHOP-';
-        for(var i = 0; i < 8; i++) {
-            str += _sym[parseInt(Math.random() * (_sym.length))];
-        }
-        let doc = await db.models.shop.findOne({"ID":str}, (err) => {
-            if (err)
-                return "error"
-        })
-        if (!(doc && Object.keys(doc).length > 0))
-        {
-            break
-        }
-    }
-    return str
-}
-app.get('/', async(i, o) => {
-    o.status(501).send({"error":'Not implemented'})
-})
-
 app.get('/all', async (i, o) => {
-    let response = await db.models.shop.find((error) => {
-        if (error) {
-            o.status(500).send({"error":'Something went wrong.'})
-            return
-        }
-    })
-    o.send(response)
+    try
+    {
+        let response = await db.models.shop.find((err) => {
+            if (err) throw new Error('Something went in find function');
+        })
+        o.send(response)
+    }
+    catch(e)
+    {
+        o.status(500).send({"error":e.message})
+    }
 })
 
 app.post('/', async(i, o) => {
-    let test = true
-    let test_fields = [
-        i.body.hasOwnProperty('token'),
-    ]
-    test_fields.forEach(each => {test &= each})
-
-    if (!test) {
-        return o.status(401).send({"error":'One or more fields are missing'})
-    }
-    else
+    if (i.body.hasOwnProperty('token') == false)
+        return o.status(401).send('Missing token')    
+    try
     {
-        let doc = await db.models.token.findOne({"token":i.body.token},(error) => {
-        if (error) {
-            o.status(500).send({"error":'Something went wrong.'})
-            return
-        }
+        let doc = await db.models.token.findOne({"token":i.body.token},(err) => {
+            if (err) throw new Error('Something went in find function');
         })
         if (!(doc && Object.keys(doc).length > 0))
             return o.status(404).send({"error":'Cannot find token'})
@@ -61,21 +31,17 @@ app.post('/', async(i, o) => {
             return o.status(403).send({"error":'Only account shop can make a shop'})
         }
         let acc = await db.models.account.findOne({"email":doc.email},(err)=>{
-            if (err) return o.status(500).send({"error":'Something went wrong.'})
+            if (err) throw new Error('Something went in find function');
         })
         
         if (!(acc && Object.keys(acc).length > 0))
             return o.status(404).send({"error":'Cannot find email from token'}) 
         let doc2 = await db.models.shop.findOne({"accountEmail":acc.email}, (err) => {
-            if (err) return o.status(500).send({"error":'Something went wrong.'})
+            if (err) throw new Error('Something went in find function');
         })
         if (doc2 && Object.keys(doc2).length > 0)
             return o.status(409).send({"error":'Email already exists shop.'})
-        var ID_ = await ID()
-        if (ID_.toString() == 'error')
-            return o.status(500).send({"error":'Something went wrong.'})
         let shop = db.models.shop({
-            ID: ID_,
             accountEmail: acc.email,
             name: "",
             address: "",
@@ -84,37 +50,26 @@ app.post('/', async(i, o) => {
             menu: null,
             coupons: null,
         })
-        await shop.save((err) => {
-            if (err)
-            {
-                o.status(500).send({"error":'Something went wrong.'})
-                return
-            }
-        })
+        await shop.save()
         o.status(200).send({"ok":"create shop success"})
+    }
+    catch(e)
+    {
+        o.status(500).send({"error":e.message})
     }
 })
 
 app.put('/', async(i,o) => {
-    let test = true
-    let test_fields = [
-        i.body.hasOwnProperty('token'),
-    ]
-    test_fields.forEach(each => {test &= each})
-
-    if (!test) {
-        return o.status(401).send('One or more fields are missing')
-    }
-    else{
+    if (i.body.hasOwnProperty('token') == false)
+        return o.status(401).send('Missing token')  
+    try{
         let doc = await db.models.token.findOne({"token":i.body.token},(err)=>{
-            if (err) return o.status(500).send({"error":'Something went wrong.'})
+            if (err) throw new Error('Something went in find function');
         })
         if (doc && Object.keys(doc).length > 0)
         {
             let shop = await db.models.shop.findOne({"accountEmail":doc.email},(err)=>{
-                if (err)
-                    return o.status(500).send('Something went wrong.')
-                
+                if (err) throw new Error('Something went in find function');  
             })
             if (!(shop && Object.keys(shop).length > 0))
             {
@@ -132,8 +87,7 @@ app.put('/', async(i,o) => {
             if (i.body.hasOwnProperty("averageRate"))
                 shop.averageRate = i.body.averageRate
             await db.models.shop.findOneAndUpdate({"accountEmail":doc.email},shop,(err,doc2)=>{
-                if (err)
-                    return o.status(500).send('Something went wrong.')
+                if (err) throw new Error('Something went in update function');
             })
             return o.status(200).send({"ok":"update success"})
         }
@@ -142,40 +96,54 @@ app.put('/', async(i,o) => {
             return o.status(404).send({"error":'Cannot find token'}) 
         }
     }
+    catch(e)
+    {
+        return o.status(500).send({"error":e.message}) 
+    }
 })
 
 app.delete('/', async(i,o) => {
-    let test = true
-    let test_fields = [
-        i.body.hasOwnProperty('token'),
-    ]
-    test_fields.forEach(each => {test &= each})
-
-    if (!test) {
-        return o.status(401).send({"error":'One or more fields are missing'})
-    }
-    else
+    if (i.body.hasOwnProperty('token') == false)
+        return o.status(401).send('Missing token')  
+    try
     {
         let doc = await db.models.token.findOne({"token":i.body.token},(err) => {
-            if (err)
-                return o.status(500).send({"error":'Something went wrong.'})  
+            if (err) throw new Error('Something went in find function');  
         })
         if (!(doc && Object.keys(doc).length > 0))
             return o.status(404).send({"error":'Cannot find token'})
         let acc = await db.models.account.findOne({"email":doc.email},(err)=>{
-            if (err) return o.status(500).send({"error":'Something went wrong.'})
+            if (err) throw new Error('Something went in find function');
         })   
         if (!(acc && Object.keys(acc).length > 0))
             return o.status(404).send({"error":'Cannot find email from token'})  
         let doc2 = await db.models.shop.findOne({"accountEmail":doc.email},(err)=>{
-            if (err) return o.status(500).send({"error":'Something went wrong.'})
+            if (err) throw new Error('Something went in find function');
         })
         if (!(doc2 && Object.keys(doc2).length > 0))
             return o.status(409).send({"error":'Email not create shop'})
         await db.models.shop.findOneAndRemove({"accountEmail":doc.email},(err)=>{
-            if (err) return o.status(500).send({"error":'Something went wrong.'})
+            if (err) throw new Error('Something went in find function');
         })
         return o.status(200).send({"ok":"Delete success"})
+    }
+    catch(e)
+    {
+        return o.status(500).send({"error":e.message})
+    }
+})
+
+app.get('/:Id', async(i, o) => {
+    try{
+        const shopId = i.params.Id;
+        let doc = await db.models.shop.find({"_id":shopId},(err) => {
+            if (err) throw new Error('Something went in find function');
+        })
+        o.status(200).send(doc)
+    }
+    catch(e)
+    {
+        o.status(500).send({"error":e.message})
     }
 })
 
