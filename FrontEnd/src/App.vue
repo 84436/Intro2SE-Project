@@ -4,9 +4,7 @@
             <div id="bg-image"></div>
             <div id="bg-overlay"></div>
         </div>
-        <div>
-            <router-view/>
-        </div>
+        <router-view />
     </div>
 </template>
 

@@ -7,13 +7,20 @@
 .bg-lblue-700 {
     background-color: #0288d1;
 }
+
 .bg-lblue-900 {
     background-color: #01579b;
 }
+
 .text-lblue-900 {
     color: #01579b;
 }
-.form {
+
+.error-red-a200 {
+    color: #FF5252;
+}
+
+form {
     /* Text */
     font-family: 'Montserrat', sans-serif;
     @apply font-semibold;
@@ -22,7 +29,7 @@
     @apply w-full;
 }
 
-.form input {
+form input {
     /* Text */
     text-indent: 10px;
     @apply text-black;
@@ -31,7 +38,6 @@
     @apply h-14 w-full;
 
     /* Box-sizing */
-    margin-bottom: 32px;
     @apply mt-1;
 
     /* Border */
@@ -39,6 +45,14 @@
 
     /* Display */
     @apply block;
+}
+
+.form-control {
+    margin-bottom: 32px;
+}
+
+.form-error {
+    @apply error-red-a200;
 }
 
 .btn {
@@ -66,7 +80,7 @@
     filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
-button, button:focus {
+button, button:focus, , form input, form input:focus {
     /* Border */
     @apply border-none outline-none;
 }
@@ -111,6 +125,7 @@ button, button:focus {
     @apply absolute;
     z-index: -1;
 }
+
 #bg-image {
     /* Background */
     background-image: url("../assets/image.png");
@@ -134,22 +149,25 @@ button, button:focus {
     /* Size */
     @apply h-screen w-screen;
 }
-/* Customer UI */
-#navbar {
-    /* Position */
-    @apply top-0 left-0;
 
+#app {
+    /* Position */
+    @apply absolute z-0;
+
+    /* Display */
+    @apply flex;
+}
+
+#navbar {
     /* Size */
     @apply h-screen w-40;
 
     /* Display */
-    @apply flex flex-col justify-center place-content-center;
+    @apply flex flex-col justify-center;
 
     /* Background */
     @apply bg-lblue-900;
-
-    /* Grid */
-    @apply col-span-1;
+    @apply opacity-90;
 }
 
 #navbar-container {
@@ -158,12 +176,20 @@ button, button:focus {
     background-color: rgb(255,255,255);
 }
 
-#sidebar {
-    /* Position */
-    @apply absolute z-20 top-0 left-0;
+#navbar-btn-container {
+    /* Margin */
+    margin-left: 2.75em;
 
+    /* Font color */
+    @apply text-white;
+
+    /* Display */
+    @apply flex flex-col;
+}
+
+#sidebar {
     /* Size */
-    @apply h-screen w-screen;
+    @apply h-screen;
 
     /* Display */
     @apply flex flex-col justify-center;
@@ -191,30 +217,6 @@ button, button:focus {
 }
 
 /* Template for Customer UI styles */
-#customer-ui {
-    @apply relative z-10; 
-
-    /* Flex */
-    @apply flex flex-row;
-
-    /* Grid */
-    @apply grid grid-cols-9;
-
-    /* Background */
-    background-color: rgb(255,255,255);
-    
-}
-
-#navbar-btn-container {
-    /* Margin */
-    margin-left: 2.75em;
-
-    /* Font color */
-    @apply text-white;
-
-    /* Display */
-    @apply flex flex-col;
-}
 
 #bg-content {
     @apply bg-white;
@@ -237,6 +239,7 @@ button, button:focus {
     /* Flex */
     @apply flex flex-col;
 }
+
 /* Account frame */
 
 #settings-btn {
@@ -619,7 +622,7 @@ button, button:focus {
 @media screen and (min-width: 1280px) {
     #sidebar {
         /* Size */
-        width: 37.5%;
+        /* width: 37.5%; */
     }
 
     #sidebar-content {
