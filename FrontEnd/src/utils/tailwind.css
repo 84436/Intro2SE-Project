@@ -156,6 +156,9 @@ button, button:focus, , form input, form input:focus {
 
     /* Display */
     @apply flex;
+
+    /* Size */
+    @apply h-screen w-screen;
 }
 
 #navbar {
@@ -218,29 +221,25 @@ button, button:focus, , form input, form input:focus {
 
 /* Template for Customer UI styles */
 
-#bg-content {
-    @apply bg-white;
-}
-
 #content-container {
-    /* Grid */
-    @apply col-span-8;
-    @apply grid grid-cols-8 gap-4;
+    /* Size */
+    @apply h-screen;
+    width: calc(100vw - 160px);
 
     /* Padding */
-    padding: 1.5em 1.5em 1.5em 0;
+    padding: 1.5em 1.5em 1.5em 1.5em;
 
     /* Background */
-    background-color: rgb(255,255,255);    
+    background-color: #F5F5F5;
 
+    /* Display */
+    @apply grid grid-rows-2;
 }
 
 #profile {
     /* Flex */
     @apply flex flex-col;
 }
-
-/* Account frame */
 
 #settings-btn {
     /* Position */
@@ -343,10 +342,7 @@ button, button:focus, , form input, form input:focus {
 }
 
 #info {
-
     @apply relative;
-    /* Grid */
-    @apply col-span-4;
 
     /* Border */
     @apply shadow-2xl;
@@ -359,9 +355,6 @@ button, button:focus, , form input, form input:focus {
 }
 
 #statistic {
-    /* Grid */
-    @apply col-span-4;
-
     /* Border */
     @apply shadow-2xl;
 
