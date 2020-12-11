@@ -13,20 +13,39 @@ dbConnection.on('error', console.error.bind(console, 'Connection error:'));
 // define schemas
 dbSchemas = {
     account: new mongoose.Schema({
-        email: String,
-        phone: String,
-        password: String,
-        name: String,
-        address: String
+        email: {
+            type:String,
+            required: [true,"email is require"],
+            unique: [true,"email is unique"]
+        },
+        phone: {
+            type:String,
+            required:[true,"phone is require"],
+        },
+        password: {
+            type:String,
+            required:[true,"password is require"],
+        },
+        name: {
+            type:String,
+            require:[true,"name is require"],
+        },
+        address: {
+            type:String,
+            require:[true,"address is require"],
+        }
     }),
     order: new mongoose.Schema({
         id: String,
         price: Number
     }),
     shop: new mongoose.Schema({
-        ID: String,
         accountEmail: String,
-        name: String,
+        name: 
+        { 
+            type:String,
+            unique: [true,"Name of shop is unique"]
+        },
         address: String,
         averageRate: Number,
         hours: Object,
@@ -34,9 +53,17 @@ dbSchemas = {
         coupons: Object,
     }),
     token: new mongoose.Schema({
-        email: String,
-        token: String,
-        accountType: String
+        email: {
+            type:String,
+        },
+        token: {
+            type:String,
+            require: true,
+            unique: true
+        }, 
+        accountType: {
+            type:String,
+        }
     })
 }
 
