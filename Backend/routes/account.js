@@ -10,26 +10,33 @@ function Hash(params) {
 }
 
 app.get('/', async(i, o) => {
-    if (i.body.hasOwnProperty('token') == false)
-        return o.status(401).send({"error":'Missing token'})
-    // lấy thông tin account
-    try
-    {
-        let doc = await db.models.token.findOne({"token":token.token},(err)=>{
-            if (err) throw new Error('Something went wrong with find function.');
-        })
-        if (doc && Object.keys(doc).length > 0)
+    try{
+        if (i.body.hasOwnProperty('token') == false)
         {
-            await db.models.account.findOne({"email":token.email},(err,res)=>{
-                if (err) throw new Error('Something went wrong with find function.');
-                if (res && Object.keys(res).length > 0)
-                    return o.status(200).send({"email":res.email,"address":res.address,"name":res.name,"phone":res.phone,"accountType":doc.accountType});
-                else
-                    return o.status(404).send({"error":"Cannot find email from this token"});
+            let response = await db.models.account.find({}, { name: 1, email: 1,phone:1, _id: 0 },(err) => {
+                if (err) throw new Error('Something went in find function');
             })
+            return o.status(200).send(response)
         }
         else
-            return o.status(404).send({"error":'Cannot find token'});
+        {
+            // lấy thông tin account
+            let doc = await db.models.token.findOne({"token":token.token},(err)=>{
+                if (err) throw new Error('Something went wrong with find function.');
+            })
+            if (doc && Object.keys(doc).length > 0)
+            {
+                await db.models.account.findOne({"email":token.email},(err,res)=>{
+                    if (err) throw new Error('Something went wrong with find function.');
+                    if (res && Object.keys(res).length > 0)
+                        return o.status(200).send({"email":res.email,"address":res.address,"name":res.name,"phone":res.phone,"accountType":doc.accountType});
+                    else
+                        return o.status(404).send({"error":"Cannot find email from this token"});
+                })
+            }
+            else
+                return o.status(404).send({"error":'Cannot find token'});
+        }
     }catch(e){
         o.status(500).send({"error":e.message})
     }
@@ -135,18 +142,6 @@ app.put('/', async(i, o) => {
             return o.status(404).send({"error":'Cannot find token'}) 
         }
     }catch(e){
-        o.status(500).send({"error":e.message})
-    }
-})
-
-app.get('/all', async (i, o) => {
-    try{
-        let response = await db.models.account.find((error) => {
-            if (err) throw new Error('Something went in find function');
-        })
-        o.send(response)
-    }catch(e)
-    {
         o.status(500).send({"error":e.message})
     }
 })
