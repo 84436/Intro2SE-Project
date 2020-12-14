@@ -137,4 +137,4 @@ dist
 .DS_Store
 
 # Front-end: Tailwind builds
-FrontEnd/src/utils/styles.css
+FrontEnd/public/styles.css

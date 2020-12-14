@@ -1,0 +1,61 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+    #order-list {
+        @apply relative top-28;
+        @apply flex flex-col;
+    }
+}
+
+@layer components {
+    .order-item {
+        @apply relative left-16;
+        @apply grid grid-cols-6;
+        @apply gap-y-8;
+        @apply shadow-2xl;
+        width: 80%
+    }
+
+    .order-name {
+        @apply col-span-2;
+    }
+    
+    .order-sth {
+        @apply col-span-2;
+    }
+    
+    .order-price {
+        @apply col-span-1;
+    }
+
+    .order-card {
+        /* Margin */
+        @apply m-auto;
+        margin-top: 30px;
+    
+        /* Flex */
+        @apply flex flex-col;
+    
+        /* Center text */
+        @apply text-center;
+        
+        /* Shadow */
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    
+        /* Background color */
+        background-color: #dddddd;
+    
+        /* Text */
+        @apply text-black;
+        font-family: "Montserrat", sans-serif;
+    
+        /* Width */
+        width: 90%;
+    }
+
+    #btn-choose {
+        @apply col-span-1;  
+    }
+}

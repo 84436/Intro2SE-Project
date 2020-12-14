@@ -1,0 +1,48 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./base.css";
+@import "./base-navbar.css";
+@import "./base-content.css";
+@import "./onboarding.css";
+@import "./account.css";
+@import "./orders.css";
+
+/*Responsive design styles*/
+
+@media screen and (max-width: 1280px) and (min-width: 960px)  {
+    #sidebar {
+        /* Size */
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    #sidebar {
+        /* Size */
+        width: 37.5%;
+    }
+
+    #sidebar-content {
+        /* Box-sizing */
+        margin: auto calc(10/3 * 1vw);
+    }
+}
+
+@media screen and (max-width: 480px) and (min-width: 0px) {
+    #body, #head, #button-container {
+        /* Display */
+        @apply flex-col;
+    }
+    
+    #forward-button {
+        /* Box-sizing */
+        @apply m-0;
+    }
+
+    #back-button {
+        /* Box-sizing */
+        margin-bottom : 8px;
+    }
+}

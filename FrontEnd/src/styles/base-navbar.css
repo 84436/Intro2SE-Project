@@ -1,0 +1,114 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+    #navbar {
+        /* Size */
+        @apply h-screen w-40;
+    
+        /* Display */
+        @apply flex flex-col justify-center;
+    
+        /* Background */
+        @apply bg-lblue-900;
+        @apply opacity-90;
+    }
+
+    #navbar-container {
+        @apply flex;
+        /* Background */
+        background-color: rgb(255,255,255);
+    }
+    
+    #navbar-btn-container {
+        /* Margin */
+        margin-left: 2.75em;
+    
+        /* Font color */
+        @apply text-white;
+    
+        /* Display */
+        @apply flex flex-col;
+    }    
+}
+
+/* Buttons */
+@layer components {
+    .btn-ui {
+        /* Button size */
+        height: 64px;
+        width: 64px;
+
+        /* Button spacing */
+        margin-bottom: 55px;
+
+        /* Icon size */
+        @apply text-5xl;
+    }
+
+    #btn-account {
+        padding: 7.5px;
+    
+        /* Opacity */
+        @apply text-lblue-900;
+    
+        /* Background */
+        @apply bg-white;
+    
+        /* Border radius */
+        @apply rounded-full;
+    
+        /* Button size */
+        height: 64px;
+        width: 64px;
+    
+        /* Icon size */
+        @apply text-5xl;
+    
+        /* Margin */
+        margin-bottom: 50px;
+    }    
+
+    #btn-home {
+        /* Opacity */
+        @apply text-lblue-900;
+
+        /* Background */
+        @apply bg-white;
+
+        /* Border radius */
+        @apply rounded-full;
+
+        /* Button size */
+        height: 64px;
+        width: 64px;
+
+        /* Icon size */
+        @apply text-5xl;
+
+        /* Margin */
+        margin-bottom: 50px;
+    }
+
+    #btn-order {
+        /* Opacity */
+        @apply text-lblue-900;
+
+        /* Background */
+        @apply bg-white;
+
+        /* Border radius */
+        @apply rounded-full;
+
+        /* Button size */
+        height: 72px;
+        width: 72px;
+
+        /* Icon size */
+        @apply text-5xl;
+
+        /* Margin */
+        margin-bottom: 50px;
+    }
+}

@@ -1,0 +1,185 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+    #bg {
+        @apply absolute;
+        z-index: -1;
+    }
+    
+    #bg-image {
+        /* Background */
+        background-image: url("./assets/image.png");
+        @apply bg-cover bg-center;
+    
+        /* Size */
+        @apply h-screen w-screen;
+    
+        /* Position */
+        @apply relative z-0;
+    }
+    
+    #bg-overlay {
+        /* Position */
+        @apply absolute z-10 top-0 left-0;
+    
+        /* Background */
+        @apply bg-lblue-700;
+        mix-blend-mode: overlay;
+    
+        /* Size */
+        @apply h-screen w-screen;
+    }
+
+    #sidebar {
+        /* Size */
+        @apply h-screen w-screen;
+    
+        /* Display */
+        @apply flex flex-col justify-center;
+    
+        /* Background */
+        background-color: rgba(2, 136, 209, 0.9);
+    }
+    
+    #sidebar-content {
+        /* Box-sizing */
+        margin: auto 5vw;
+    }
+}
+
+/* Header + Description */
+@layer components {
+    .header {
+        /* Text */
+        font-family: 'Exo', sans-serif;
+        font-size: 54px;
+        @apply text-white font-semibold;
+    
+        /* Shadow */
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    
+        /* Box-sizing */
+        margin-bottom: 32px;
+    }
+
+    #onboarding-header {
+        /* Text */
+        font-size: 72px;
+        @apply italic font-black;
+    
+        /* Box-sizing */
+        @apply m-0;
+    }
+    
+    #description {
+        /* Text */
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        @apply text-white break-words;
+    
+        /* Box-sizing */
+        margin-bottom: 32px;
+    }
+}
+
+/* Forms */
+@layer components {
+    form {
+        /* Text */
+        font-family: 'Montserrat', sans-serif;
+        @apply font-semibold;
+    
+        /* Size */
+        @apply w-full;
+    }
+    
+    form input {
+        /* Text */
+        text-indent: 10px;
+        @apply text-black;
+    
+        /* Size */
+        @apply h-14 w-full;
+    
+        /* Box-sizing */
+        @apply mt-1;
+    
+        /* Border */
+        @apply rounded-md;
+    
+        /* Display */
+        @apply block;
+    }
+    
+    .form-control {
+        margin-bottom: 32px;
+    }
+    
+    .form-error {
+        @apply error-red-a200;
+    }
+}
+
+/* Buttons */
+@layer components {
+    .redirect-button {
+        /* Size */
+        height: 50px;
+        width: 50px;
+    
+        /* Border */
+        @apply rounded-full;
+    
+        /* Text */
+        @apply text-2xl;
+    
+        /* Background */
+        @apply bg-white;
+    
+        /* Shadow */
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+    
+    .redirect-button:active {
+        /* Shadow */
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+    }
+    
+    #back-button {
+        /* Box-sizing */
+        margin-top: 12.5px;
+    }
+    
+    #forward-button {
+        /* Box-sizing */
+        margin-top: 7px;
+        margin-left: 21px;
+    }
+
+    #button-container {
+        /* Display */
+        @apply flex flex-row;
+    
+        /* Gap */
+        row-gap: 16px;
+        column-gap: 48px;
+    }
+    
+    #btn-sign-in, #btn-submit-in, #btn-submit-up {
+        /* Background */
+        background-color: #29B6F6;
+    
+        /* Text */
+        @apply text-white;
+    }
+    
+    #btn-sign-up, #btn-help {
+        /* Background */
+        background-color: white;
+    
+        /* Text */
+        color: #29B6F6;
+    }
+}

@@ -1,0 +1,81 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Custom color scheme */
+@layer base {
+    .bg-lblue-700 {
+        background-color: #0288d1;
+    }
+    
+    .bg-lblue-900 {
+        background-color: #01579b;
+    }
+    
+    .text-lblue-900 {
+        color: #01579b;
+    }
+    
+    .error-red-a200 {
+        color: #FF5252;
+    }
+}
+
+/* Actual base */
+@layer base {
+    #head {
+        /* Display */
+        @apply flex flex-row;
+    
+        /* Gap */
+        column-gap: 32px;
+    }
+    
+    #body {
+        /* Display */
+        @apply flex flex-row;
+    }
+
+    #app {
+        /* Position */
+        @apply absolute z-0;
+    
+        /* Display */
+        @apply flex;
+    
+        /* Size */
+        @apply h-screen w-screen;
+    }
+}
+
+@layer components {
+    button, button:focus, form input, form input:focus {
+        /* Border */
+        @apply border-none outline-none;
+    }
+
+    .btn {
+        /* Size */
+        width: calc(2.25 * 56px);
+        height: 56px;
+    
+        /* Background */
+        @apply bg-white;
+    
+        /* Text */
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        @apply text-black uppercase;
+    
+        /* Border */
+        border-radius: 50px;
+    
+        /* Shadow */
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+    
+    .btn:active {
+        /* Shadow */
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+    }  
+}
