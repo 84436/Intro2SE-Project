@@ -7,13 +7,20 @@
 .bg-lblue-700 {
     background-color: #0288d1;
 }
+
 .bg-lblue-900 {
     background-color: #01579b;
 }
+
 .text-lblue-900 {
     color: #01579b;
 }
-.form {
+
+.error-red-a200 {
+    color: #FF5252;
+}
+
+form {
     /* Text */
     font-family: 'Montserrat', sans-serif;
     @apply font-semibold;
@@ -22,7 +29,7 @@
     @apply w-full;
 }
 
-.form input {
+form input {
     /* Text */
     text-indent: 10px;
     @apply text-black;
@@ -31,7 +38,6 @@
     @apply h-14 w-full;
 
     /* Box-sizing */
-    margin-bottom: 32px;
     @apply mt-1;
 
     /* Border */
@@ -39,6 +45,14 @@
 
     /* Display */
     @apply block;
+}
+
+.form-control {
+    margin-bottom: 32px;
+}
+
+.form-error {
+    @apply error-red-a200;
 }
 
 .btn {
@@ -66,7 +80,7 @@
     filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
-button, button:focus {
+button, button:focus, , form input, form input:focus {
     /* Border */
     @apply border-none outline-none;
 }
@@ -111,6 +125,7 @@ button, button:focus {
     @apply absolute;
     z-index: -1;
 }
+
 #bg-image {
     /* Background */
     background-image: url("../assets/image.png");
@@ -134,22 +149,28 @@ button, button:focus {
     /* Size */
     @apply h-screen w-screen;
 }
-/* Customer UI */
-#navbar {
-    /* Position */
-    @apply top-0 left-0;
 
+#app {
+    /* Position */
+    @apply absolute z-0;
+
+    /* Display */
+    @apply flex;
+
+    /* Size */
+    @apply h-screen w-screen;
+}
+
+#navbar {
     /* Size */
     @apply h-screen w-40;
 
     /* Display */
-    @apply flex flex-col justify-center place-content-center;
+    @apply flex flex-col justify-center;
 
     /* Background */
     @apply bg-lblue-900;
-
-    /* Grid */
-    @apply col-span-1;
+    @apply opacity-90;
 }
 
 #navbar-container {
@@ -158,10 +179,18 @@ button, button:focus {
     background-color: rgb(255,255,255);
 }
 
-#sidebar {
-    /* Position */
-    @apply absolute z-20 top-0 left-0;
+#navbar-btn-container {
+    /* Margin */
+    margin-left: 2.75em;
 
+    /* Font color */
+    @apply text-white;
+
+    /* Display */
+    @apply flex flex-col;
+}
+
+#sidebar {
     /* Size */
     @apply h-screen w-screen;
 
@@ -191,56 +220,26 @@ button, button:focus {
 }
 
 /* Template for Customer UI styles */
-#customer-ui {
-    @apply relative z-10; 
-
-    /* Flex */
-    @apply flex flex-row;
-
-    /* Grid */
-    @apply grid grid-cols-9;
-
-    /* Background */
-    background-color: rgb(255,255,255);
-    
-}
-
-#navbar-btn-container {
-    /* Margin */
-    margin-left: 2.75em;
-
-    /* Font color */
-    @apply text-white;
-
-    /* Display */
-    @apply flex flex-col;
-}
-
-#bg-content {
-    @apply bg-white;
-}
 
 #content-container {
-    /* Grid */
-    @apply col-span-8;
-    @apply grid grid-cols-8 gap-4;
+    /* Size */
+    @apply h-screen;
+    width: calc(100vw - 160px);
 
     /* Padding */
-    padding: 1.5em 1.5em 1.5em 0;
+    padding: 1.5em 1.5em 1.5em 1.5em;
 
     /* Background */
-    background-color: rgb(255,255,255);    
+    background-color: #F5F5F5;
 
-    /* Overflow */
-    @apply overflow-auto;
+    /* Display */
+    @apply grid grid-rows-2;
 }
 
 #profile {
     /* Flex */
     @apply flex flex-col;
 }
-
-/* Account frame */
 
 #settings-btn {
     /* Position */
@@ -317,14 +316,6 @@ button, button:focus {
 
     /* Radius */
     @apply rounded-full;
-
-    /* Size */
-    height: 120px;
-    width: 120px;
-
-    /* Margin */
-    margin-left: 48px;
-    margin-bottom: 10px
 }
 
 #realname {
@@ -351,10 +342,7 @@ button, button:focus {
 }
 
 #info {
-
     @apply relative;
-    /* Grid */
-    @apply col-span-4;
 
     /* Border */
     @apply shadow-2xl;
@@ -366,10 +354,7 @@ button, button:focus {
     @apply flex flex-col;
 }
 
-#statistic, #order-detail {
-    /* Grid */
-    @apply col-span-4;
-
+#statistic {
     /* Border */
     @apply shadow-2xl;
 
@@ -381,9 +366,6 @@ button, button:focus {
 
     /* Gap */
     @apply gap-y-8;
-
-    /* Font */
-    font-family: "Montserrat", "sans-serif";
 }
 
 .order-card {
@@ -424,25 +406,13 @@ button, button:focus {
 }
 
 #search-input {
-    /* Padding */
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 35px;
-    
-    /* Text */
     @apply text-left;
-    font-family: "Montserrat", "san-serif";
-
-    /* Border */
-    @apply border-2;
-
-    /* Outline */
-    @apply outline-none;
-
 }
 
 #search-bar {
-    /* Position */
     @apply relative top-12 left-24;
 
     /* Flex */
@@ -451,74 +421,35 @@ button, button:focus {
     /* Shadow */
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-    /* Width */
-    width: 50%;
+    width: 90%;
 }
 
 #order-list {
-    /* Position */
     @apply relative top-28;
-
-    /* Display */
     @apply flex flex-col;
 }
 
-.order-list {
-    /* Position */
+.order-item {
     @apply relative left-16;
 
-    /* Display */
     @apply grid grid-cols-6;
 
-    /* Gap */
     @apply gap-y-8;
 
-    /* Shadow */
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    @apply shadow-2xl;
 
-    /* Size */
-    width: 680px;
-    height: 35px;
-
-    /* Border radius */
-    @apply rounded-md;
-    
-    /* Background */
-    background-color: #d4d4d4;
-
-    /* Font */
-    font-family: "Montserrat", "sans-serif";
-
-    /* Text alignment */
-    @apply text-center;
-    
-    /* Padding */
-    padding-top: 7px;
-
-    /* Opacity */
-    @apply opacity-40;
-
+    width: 80%
 }
 
-.order-list:hover {
-    /* Hover */
-    @apply hover:opacity-100;
-    @apply transition-opacity;
-}
+/* .order-item:active {
 
-.order-list:focus {
-    /* Border */
-    @apply border-black;
+} */
 
-    /* Shadow */
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.order-id {
+.order-name {
     @apply col-span-2;
 }
 
-.order-date {
+.order-sth {
     @apply col-span-2;
 }
 
@@ -527,220 +458,7 @@ button, button:focus {
 }
 
 #btn-choose {
-    @apply col-span-1;
-
-    /* Padding */
-    padding-bottom: 4px;  
-}
-
-.order-card-content, .order-shop-content, .dishes-list-content, .card-price-content {
-    /* Padding */
-    padding : 15px 15px 15px 15px;
-    
-    /* Text size */
-    @apply text-lg;
-
-}
-
-/* Start rating, got from internet */
-.rating-group {
-    /* Display */
-    @apply inline-flex;
-}
-
-.rating__icon {
-    @apply pointer-events-none;
-}
-
-/* hide radio inputs */
-.rating__input {
-    @apply absolute !important;
-    @apply -left-full !important;
-}
-
-.rating__input--none {
-    display: none
-}
-
-.rating__label {
-    @apply cursor-pointer;
-    padding: 0 0.1em;
-    @apply text-2xl;
-}
-
-/* set default star color */
-.rating__icon--star {
-    color: yellow;
-}
-
-/* if any input is checked, make its following siblings grey */
-.rating__input:checked ~ .rating__label .rating__icon--star {
-    color: #ddd;
-}
-
-/* make all stars yellow on rating group hover */
-.rating-group:hover .rating__label .rating__icon--star {
-    color: yellow;
-}
-
-/* make hovered input's following siblings grey on hover */
-.rating__input:hover ~ .rating__label .rating__icon--star {
-    color: #ddd;
-}
-
-.line {
-    /* Grid */
-    @apply grid grid-cols-5;
-
-}
-
-.title {
-    @apply col-span-2;
-}
-
-.info {
-    @apply col-span-3;
-}
-
-.each-dish {
-    /* Grid */
-    @apply grid grid-cols-10;
-
-    /* Text position */
-    @apply text-center;
-
-    /* Padding */
-    padding-top: 15px;
-    padding-bottom: 15px;
-
-}
-
-.dish-content {
-    /* Display */
-    @apply flex items-center justify-center;
-}
-
-.dish-amount {
-    @apply col-span-2;
-}
-
-.dish-img {
-    @apply col-span-2;
-
-    /* Dish image */
-    background-image:  url("../assets/image.jpg");
-
-    /* Size */
-    width: 50px;
-    height: 50px;
-}
-
-.dish-detail {
-    @apply col-span-6;
-
-    /* Grid */
-    @apply grid grid-cols-6;
-}
-
-.dish-name {
-    @apply col-span-2;
-}
-
-.dish-description {
-    @apply col-span-2;
-}
-
-.dish-price {
-    @apply col-span-2;
-}
-
-hr {
-    /* Line */
-    border-top: 1px solid black;
-}
-
-.each-price {
-    /* Grid */
-    @apply grid grid-cols-6;
-}
-
-.price-title {
-    @apply col-span-4;
-}
-
-.price-content {
-    @apply col-span-2;
-}
-
-.total {
-    /* Text size */
-    @apply text-xl;
-
-    /* Text color */
-    color: crimson;
-}
-
-
-#order-card-info, #order-shop-info, #order-card-list, #order-card-price {
-    /* Background */
-    background-color: #c7c6c6;
-
-    /* Border radius */
-    @apply rounded-lg;
-    
-    /* Width */
-    width: 80%;
-
-    /* Gap */
-    @apply gap-y-3;
-
-    /* Shadow */
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
-    /* Margin */
-    margin-left: 5em;
-    margin-top: 3em;
-
-}
-
-#shop-info {
-    /* Grid */
-    @apply grid grid-cols-12 grid-rows-5;
-
-    /* Margin */
-    margin-bottom: 10px;
-}
-
-#shop-img {
-    /* Image */
-    background-image: url("../assets/image.jpg");
-
-    /* Position */
-    @apply bg-top;
-
-    /* Radius */
-    @apply rounded-full;
-
-    /* Grid */
-    @apply col-span-2;
-    @apply row-span-5;
-
-    /* Size */
-    width: 84px;
-    height: 84px;
-
-    /* Margin */
-    margin-left: 10px;
-    
-}
-
-#detail {
-    /* Margin */
-    margin-left: 20px;
-
-    /* Grid */
-    @apply col-span-10;
-    @apply row-span-5;
+    @apply col-span-1;  
 }
 
 
@@ -789,8 +507,8 @@ hr {
     @apply rounded-full;
 
     /* Button size */
-    height: 68px;
-    width: 68px;
+    height: 72px;
+    width: 72px;
 
     /* Icon size */
     @apply text-5xl;
