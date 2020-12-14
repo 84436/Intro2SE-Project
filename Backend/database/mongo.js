@@ -40,7 +40,10 @@ dbSchemas = {
         price: Number
     }),
     shop: new mongoose.Schema({
-        accountEmail: String,
+        accountEmail: {
+            type:String,
+            unique: [true,"One account have one shop"]
+        },
         name: 
         { 
             type:String,

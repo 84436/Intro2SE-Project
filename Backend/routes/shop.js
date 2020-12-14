@@ -2,13 +2,22 @@ const express = require('express')
 const app = express()
 var db
 
-app.get('/all', async (i, o) => {
-    try
-    {
-        let response = await db.models.shop.find((err) => {
-            if (err) throw new Error('Something went in find function');
-        })
-        o.send(response)
+app.get('/', async(i, o) => {
+    try{
+        if (i.body.hasOwnProperty('_id') == false)
+        {
+            let response = await db.models.shop.find({},{_id:1,name:1},(err) => {
+                if (err) throw new Error('Something went in find function');
+            })
+            return o.status(200).send(response)
+        }
+        else
+        { 
+            let doc = await db.models.shop.find({"_id":shopId},(err) => {
+                if (err) throw new Error('Something went in find function');
+            })
+            o.status(200).send(doc)
+        }
     }
     catch(e)
     {
@@ -130,20 +139,6 @@ app.delete('/', async(i,o) => {
     catch(e)
     {
         return o.status(500).send({"error":e.message})
-    }
-})
-
-app.get('/:Id', async(i, o) => {
-    try{
-        const shopId = i.params.Id;
-        let doc = await db.models.shop.find({"_id":shopId},(err) => {
-            if (err) throw new Error('Something went in find function');
-        })
-        o.status(200).send(doc)
-    }
-    catch(e)
-    {
-        o.status(500).send({"error":e.message})
     }
 })
 
