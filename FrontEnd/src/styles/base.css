@@ -46,6 +46,35 @@
         /* Size */
         @apply h-screen w-screen;
     }
+
+    #bg {
+        @apply absolute;
+        z-index: -1;
+    }
+    
+    #bg-image {
+        /* Background */
+        background-image: url("./assets/image.png");
+        @apply bg-cover bg-center;
+    
+        /* Size */
+        @apply h-screen w-screen;
+    
+        /* Position */
+        @apply relative z-0;
+    }
+    
+    #bg-overlay {
+        /* Position */
+        @apply absolute z-10 top-0 left-0;
+    
+        /* Background */
+        @apply bg-lblue-700;
+        mix-blend-mode: overlay;
+    
+        /* Size */
+        @apply h-screen w-screen;
+    }
 }
 
 @layer components {
