@@ -1,3 +1,59 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+#content {
+    @apply col-span-3;
+
+    /* Background color */
+    background-color: #EEEEEE;
+
+    width: calc(100vw / 8) * 3;
+}
+
+#account-content-container {
+    padding: 40px 0 40px 0;
+}
+
+.each-content {
+    /* Grid */
+    @apply grid grid-cols-6;
+
+    /* Text size */
+    @apply text-3xl;
+
+    /* Text alignment */
+    @apply text-center align-middle;
+    
+    width: 100%;
+    height: 80px;
+}
+
+.content-icon {
+    @apply col-span-2;
+    @apply font-black;
+
+    font-size: 60px;
+}
+
+.detail {
+    @apply col-span-4;
+
+}
+
+#username {
+    height: 100%;
+
+    @apply inline-block;
+    @apply align-middle;
+}
+
+#info {
+    @apply col-span-4;
+
+    /* Background color */
+    background-color: #FFFFFF;
+
+    width: calc(100vw / 8) * 4;
+}
+

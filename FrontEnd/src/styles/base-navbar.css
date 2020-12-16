@@ -7,7 +7,8 @@
         @apply col-span-1;
         
         /* Size */
-        @apply h-screen w-40;
+        @apply h-screen;
+        width: calc(100vw / 8);
 
         /* Display */
         @apply flex flex-col justify-center;
@@ -18,10 +19,16 @@
     }
 
     #navbar-container {
+        /* Flex */
         @apply flex flex-col justify-evenly items-center;
 
+        /* Background color */
+        @apply bg-lblue-900;
+
+        /* Margin */
         margin: 40px 40px 40px 40px;
 
+        /* Height */
         @apply h-screen;
     }
 }
@@ -29,25 +36,34 @@
 /* Buttons */
 @layer components {
     .navbar-btn {
-        /* color: #888888; */
+        
+    /* Icon color */
+    color: white;
 
-        font-size: 80px;
+    /* Icon size */
+    font-size: 80px;
 
-        @apply text-center;
-    }
+    /* Icon alignment */
+    @apply text-center; 
 
-    .navbar-btn:active {
-        color: white;
-        background-color: #2196F3;
-        @apply bg-center;
+}
 
-        @apply relative;
+.navbar-btn:active {
+    /* Icon color */
+    background-color: white;
 
-        @apply rounded-full;
+    /* Background color */
+    @apply text-lblue-900; 
 
-        width: 100px;
-        height: 100px;
+    /* Background alignment */
+    @apply bg-center;
 
-        font-size: 80px;
+    /* Background border radius */
+    @apply rounded-full;
+
+    /* Width */
+    width: 120px;
+
+    background-color: rgba(255,255,255, 1);
     }
 }
