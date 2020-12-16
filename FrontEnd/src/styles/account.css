@@ -13,20 +13,26 @@
 
 #account-content-container {
     padding: 40px 0 40px 0;
+    font-family: "Montserrat", "sans-serif";
 }
 
 .each-content {
     /* Grid */
-    @apply grid grid-cols-6;
+    @apply grid grid-cols-8;
 
     /* Text size */
     @apply text-3xl;
 
     /* Text alignment */
-    @apply text-center align-middle;
+    @apply items-center;
     
     width: 100%;
-    height: 80px;
+    height: 120px;
+}
+
+.each-content:hover {
+
+    background-color: rgba(33, 150, 243, 0.5);
 }
 
 .content-icon {
@@ -37,18 +43,12 @@
 }
 
 .detail {
-    @apply col-span-4;
-
+    @apply col-span-6;
+    @apply text-left;
 }
 
-#username {
-    height: 100%;
 
-    @apply inline-block;
-    @apply align-middle;
-}
-
-#info {
+#detail-content {
     @apply col-span-4;
 
     /* Background color */
@@ -56,4 +56,77 @@
 
     width: calc(100vw / 8) * 4;
 }
+
+#detail-content-container {
+    margin: 40px 40px 40px 40px;
+    font-family: "Montserrat", "sans-serif";
+}
+
+#overview-info {
+    @apply grid grid-cols-12 grid-rows-4;
+    margin-bottom: 60px;
+}
+
+#avatar {
+    @apply row-span-4;
+    @apply col-span-4;
+    
+    background-image: url("../src/assets/image/phake.jpg");
+
+    @apply rounded-full;
+
+    width: calc(100vw / 8);
+    height: calc(100vw / 8);
+}
+
+#settings-btn {
+    @apply row-start-1 row-end-2 col-start-12 col-end-13;
+    
+    background-color: #dddddd;
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+
+    @apply rounded-full;
+
+    width: 60px;
+    height: 60px;
+
+    @apply text-2xl;
+}
+
+#settings-btn:active {
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+#join-date {
+    @apply row-start-2 row-end-3 col-start-5 col-end-12;
+    @apply text-2xl;
+}
+
+#email {
+    @apply row-start-3 row-end-4 col-start-5 col-end-12;
+    @apply text-4xl;
+}
+
+#detail-information {
+    font-family: "Montserrat", "sans-serif";
+}
+
+.detail-information-container {
+    /* Grid */
+    @apply grid grid-cols-12;
+        
+    margin-bottom: 40px;
+
+    @apply text-2xl;
+}
+
+.display-label {
+    @apply col-span-5;
+}
+
+.display-content {
+    @apply col-span-7;
+}
+
+
 

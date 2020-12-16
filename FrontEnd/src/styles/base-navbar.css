@@ -14,16 +14,12 @@
         @apply flex flex-col justify-center;
     
         /* Background */
-        @apply bg-lblue-900;
-        @apply opacity-90;
+        background-color: rgba(1, 88, 155, 0.9);
     }
 
     #navbar-container {
         /* Flex */
         @apply flex flex-col justify-evenly items-center;
-
-        /* Background color */
-        @apply bg-lblue-900;
 
         /* Margin */
         margin: 40px 40px 40px 40px;
@@ -48,7 +44,7 @@
 
 }
 
-.navbar-btn:active {
+.navbar-btn:hover {
     /* Icon color */
     background-color: white;
 
