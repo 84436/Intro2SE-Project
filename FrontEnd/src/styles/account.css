@@ -2,138 +2,50 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@layer base {
-    #info {
-        @apply relative;
-    
-        /* Border */
-        @apply shadow-2xl;
-    
-        /* Background */
-        @apply bg-white;
-        
-        /* Flex */
-        @apply flex flex-col;
-    }
+#app {
+    /* Grid */
+    @apply grid grid-cols-8;
 
-    #statistic {
-        /* Border */
-        @apply shadow-2xl;
-    
-        /* Background */
-        @apply bg-white;
-    
-        /* Scrolling */
-        @apply overflow-y-scroll;
-    
-        /* Gap */
-        @apply gap-y-8;
-    }
-
-    #profile {
-        /* Flex */
-        @apply flex flex-col;
-    }
+    @apply h-screen;
 }
 
-@layer components {
-    #settings-btn {
-        /* Position */
-        @apply relative top-0 right-0;
-    
-        @apply float-right;
-    
-        /* Margin */
-        margin-top: 20px;
-        margin-right: 20px;
-    
-        /* Button size */
-        width: 40px;
-        height: 40px;
-    
-        /* Icon size */
-        @apply text-xl;
-        
-        /* Border radius */
-        @apply rounded-full;
-    
-        /* Text */
-        @apply text-black;
-    
-        /* Background */
-        @apply bg-gray-200;
-    
-        /* Shadow */
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    
-    }
-    
-    #settings-btn:active {
-        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
-    }
-    
-    #button-container-ui {
-        /* Flex */
-        @apply flex;
-    
-        /* Position */
-        @apply absolute bottom-8;
-    
-        width:100%;
-    }
-    
-    #btn-log-out {
-        /* Background */
-        background-color: #c7c6c6;
-    
-        /* Text */
-        @apply text-black;
-    
-        margin-left: 30px;
-    }
-    
-    #btn-delete-account {
-        /* Background */
-        background-color: #c7c6c6;
-    
-        /* Text */
-        @apply text-black;
-    
-        @apply relative;
-        left: 60%;
-    }
-    
-    #avatar {
-        /* Image */
-        background-image: url("./assets/phake.jpg");
-    
-        /* Position */
-        @apply bg-top;
-    
-        /* Radius */
-        @apply rounded-full;
-    }
-    
-    #realname {
-        /* Font */
-        font-family: 'Montserrat', sans-serif;
-        @apply text-2xl;
-    }
-    
-    #username {
-        /* Flex */
-        @apply flex justify-between;
-    }
-    
-    #profile-content {
-        /* Flex */
-        @apply flex flex-col flex-wrap content-center;
-    
-        font-family: "Montserrat", "sans-serif";
-    }
-    
-    .detail {
-        /* Flex */
-        @apply flex flex-row justify-between flex-grow;
-    }   
+#navbar {
+    @apply col-span-1;
+
+    background-color: #dddddd;
+}
+
+#navbar-container {
+    @apply flex flex-col justify-evenly items-center;
+
+    background-color: #dddddd;
+
+    margin: 40px 40px 40px 40px;
+
+    @apply h-screen;
+}
+
+.navbar-btn {
+    color: #888888;
+
+    font-size: 80px;
+
+    @apply text-center;
+
+}
+
+.navbar-btn:active {
+    color: white;
+    background-color: #2196F3;
+    @apply bg-center;
+
+    @apply relative;
+
+    @apply rounded-full;
+
+    width: 100px;
+    height: 100px;
+
+    font-size: 80px;
+
 }

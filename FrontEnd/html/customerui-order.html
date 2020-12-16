@@ -10,145 +10,18 @@
         <link rel="stylesheet" href="../icon/css/all.min.css"/>
     </head>
     <body>
-        <div id="bg">
-            <div id="bg-image"></div>
-            <div id="bg-overlay"></div>
-        </div>
-        <div id="customer-ui">
-            <div id="navbar">
-                <div id="navbar-content">
-                    <div id="navbar-btn-container">
-                        <div>
-                            <button class ="btn-ui"><i class="fal fa-user-circle"></i></button>
-                        </div>
-                        <div>
-                            <button class ="btn-ui" ><i class="fal fa-home-alt"></i></button>
-                        </div>
-                        <div>
-                            <button id ="btn-order" ><i class="fal fa-receipt"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="content-container">
-                <div id="info">
-                    <div id="search-bar">
-                        <i class="fal fa-search"></i>
-                        <input id="search-input" type="text" size="60" placeholder="What are you looking for?">
-                    </div>
-                    <div id="order-list">
-                        <div class="order-list">
-                            <div class="order-id">Order's ID</div>
-                            <div class="order-date">Order's date</div>
-                            <div class="order-price">Order's total price</div>
-                            <button id="btn-choose">
-                                <i class="fas fa-angle-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div id="order-detail">
-                    <div id="order-card-info">
-                        <div class="order-card-content">
-                            <div class="line">
-                                <div id="id-title" class="title">ID:</div>
-                                <div id="id-info" class="info">18127087</div>
-                            </div>
-                            <div class="line">
-                                <div id="date-title" class="title">Date:</div>
-                                <div id="date-info" class="info">6/2/2000</div>
-                            </div>
-                            <div class="line">
-                                <div id="time-title" class="title">Time:</div>
-                                <div id="time-info" class="info">3:00AM</div>
-                            </div>
-                        </div>
-                    </div>  
-                    <div id="order-shop-info">
-                        <div class="order-shop-content">
-                            <div id="shop-info">
-                                <div id="shop-img"></div>
-                                <div id="detail">
-                                    <div class="line">
-                                        <div id="name-title" class="title">Name:</div>
-                                        <div id="name-info" class="info">Gongcha</div>
-                                    </div>
-                                    <div class="line">
-                                        <div id="address-title" class="title">Date:</div>
-                                        <div id="address-info" class="info">6/2/2000</div>
-                                    </div>
-                                    <div class="line">
-                                        <div id="open-hour-title" class="title">Open:</div>
-                                        <div id="open-hour-info" class="info">7:00AM to 10:00PM</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="stars-rating">
-                                <div class="rating-group">
-                                    <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
-                                    <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fas fa-star"></i></label>
-
-                                    <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
-                                    <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fas fa-star"></i></label>
-
-                                    <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
-                                    <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fas fa-star"></i></label>
-
-                                    <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
-                                    <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fas fa-star"></i></label>
-
-                                    <input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
-                                    <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fas fa-star"></i></label>
-
-                                    <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="order-card-list">
-                        <div class="dishes-list-content">
-                            <div class="each-dish">
-                                <div class="dish-content dish-amount">1x</div>
-                                <div class="dish-content dish-img"></div>
-                                <div class="dish-content dish-detail">
-                                    <div class="dish-name">ABC</div>
-                                    <div class="dish-description">XYZ</div>
-                                    <div class="dish-price">GHI</div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="each-dish">
-                                <div class="dish-content dish-amount">2x</div>
-                                <div class="dish-content dish-img"></div>
-                                <div class="dish-content dish-detail">
-                                    <div class="dish-name">CDE</div>
-                                    <div class="dish-description">ZAB</div>
-                                    <div class="dish-price">HIK</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="order-card-price">
-                        <div class="card-price-content">
-                            <div class="each-price subtotal">
-                                <div class="price-title">Subtotal</div>
-                                <div class="price-content" id="subtotal-content">45000</div>
-                            </div>
-                            <div class="each-price applicable-fees">
-                                <div class="price-title">Applicable fees</div>
-                                <div class="price-content" id="applicable-fees-content">15000</div>
-                            </div>
-                            <div class="each-price coupon">
-                                <div class="price-title">Coupon</div>
-                                <div class="price-content" id="coupon-content">-22000</div>
-                            </div>
-                            <hr>
-                            <div class="each-price total">
-                                <div class="price-title">Total</div>
-                                <div class="price-content" id="total-content">38000</div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-container">
+                    <button>
+                        <i class="fal fa-user-circle"></i>
+                    </button>
+                    <button>
+                        <i class="fal fa-home-alt"></i>
+                    </button>
+                    <button>
+                        <i class="fal fa-receipt"></i>
+                    </button>
                 </div>
             </div>
         </div>
