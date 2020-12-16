@@ -4,9 +4,11 @@
 
 @layer base {
     #navbar {
+        @apply col-span-1;
+        
         /* Size */
         @apply h-screen w-40;
-    
+
         /* Display */
         @apply flex flex-col justify-center;
     
@@ -16,99 +18,36 @@
     }
 
     #navbar-container {
-        @apply flex;
-        /* Background */
-        background-color: rgb(255,255,255);
+        @apply flex flex-col justify-evenly items-center;
+
+        margin: 40px 40px 40px 40px;
+
+        @apply h-screen;
     }
-    
-    #navbar-btn-container {
-        /* Margin */
-        margin-left: 2.75em;
-    
-        /* Font color */
-        @apply text-white;
-    
-        /* Display */
-        @apply flex flex-col;
-    }    
 }
 
 /* Buttons */
 @layer components {
-    .btn-ui {
-        /* Button size */
-        height: 64px;
-        width: 64px;
+    .navbar-btn {
+        /* color: #888888; */
 
-        /* Button spacing */
-        margin-bottom: 55px;
+        font-size: 80px;
 
-        /* Icon size */
-        @apply text-5xl;
+        @apply text-center;
     }
 
-    #btn-account {
-        padding: 7.5px;
-    
-        /* Opacity */
-        @apply text-lblue-900;
-    
-        /* Background */
-        @apply bg-white;
-    
-        /* Border radius */
-        @apply rounded-full;
-    
-        /* Button size */
-        height: 64px;
-        width: 64px;
-    
-        /* Icon size */
-        @apply text-5xl;
-    
-        /* Margin */
-        margin-bottom: 50px;
-    }    
+    .navbar-btn:active {
+        color: white;
+        background-color: #2196F3;
+        @apply bg-center;
 
-    #btn-home {
-        /* Opacity */
-        @apply text-lblue-900;
+        @apply relative;
 
-        /* Background */
-        @apply bg-white;
-
-        /* Border radius */
         @apply rounded-full;
 
-        /* Button size */
-        height: 64px;
-        width: 64px;
+        width: 100px;
+        height: 100px;
 
-        /* Icon size */
-        @apply text-5xl;
-
-        /* Margin */
-        margin-bottom: 50px;
-    }
-
-    #btn-order {
-        /* Opacity */
-        @apply text-lblue-900;
-
-        /* Background */
-        @apply bg-white;
-
-        /* Border radius */
-        @apply rounded-full;
-
-        /* Button size */
-        height: 72px;
-        width: 72px;
-
-        /* Icon size */
-        @apply text-5xl;
-
-        /* Margin */
-        margin-bottom: 50px;
+        font-size: 80px;
     }
 }

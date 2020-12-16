@@ -41,7 +41,7 @@
         @apply absolute z-0;
     
         /* Display */
-        @apply flex;
+        @apply grid grid-cols-8;
     
         /* Size */
         @apply h-screen w-screen;
@@ -54,7 +54,7 @@
     
     #bg-image {
         /* Background */
-        background-image: url("./assets/image.png");
+        background-image: url("../src/assets/image/image.png");
         @apply bg-cover bg-center;
     
         /* Size */
