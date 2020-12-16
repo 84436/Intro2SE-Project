@@ -14,14 +14,14 @@
 @media screen and (max-width: 1280px) and (min-width: 960px)  {
     #sidebar {
         /* Size */
-        width: 50%;
+        width: 50vw;
     }
 }
 
 @media screen and (min-width: 1280px) {
     #sidebar {
         /* Size */
-        width: 37.5%;
+        width: 37.5vw;
     }
 
     #sidebar-content {
