@@ -51,9 +51,6 @@
     /* Background color */
     @apply text-lblue-900; 
 
-    /* Background alignment */
-    @apply bg-center;
-
     /* Background border radius */
     @apply rounded-full;
 
