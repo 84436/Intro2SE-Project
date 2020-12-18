@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Editor</title>
+    <link rel="stylesheet" href="../../public/styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@600&family=Montserrat&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../../icon/css/all.min.css" />
+</head>
+
+<body>
+    <div id="bg">
+        <div id="bg-image"></div>
+        <div id="bg-overlay"></div>
+    </div>
+    <div id="app">
+        <div id="navbar">
+            <div id="navbar-container">
+                <div class="navbar-btn">
+                    <button>
+                        <i class="fal fa-user-circle"></i>
+                    </button>
+                </div>
+                <div class="navbar-btn">
+                    <button>
+                        <i class="fal fa-edit"></i>
+                    </button>
+                </div>
+                <div class="navbar-btn">
+                    <button>
+                        <i class="fal fa-receipt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="account-content-container">
+                <button class="each-content">
+                    <div class="content-icon">
+                        <i class="fal fa-info-circle"></i>
+                    </div>
+                    <div class="detail">
+                        About this shop
+                    </div>
+                </button>
+                <button class="each-content">
+                    <div class="content-icon">
+                        <i class="fal fa-list-alt"></i>
+                    </div>
+                    <div class="detail">
+                        Menu
+                    </div>
+                </button>
+                <button class="each-content">
+                    <div class="content-icon">
+                        <i class="fal fa-ticket"></i>
+                    </div>
+                    <div class="detail">
+                        Coupon
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div id="detail-content">
+            <div id="detail-content-container">
+                <div id="something">
+                    Something
+                </div>
+                <div id="shop-img"></div>
+                <div class="shop-information">
+                    <div id="shop-information-container">
+                        <div class="each-shop-info">
+                            <div class="display-shop-label">
+                                Name
+                            </div>
+                            <div class="display-shop-content" id="shop-name">
+                                Name
+                            </div>
+                        </div>
+                        <div class="each-shop-info">
+                            <div class="display-shop-label">
+                                Address
+                            </div>
+                            <div class="display-shop-content" id="shop-address">
+                                Address
+                            </div>
+                        </div>
+                        <div class="each-shop-info">
+                            <div class="display-shop-label">
+                                Open hour
+                            </div>
+                            <div class="display-shop-content" id="shop-open-hour">
+                                00:00AM
+                            </div>
+                            <div class="display-shop-content" id="shop-close-hour">
+                                24:00PM
+                            </div>
+                        </div>
+                        <div class="each-shop-info">
+                            <div class="display-shop-label">
+                                Rates
+                            </div>
+                            <div class="display-shop-content" id="stars">
+                                ★
+                            </div>
+                            <div class="display-shop-content" id ="shop-rate">
+                                4.5
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

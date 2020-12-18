@@ -1,0 +1,59 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+#something {
+    /* Margin */
+    margin-bottom: 30px;
+
+    /* Text */
+    @apply text-2xl;
+}
+#shop-img {
+    /* Image */
+    background-image: url("../src/assets/image/image.jpg");
+    
+    /* Size */
+    width: 100%;
+    height: 314px;
+
+    /* Size */
+    margin-bottom: 30px;
+}
+
+.each-shop-info {
+    /* Grid */
+    @apply grid grid-cols-12;
+
+    /* Margin */
+    margin-bottom: 30px;
+
+    /* Text */
+    @apply text-2xl text-left;
+}
+
+.display-shop-label {
+    @apply col-span-3;
+}
+
+.display-shop-content {
+    @apply col-span-9;
+}
+
+#shop-open-hour {
+    @apply col-span-2;
+}
+
+#shop-close-hour {
+    @apply col-span-2;
+}
+
+#stars {
+    @apply col-span-1;
+
+}
+
+#shop-rate {
+    @apply col-span-8;
+}
