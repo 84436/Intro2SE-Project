@@ -2,6 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* NOTE: DO NOT INCLUDE THE FOLLOWING FILES HERE:
+ * - fonts.css
+ * - fontawesome-light.css
+ */
+@import "./fontawesome.min.css";
+
 @import "./base.css";
 @import "./base-navbar.css";
 @import "./base-content.css";
@@ -11,7 +17,7 @@
 @import "./menu-editor.css";
 @import "./coupon-editor.css";
 
-/*Responsive design styles*/
+/* Responsive design styles */
 
 @media screen and (max-width: 1280px) and (min-width: 960px)  {
     #sidebar {

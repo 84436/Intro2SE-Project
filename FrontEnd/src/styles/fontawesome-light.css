@@ -1,0 +1,19 @@
+/* ROOT = where App.vue is located */
+
+@font-face {
+    font-family: "Font Awesome 5 Pro";
+    font-style: normal;
+    font-weight: 300;
+    font-display: block;
+    src: url(./assets/fontawesome/fa-light-300.eot);
+    src: url(./assets/fontawesome/fa-light-300.eot?#iefix) format("embedded-opentype"),
+         url(./assets/fontawesome/fa-light-300.woff2) format("woff2"),
+         url(./assets/fontawesome/fa-light-300.woff) format("woff"),
+         url(./assets/fontawesome/fa-light-300.ttf) format("truetype"),
+         url(./assets/fontawesome/fa-light-300.svg#fontawesome) format("svg");
+}
+  
+.fal {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 300;
+}

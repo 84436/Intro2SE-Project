@@ -4,7 +4,7 @@
             <div>
                 <router-link to="/login">
                     <button class="redirect-button" id="back-button">
-                        <i class="fas fa-angle-left"></i>
+                        <i class="fal fa-angle-left fa-lg"></i>
                     </button>
                 </router-link>
             </div>
@@ -30,6 +30,4 @@
 </template>
 
 <style scope>
-@import url("https://fonts.googleapis.com/css2?family=Exo:wght@600&family=Montserrat&display=swap");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
 </style>

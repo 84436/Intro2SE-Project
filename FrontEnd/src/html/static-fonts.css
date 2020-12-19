@@ -1,0 +1,61 @@
+/* ONLY FOR TESTING STATIC HTMLs HERE. */
+
+@font-face {
+    font-family: "Exo";
+    font-style: italic;
+    font-weight: 900;
+    src: url(../assets/fonts/Exo-Italic.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Exo";
+    font-style: normal;
+    font-weight: 600;
+    src: url(../assets/fonts/Exo.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 500;
+    src: url(../assets/fonts/Montserrat-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    src: url(../assets/fonts/Montserrat-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    src: url(../assets/fonts/Roboto-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    src: url(../assets/fonts/Roboto-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Font Awesome 5 Pro";
+    font-style: normal;
+    font-weight: 300;
+    font-display: block;
+    src: url(../assets/fontawesome/fa-light-300.eot);
+    src: url(../assets/fontawesome/fa-light-300.eot?#iefix) format("embedded-opentype"),
+         url(../assets/fontawesome/fa-light-300.woff2) format("woff2"),
+         url(../assets/fontawesome/fa-light-300.woff) format("woff"),
+         url(../assets/fontawesome/fa-light-300.ttf) format("truetype"),
+         url(../assets/fontawesome/fa-light-300.svg#fontawesome) format("svg");
+}
+  
+.fal {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 300;
+}
