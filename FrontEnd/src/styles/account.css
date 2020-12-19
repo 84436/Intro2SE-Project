@@ -73,6 +73,8 @@
 #detail-content {
     @apply col-span-4;
 
+    @apply relative;
+
     /* Background color */
     background-color: #FFFFFF;
 

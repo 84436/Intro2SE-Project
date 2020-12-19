@@ -19,34 +19,4 @@
     }    
 }
 
-@layer components {
-    #search-bar i {
-        /* Position */
-        @apply absolute;
-    
-        /* Padding */
-        padding: 15px;
-    
-        /* Flex */
-        @apply flex justify-start;
-    }
-    
-    #search-input {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 35px;
-        @apply text-left;
-    }
-    
-    #search-bar {
-        @apply relative top-12 left-24;
-    
-        /* Flex */
-        @apply flex;
-    
-        /* Shadow */
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    
-        width: 90%;
-    }    
-}
+

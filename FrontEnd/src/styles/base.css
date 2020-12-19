@@ -45,6 +45,8 @@
     
         /* Size */
         @apply h-screen w-screen;
+
+
     }
 
     #bg {
