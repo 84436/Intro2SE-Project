@@ -17,6 +17,8 @@
 @import "./menu-editor.css";
 @import "./coupon-editor.css";
 @import "/shop.css";
+@import "/account-change-password.css";
+@import "/account-close.css";
 
 /* Responsive design styles */
 

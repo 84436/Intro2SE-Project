@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Change password</title>
+        <link rel="stylesheet" href="../../public/styles.css" />
+        <link rel="stylesheet" href="./static-fonts.css" />
+        <!-- <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@600&family=Montserrat&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../../icon/css/all.min.css" /> -->
+    </head>
+
+    <body>
+        <div id="bg">
+            <div id="bg-image"></div>
+            <div id="bg-overlay"></div>
+        </div>
+        <div id="app">
+            <div id="navbar">
+                <div id="navbar-container">
+                    <div class="navbar-btn">
+                        <button>
+                            <i class="fal fa-user-circle"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-btn">
+                        <button>
+                            <i class="fal fa-home-alt"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-btn">
+                        <button>
+                            <i class="fal fa-receipt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="content">
+                <div id="account-content-container">
+                    <button class="each-content">
+                        <div class="content-icon">
+                            <i class="fal fa-info-circle"></i>
+                        </div>
+                        <div class="detail">
+                            About me
+                        </div>
+                    </button>
+                    <button class="each-content">
+                        <div class="content-icon">
+                            <i class="fal fa-key"></i>
+                        </div>
+                        <div class="detail">
+                            Change password
+                        </div>
+                    </button>
+                    <button class="each-content">
+                        <div class="content-icon">
+                            <i class="fal fa-store"></i>
+                        </div>
+                        <div class="detail">
+                            Open shop
+                        </div>
+                    </button>
+                    <button class="each-content">
+                        <div class="content-icon">
+                            <i class="fal fa-trash-alt"></i>
+                        </div>
+                        <div class="detail">
+                            Close account
+                        </div>
+                    </button>
+                    <button id="log-out-btn">
+                        <div id="log-out-icon">
+                            <i class="fal fa-sign-out"></i>
+                        </div>
+                        <div id="log-out-text">Log out</div>
+                    </button>
+                </div>
+                <div id="detail-content">
+                    <div id="detail-content-container">
+                        <form id="change-password-form">
+                            <input type="password" 
+                            id="current-password" 
+                            placeholder="Current password">
+                            <div id="change-pwd-btn-container"></div>
+                                <button id="close-btn">
+                                    <i class="fal fa-check"></i>
+                                    Close
+                                </button>
+                                <button id="cancel-btn">
+                                    <i class="fal fa-times"></i>
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

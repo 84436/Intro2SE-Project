@@ -1,0 +1,36 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+#change-password-form {
+    padding-top: 375px;
+}
+
+#current-password, #new-password, #confirm-new-password {
+    @apply placeholder-black;
+    background-color: #eeeeee;
+    margin-bottom: 20px;
+}
+
+#change-pwd-btn-container {
+    @apply flex flex-row;
+}
+
+
+
+#close-btn {
+    background-color: #4CAF50;
+    width: 150px;
+    height: 50px;
+    @apply rounded-full;
+    @apply text-white text-xl;
+    margin-right: 10px;
+}
+
+#cancel-btn {
+    background-color: #E53935;
+    width: 150px;
+    height: 50px;
+    @apply rounded-full;
+    @apply text-white text-xl;
+}
