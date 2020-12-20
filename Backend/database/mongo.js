@@ -36,8 +36,46 @@ dbSchemas = {
         }
     }),
     order: new mongoose.Schema({
-        id: String,
-        price: Number
+        customerId: {
+            type:String,
+            require:[true,"customerID is require"],
+        },
+        shopId: {
+            type:String,
+            require:[true,"shopID is require"],
+        },
+        items: {
+            type:Object,
+            default: {},
+        },
+        coupons: {
+            type:Object,
+            default: {},
+        },
+        fees: {
+            type:Object,
+            default: {},
+        },
+        dateTime: {
+            type:Date,
+            default: Date.now,
+        },
+        review: {
+            rate:{
+                type:Number,
+                min: 0,
+                max: 5,
+            },
+            comment:String,
+            default:{
+                "rate":0,
+                "comment":"",
+            },
+        },
+        status:{
+            type:Number,
+            require:[true,"status is require"],
+        },
     }),
     shop: new mongoose.Schema({
         accountEmail: {
@@ -49,11 +87,29 @@ dbSchemas = {
             type:String,
             unique: [true,"Name of shop is unique"]
         },
-        address: String,
-        averageRate: Number,
-        hours: Object,
-        menu: Object,
-        coupons: Object,
+        address: { 
+            type:String,
+            default: "",
+        },
+        averageRate: {
+            type:Number,
+            default: 0
+        },
+        hours: {
+            type:Object,
+            default:{
+                "open": 00,
+                "close": 00,
+            },
+        },
+        menu: {
+            type:Object,
+            default:{}
+        },
+        coupons: {
+            type:Object,
+            default:{}
+        },
     }),
     token: new mongoose.Schema({
         email: {
@@ -82,11 +138,17 @@ dbModels = {
     account: mongoose.model("account", dbSchemas.account, "accounts"),
     order: mongoose.model("order", dbSchemas.order, "orders"),
     shop: mongoose.model("shop", dbSchemas.shop, "shops"),
-    token: mongoose.model("token", dbSchemas.token, "tokens")
+    token: mongoose.model("token", dbSchemas.token, "tokens"),
+}
+
+dbEnum = {
+    orderEnum: {"ORDER_PENDING":1, "ORDER_CANCELLED":2, "ORDER_ACCEPTED":3, "ORDER_REJECTED":4,"ORDER_DONE":5,"ORDER_DRAFT":6},
+    requestEnum: {"SHOP_OPEN":1,"SHOP_CLOSE":2,"ACCOUNT_DELETE":3}
 }
 
 module.exports = {
     mongooseObject : mongoose,
     connection     : dbConnection,
-    models         : dbModels
+    models         : dbModels,
+    enums           : dbEnum
 }

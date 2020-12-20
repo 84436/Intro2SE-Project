@@ -50,15 +50,7 @@ app.post('/', async(i, o) => {
         })
         if (doc2 && Object.keys(doc2).length > 0)
             return o.status(409).send({"error":'Email already exists shop.'})
-        let shop = db.models.shop({
-            accountEmail: acc.email,
-            name: "",
-            address: "",
-            averageRate: 0,
-            hours: null,
-            menu: null,
-            coupons: null,
-        })
+        let shop = db.models.shop(i.body)
         await shop.save()
         o.status(200).send({"ok":"create shop success"})
     }
@@ -84,17 +76,12 @@ app.put('/', async(i,o) => {
             {
                 return o.status(404).send({"error":'Cannot find email from this token'}) 
             }
-            if (i.body.hasOwnProperty("hoursopen") && i.body.hasOwnProperty("hoursend"))
+            if (i.body.hasOwnProperty("hours"))
             {
-                shop.hours = {
-                    "open":i.body.hoursopen,
-                    "end":i.body.hoursend
-                }
+                shop.hours = i.body.hours
             }
             if (i.body.hasOwnProperty("address"))
                 shop.address = i.body.address
-            if (i.body.hasOwnProperty("averageRate"))
-                shop.averageRate = i.body.averageRate
             await db.models.shop.findOneAndUpdate({"accountEmail":doc.email},shop,(err,doc2)=>{
                 if (err) throw new Error('Something went in update function');
             })
