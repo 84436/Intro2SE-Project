@@ -5,17 +5,16 @@
 @layer base {
     #navbar {
         @apply col-span-1;
-        
+
         /* Size */
         @apply h-screen;
         width: calc(100vw / 8);
 
         /* Display */
         @apply flex flex-col justify-center;
-    
+
         /* Background */
         background-color: rgba(1, 88, 155, 0.9);
-
     }
 
     #navbar-container {
@@ -33,31 +32,29 @@
 /* Buttons */
 @layer components {
     .navbar-btn {
-        
-    /* Icon color */
-    color: white;
+        /* Icon color */
+        color: white;
 
-    /* Icon size */
-    font-size: 80px;
+        /* Icon size */
+        font-size: 80px;
 
-    /* Icon alignment */
-    @apply text-center; 
+        /* Icon alignment */
+        @apply text-center;
+    }
 
-}
+    .navactive, .navbar-btn:hover {
+        /* Icon color */
+        background-color: white;
 
-.navbar-btn:hover {
-    /* Icon color */
-    background-color: white;
+        /* Background color */
+        @apply text-lblue-900;
 
-    /* Background color */
-    @apply text-lblue-900; 
+        /* Background border radius */
+        @apply rounded-full;
 
-    /* Background border radius */
-    @apply rounded-full;
+        /* Width */
+        width: 120px;
 
-    /* Width */
-    width: 120px;
-
-    background-color: rgba(255,255,255, 1);
+        background-color: rgba(255, 255, 255, 1);
     }
 }

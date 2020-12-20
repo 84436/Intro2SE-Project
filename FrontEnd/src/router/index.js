@@ -52,6 +52,32 @@ const routes = [
         meta: {
             requiresAuth: true,
         },
+        children: [
+            {
+                path: "",
+                component: () =>
+                    import(
+                        /* webpackChunkName: "customershop" */
+                        "../views/customer/Shop.vue"
+                    ),
+            },
+            {
+                path: "account",
+                component: () =>
+                    import(
+                        /* webpackChunkName: "customeraccount" */
+                        "../views/customer/Account.vue"
+                    ),
+            },
+            {
+                path: "order",
+                component: () =>
+                    import(
+                        /* webpackChunkName: "customerorder " */
+                        "../views/customer/Order.vue"
+                    ),
+            },
+        ],
     },
     {
         path: "/shopowner",

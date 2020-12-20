@@ -26,7 +26,7 @@
     height: 120px;
 }
 
-.each-content:hover {
+.itemactive, .each-content:hover {
 
     background-color: rgba(33, 150, 243, 0.5);
 }
@@ -70,9 +70,6 @@
 
     /* Background color */
     background-color: #FFFFFF;
-
-    width: calc(100vw / 8) * 4;
-
 }
 
 #detail-content-container {
