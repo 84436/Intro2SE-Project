@@ -78,7 +78,9 @@
 #detail-content-container {
     margin: 40px 40px 40px 40px;
     font-family: "Montserrat", "sans-serif";
-    
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
 }
 
 #log-out-btn {

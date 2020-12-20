@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-#change-password-form {
+/* #change-password-form {
     padding-top: 375px;
 }
 
@@ -14,9 +14,7 @@
 
 #change-pwd-btn-container {
     @apply flex flex-row;
-}
-
-
+} */
 
 #close-btn {
     background-color: #4CAF50;
