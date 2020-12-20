@@ -11,9 +11,6 @@
             <router-link to="/register">
                 <button class="btn" id="btn-sign-up">Sign up</button>
             </router-link>
-            <router-link to="/customer">
-                <button class="btn" id="btn-sign-up">Customer</button>
-            </router-link>
         </div>
     </div>
 </template>
