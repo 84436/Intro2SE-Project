@@ -2,20 +2,13 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-#content {
-    @apply col-span-3;
-
-    /* Background color */
-    background-color: #EEEEEE;
-
-    width: calc(100vw / 8) * 3;
-}
-
 #account-content-container {
     padding: 40px 0 40px 0;
     font-family: "Montserrat", "sans-serif";
 
     @apply h-screen;
+
+    @apply col-span-3;
 }
 
 .each-content {
@@ -172,7 +165,7 @@
     @apply text-2xl;
 }
 
-#email {
+#email-info {
     @apply row-start-3 row-end-4 col-start-5 col-end-12;
     @apply text-4xl;
 }

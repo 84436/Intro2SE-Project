@@ -1,5 +1,16 @@
 <template>
-    <h1>Shout out for Custommer</h1>
+    <div id="app">
+        <TheCustomerNav />
+        <router-view />
+    </div>
 </template>
 
-<style></style>
+<script>
+import TheCustomerNav from "../../components/Navigation/TheCNavBar";
+
+export default {
+    components: {
+        TheCustomerNav,
+    },
+};
+</script>

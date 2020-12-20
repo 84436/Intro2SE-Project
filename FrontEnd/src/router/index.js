@@ -9,8 +9,8 @@ const routes = [
         path: "/",
         component: () =>
             import(
-                /* webpackChunkName: "home" */
-                "../views/Home.vue"
+                /* webpackChunkName: "onboardinghome" */
+                "../views/onboarding/Home.vue"
             ),
         meta: {
             requiresAuth: false,
@@ -81,24 +81,24 @@ const router = new VueRouter({
     routes,
 });
 
-router.beforeEach((to, from, next) => {
-    if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (store.state.account.status) {
-            next();
-        }
-    } else {
-        if (store.state.account.status) {
-            if (store.state.account.accountType === "customer") {
-                next("/customer");
-            } else if (store.state.account.accountType === "shopowner") {
-                next("/shopowner");
-            } else if (store.state.account.accountType === "admin") {
-                next("/admin");
-            }
-        } else {
-            next();
-        }
-    }
-});
+// router.beforeEach((to, from, next) => {
+//     if (to.matched.some((record) => record.meta.requiresAuth)) {
+//         if (store.state.account.status) {
+//             next();
+//         }
+//     } else {
+//         if (store.state.account.status) {
+//             if (store.state.account.accountType === "customer") {
+//                 next("/customer");
+//             } else if (store.state.account.accountType === "shopowner") {
+//                 next("/shopowner");
+//             } else if (store.state.account.accountType === "admin") {
+//                 next("/admin");
+//             }
+//         } else {
+//             next();
+//         }
+//     }
+// });
 
 export default router;

@@ -3,19 +3,13 @@
 @import "tailwindcss/utilities";
 
 @layer base {
-    #content-container {
-        /* Size */
-        @apply h-screen;
-        width: calc(100vw - 160px);
-    
-        /* Padding */
-        padding: 1.5em 1.5em 1.5em 1.5em;
-    
-        /* Background */
-        background-color: #F5F5F5;
-    
-        /* Display */
-        @apply grid grid-rows-2;
+    #content {
+        @apply col-span-7;
+
+        @apply grid grid-cols-7;
+        
+        /* Background color */
+        background-color: #EEEEEE;
     }    
 }
 
