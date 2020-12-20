@@ -12,11 +12,14 @@
 
     #list {
         @apply col-span-3;
+        padding: 40px 0;
+        font-family: "Montserrat", "sans-serif";
     }
 
     #details {
         @apply col-span-4;
-        background-color: #eeeeee;
+        background-color: #ffffff;
         overflow-y: auto;
+        font-family: "Roboto", "sans-serif";
     }
 }

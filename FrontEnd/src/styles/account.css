@@ -2,15 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-#account-content-container {
-    padding: 40px 0 40px 0;
-    font-family: "Montserrat", "sans-serif";
-
-    @apply h-screen;
-
-    @apply col-span-3;
-}
-
 .each-content {
     /* Grid */
     @apply grid grid-cols-8;
@@ -189,6 +180,3 @@
 .display-content {
     @apply col-span-7;
 }
-
-
-
