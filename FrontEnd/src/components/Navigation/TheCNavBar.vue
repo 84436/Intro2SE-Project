@@ -25,14 +25,3 @@
         </div>
     </div>
 </template>
-
-<script>
-
-export default {
-    data() {
-        return {
-            activeIndex: 1,
-        };
-    },
-};
-</script>

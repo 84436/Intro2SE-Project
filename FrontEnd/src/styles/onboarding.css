@@ -82,6 +82,8 @@
     
         /* Display */
         @apply block;
+
+        @apply placeholder-black;
     }
     
     .form-control {

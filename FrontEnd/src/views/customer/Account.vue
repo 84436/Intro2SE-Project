@@ -1,30 +1,41 @@
 <template>
     <div id="content">
-        <TheAccContList v-on:pass-index="updateIndex"/>
-        <ThePersonalInfo v-if="activeIndex === 0" />
-        <TheChangePass v-if="activeIndex === 1" />
+        <AccountAction v-on:pass-frame="updateframe" />
+        <div id="details">
+            <PersonalInfo v-if="activeFrame === 'info'" />
+            <PassChanging v-if="activeFrame === 'pass'" />
+            <ShopOpening v-if="activeFrame === 'shop'" />
+            <AccountClosing v-if="activeFrame === 'close'" />
+        </div>
     </div>
 </template>
 
 <script>
-import TheAccContList from "../../components/Account/TheAccContList";
-import ThePersonalInfo from "../../components/Account/ThePersonalInfo";
-import TheChangePass from "../../components/Account/TheChangePass"
+import AccountAction from "../../components/Account/AccountAction";
+import PersonalInfo from "../../components/Account/PersonalInfo";
+import PassChanging from "../../components/Account/PassChanging";
+import ShopOpening from "../../components/Customer/ShopOpening";
+import AccountClosing from "../../components/Customer/AccountClosing";
 
 export default {
     data() {
         return {
-            activeIndex: 0,
+            activeFrame: null,
         };
     },
     components: {
-        TheAccContList,
-        ThePersonalInfo,
-        TheChangePass
+        AccountAction,
+        PersonalInfo,
+        PassChanging,
+        ShopOpening,
+        AccountClosing,
     },
     methods: {
-        updateIndex(index) {
-            this.activeIndex = index;
+        created() {
+            this.activeFrame = "info";
+        },
+        updateframe(frame) {
+            this.activeFrame = frame;
         },
     },
 };

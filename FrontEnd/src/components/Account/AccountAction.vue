@@ -1,6 +1,6 @@
 <template>
-    <div id="account-content-container">
-        <button class="each-content" v-on:click="passIndex(0)" v-bind:class="{ itemactive: activeIndex === 0}">
+    <div id="list">
+        <button class="each-content" v-on:click="passFrame('info')" v-bind:class="{ itemactive: activeFrame === 'info'}">
             <div class="content-icon">
                 <i class="fal fa-info-circle"></i>
             </div>
@@ -8,7 +8,7 @@
                 About me
             </div>
         </button>
-        <button class="each-content" v-on:click="passIndex(1)" v-bind:class="{ itemactive: activeIndex === 1}">
+        <button class="each-content" v-on:click="passFrame('pass')" v-bind:class="{ itemactive: activeFrame === 'pass'}">
             <div class="content-icon">
                 <i class="fal fa-key"></i>
             </div>
@@ -16,7 +16,7 @@
                 Change password
             </div>
         </button>
-        <button class="each-content" v-on:click="passIndex(2)" v-bind:class="{ itemactive: activeIndex === 2}">
+        <button class="each-content" v-on:click="passFrame('shop')" v-bind:class="{ itemactive: activeFrame === 'shop'}">
             <div class="content-icon">
                 <i class="fal fa-store"></i>
             </div>
@@ -24,7 +24,7 @@
                 Open shop
             </div>
         </button>
-        <button class="each-content" v-on:click="passIndex(3)" v-bind:class="{ itemactive: activeIndex === 3}">
+        <button class="each-content" v-on:click="passFrame('close')" v-bind:class="{ itemactive: activeFrame === 'close'}">
             <div class="content-icon">
                 <i class="fal fa-trash-alt"></i>
             </div>
@@ -45,13 +45,13 @@
 export default {
     data() {
         return {
-            activeIndex: 0,
+            activeFrame: 'info',
         };
     },
     methods: {
-        passIndex(index) {
-            this.activeIndex = index;
-            this.$emit("pass-index", this.activeIndex);
+        passFrame(frame) {
+            this.activeFrame = frame;
+            this.$emit("pass-frame", this.activeFrame);
         },
     },
 };

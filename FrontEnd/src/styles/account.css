@@ -2,181 +2,210 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.each-content {
-    /* Grid */
-    @apply grid grid-cols-8;
+@layer base {
+    #detail-content {
+        @apply col-span-4;
 
-    /* Text size */
-    @apply text-3xl;
+        @apply relative;
 
-    /* Text alignment */
-    @apply items-center;
-    
-    /* Size of container */
-    width: 100%;
-    height: 120px;
+        /* Background color */
+        background-color: #ffffff;
+    }
+
+    #detail-content-container {
+        margin: 40px 40px 40px 40px;
+        font-family: "Montserrat", "sans-serif";
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+    }
+
+    .detail-information-container {
+        /* Grid */
+        @apply grid grid-cols-12;
+
+        margin-bottom: 40px;
+
+        @apply text-2xl;
+    }
+
+    #confirm-btn-container {
+        @apply flex flex-row;
+        align-self: center;
+    }
 }
 
-.itemactive, .each-content:hover {
+@layer components {
+    .each-content {
+        /* Grid */
+        @apply grid grid-cols-8;
 
-    background-color: rgba(33, 150, 243, 0.5);
-}
+        /* Text size */
+        @apply text-3xl;
 
-.content-icon {
-    @apply col-span-2;
+        /* Text alignment */
+        @apply items-center;
 
-    /* Font color */
-    @apply font-black;
+        /* Size of container */
+        width: 100%;
+        height: 120px;
+    }
 
-    /* Font size */
-    font-size: 35px;
-    
-    /* Background color */
-    background-color: #cccccc;
+    .itemactive,
+    .each-content:hover {
+        background-color: rgba(33, 150, 243, 0.5);
+    }
 
-    /* Border radius */
-    @apply rounded-full;
+    .content-icon {
+        @apply col-span-2;
 
-    /* Size of circle */
-    width: 60px;
-    height: 60px;
+        /* Font color */
+        @apply font-black;
 
-    /* Center icon  */
-    line-height: 60px;
-    @apply justify-self-center;
-    
+        /* Font size */
+        font-size: 35px;
 
-}
+        /* Background color */
+        background-color: #cccccc;
 
-.detail {
-    @apply col-span-6;
-    @apply text-left;
-}
+        /* Border radius */
+        @apply rounded-full;
 
+        /* Size of circle */
+        width: 60px;
+        height: 60px;
 
-#detail-content {
-    @apply col-span-4;
+        /* Center icon  */
+        line-height: 60px;
+        @apply justify-self-center;
+    }
 
-    @apply relative;
+    .detail {
+        @apply col-span-6;
+        @apply text-left;
+    }
 
-    /* Background color */
-    background-color: #FFFFFF;
-}
+    #log-out-btn {
+        /* Position */
+        @apply relative;
+        top: 35%;
+        left: 33%;
 
-#detail-content-container {
-    margin: 40px 40px 40px 40px;
-    font-family: "Montserrat", "sans-serif";
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-}
+        /* Grid */
+        @apply grid grid-cols-8;
 
-#log-out-btn {
-    /* Position */
-    @apply relative;
-    top: 35%;
-    left: 33%;
-    
-    /* Grid */
-    @apply grid grid-cols-8;
+        /* Background */
+        background-color: #e53935;
 
-    /* Background */
-    background-color: #E53935;
+        /* Shadow */
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+        /* filter: drop-shadow(0px 0.5px 1px rgba(0, 0, 0, 0.25)); */
 
-    /* Shadow */
-    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
-    /* filter: drop-shadow(0px 0.5px 1px rgba(0, 0, 0, 0.25)); */
+        /* Text */
+        @apply text-3xl text-white;
+        @apply font-medium;
 
+        height: 80px;
+        width: 240px;
+        line-height: 80px;
 
-    /* Text */
-    @apply text-3xl text-white;
-    @apply font-medium;
+        @apply rounded-full;
+    }
 
-    height: 80px;
-    width: 240px;
-    line-height: 80px;
-    
-    @apply rounded-full;
+    #log-out-btn:active {
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
+    }
 
-}
+    #log-out-icon {
+        @apply col-span-3;
+        @apply text-center;
+    }
 
-#log-out-btn:active {
-    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
-}
+    #log-out-text {
+        @apply col-span-5;
+        @apply text-left;
+    }
 
+    #overview-info {
+        @apply grid grid-cols-12 grid-rows-4;
+        margin-bottom: 60px;
+    }
 
-#log-out-icon {
-    @apply col-span-3;
-    @apply text-center;
-}
+    #avatar {
+        @apply row-span-4;
+        @apply col-span-4;
 
-#log-out-text {
-    @apply col-span-5;
-    @apply text-left;
-}
+        background-image: url("../src/assets/image/phake.jpg");
 
-#overview-info {
-    @apply grid grid-cols-12 grid-rows-4;
-    margin-bottom: 60px;
-}
+        @apply rounded-full;
 
-#avatar {
-    @apply row-span-4;
-    @apply col-span-4;
-    
-    background-image: url("../src/assets/image/phake.jpg");
+        width: calc(100vw / 8);
+        height: calc(100vw / 8);
+    }
 
-    @apply rounded-full;
+    #settings-btn {
+        @apply row-start-1 row-end-2 col-start-12 col-end-13;
 
-    width: calc(100vw / 8);
-    height: calc(100vw / 8);
-}
+        background-color: #dddddd;
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
 
-#settings-btn {
-    @apply row-start-1 row-end-2 col-start-12 col-end-13;
-    
-    background-color: #dddddd;
-    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+        @apply rounded-full;
 
-    @apply rounded-full;
+        width: 60px;
+        height: 60px;
 
-    width: 60px;
-    height: 60px;
+        @apply text-2xl;
+    }
 
-    @apply text-2xl;
-}
+    #settings-btn:active {
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
+    }
 
-#settings-btn:active {
-    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
-}
+    #join-date {
+        @apply row-start-2 row-end-3 col-start-5 col-end-12;
+        @apply text-2xl;
+    }
 
-#join-date {
-    @apply row-start-2 row-end-3 col-start-5 col-end-12;
-    @apply text-2xl;
-}
+    #email-info {
+        @apply row-start-3 row-end-4 col-start-5 col-end-12;
+        @apply text-4xl;
+    }
 
-#email-info {
-    @apply row-start-3 row-end-4 col-start-5 col-end-12;
-    @apply text-4xl;
-}
+    #detail-information {
+        font-family: "Montserrat", "sans-serif";
+    }
 
-#detail-information {
-    font-family: "Montserrat", "sans-serif";
-}
+    .display-label {
+        @apply col-span-5;
+    }
 
-.detail-information-container {
-    /* Grid */
-    @apply grid grid-cols-12;
-        
-    margin-bottom: 40px;
+    .display-content {
+        @apply col-span-7;
+    }
 
-    @apply text-2xl;
-}
+    .input-field {
+        background-color: #eeeeee;
+        margin-bottom: 20px;
+    }
 
-.display-label {
-    @apply col-span-5;
-}
+    #accept-btn {
+        background-color: #4caf50;
+        width: 150px;
+        height: 50px;
+        @apply rounded-full;
+        @apply text-white text-xl;
+        margin-right: 10px;
+    }
 
-.display-content {
-    @apply col-span-7;
+    #cancel-btn {
+        background-color: #e53935;
+        width: 150px;
+        height: 50px;
+        @apply rounded-full;
+        @apply text-white text-xl;
+    }
+
+    #info-form {
+        @apply flex flex-col;
+    }
 }
