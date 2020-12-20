@@ -5,12 +5,18 @@
 @layer base {
     #content {
         @apply col-span-7;
-
         @apply grid grid-cols-7;
-        
-        /* Background color */
-        background-color: #EEEEEE;
-    }    
+        background-color: #eeeeee;
+        overflow: hidden;
+    }
+
+    #list {
+        @apply col-span-3;
+    }
+
+    #details {
+        @apply col-span-4;
+        background-color: #eeeeee;
+        overflow-y: auto;
+    }
 }
-
-
