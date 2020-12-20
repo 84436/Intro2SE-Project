@@ -215,7 +215,7 @@
     @apply justify-self-start self-center;
 }
 
-.item-price-btn {
+.item-price-btn, .item-edit-btn {
     @apply col-span-3 row-span-2 col-start-9 col-end-12 row-start-1 row-end-3;
     
     /* Background */
@@ -234,9 +234,17 @@
 
     /* Flex */
     @apply justify-self-center self-center;
+
+    /* Shadow */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-#view-cart-btn {
+.item-price-btn:active, .item-edit-btn:active {
+    /* Drop shadow */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+} 
+
+#view-cart-btn, #add-item-btn {
     /* Position */
     @apply fixed bottom-0 right-0;
 
@@ -257,7 +265,7 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-#view-cart-btn:active {
+#view-cart-btn:active, #add-item-btn:active {
     /* Drop shadow */
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
 }
