@@ -2,13 +2,22 @@ const express = require('express')
 const app = express()
 var db
 
-app.get('/all', async (i, o) => {
-    try
-    {
-        let response = await db.models.shop.find((err) => {
-            if (err) throw new Error('Something went in find function');
-        })
-        o.send(response)
+app.get('/', async(i, o) => {
+    try{
+        if (i.body.hasOwnProperty('_id') == false)
+        {
+            let response = await db.models.shop.find({},{_id:1,name:1},(err) => {
+                if (err) throw new Error('Something went in find function');
+            })
+            return o.status(200).send(response)
+        }
+        else
+        { 
+            let doc = await db.models.shop.find({"_id":shopId},(err) => {
+                if (err) throw new Error('Something went in find function');
+            })
+            o.status(200).send(doc)
+        }
     }
     catch(e)
     {
@@ -41,15 +50,7 @@ app.post('/', async(i, o) => {
         })
         if (doc2 && Object.keys(doc2).length > 0)
             return o.status(409).send({"error":'Email already exists shop.'})
-        let shop = db.models.shop({
-            accountEmail: acc.email,
-            name: "",
-            address: "",
-            averageRate: 0,
-            hours: null,
-            menu: null,
-            coupons: null,
-        })
+        let shop = db.models.shop(i.body)
         await shop.save()
         o.status(200).send({"ok":"create shop success"})
     }
@@ -75,17 +76,12 @@ app.put('/', async(i,o) => {
             {
                 return o.status(404).send({"error":'Cannot find email from this token'}) 
             }
-            if (i.body.hasOwnProperty("hoursopen") && i.body.hasOwnProperty("hoursend"))
+            if (i.body.hasOwnProperty("hours"))
             {
-                shop.hours = {
-                    "open":i.body.hoursopen,
-                    "end":i.body.hoursend
-                }
+                shop.hours = i.body.hours
             }
             if (i.body.hasOwnProperty("address"))
                 shop.address = i.body.address
-            if (i.body.hasOwnProperty("averageRate"))
-                shop.averageRate = i.body.averageRate
             await db.models.shop.findOneAndUpdate({"accountEmail":doc.email},shop,(err,doc2)=>{
                 if (err) throw new Error('Something went in update function');
             })
@@ -130,20 +126,6 @@ app.delete('/', async(i,o) => {
     catch(e)
     {
         return o.status(500).send({"error":e.message})
-    }
-})
-
-app.get('/:Id', async(i, o) => {
-    try{
-        const shopId = i.params.Id;
-        let doc = await db.models.shop.find({"_id":shopId},(err) => {
-            if (err) throw new Error('Something went in find function');
-        })
-        o.status(200).send(doc)
-    }
-    catch(e)
-    {
-        o.status(500).send({"error":e.message})
     }
 })
 
