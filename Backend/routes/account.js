@@ -34,7 +34,7 @@ app.get('/', async(i, o) => {
                             "email":acc.email,
                             "phone":acc.phone,
                             "address":acc.address,
-                            "dateRegister":acc.dateRegister,
+                            "joinDate":acc.joinDate,
                             "accountType":doc.accountType});
                     else
                         return o.status(404).send({"error":"Cannot find email from this token"});
@@ -175,7 +175,7 @@ app.post('/login', async(i, o) => {
                     "email":acc.email,
                     "phone":acc.phone,
                     "address":acc.address,
-                    "dateRegister":acc.dateRegister,
+                    "joinDate":acc.joinDate,
                     'token': tok.token,
                     'accountType': tok.accountType,
                 })
@@ -220,7 +220,7 @@ app.post('/register', async(i, o) => {
         "email":acc.email,
         "phone":acc.phone,
         "address":acc.address,
-        "dateRegister":acc.dateRegister,
+        "joinDate":acc.joinDate,
         'token': token,
         'accountType': ACCOUNT_TYPE_CUSTOMER
     })

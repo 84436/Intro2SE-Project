@@ -38,7 +38,7 @@ dbSchemas = {
             require:[true,"address is require"],
             default: "",
         },
-        dateRegister:{
+        joinDate:{
             type:Date,
             default: Date.now,
         }
