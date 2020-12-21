@@ -4,16 +4,18 @@ var db
 
 app.get('/', async (i, o) => {
     try {
-        if (i.body.hasOwnProperty('_id') == false) {
-            let response = await db.models.shop.find({}, { _id: 0, name: 1 }, (err) => {
+        if (i.body.hasOwnProperty('id') == false) {
+            let response = await db.models.shop.find({}, (err) => {
                 if (err) throw new Error('Something went in find function');
             })
+            response = JSON.parse(JSON.stringify(response).split('"_id":').join('"id":'));
             return o.status(200).send(response)
         }
         else {
-            let doc = await db.models.shop.find({ "_id": shopId }, (err) => {
+            let doc = await db.models.shop.findOne({ "_id": i.body.id }, (err) => {
                 if (err) throw new Error('Something went in find function');
             })
+            doc = JSON.parse(JSON.stringify(doc).split('"_id":').join('"id":'));
             o.status(200).send(doc)
         }
     }
@@ -47,7 +49,7 @@ app.post('/', async (i, o) => {
             return o.status(409).send({ "error": 'Email already exists shop.' })
         let shop = db.models.shop(i.body)
         await shop.save()
-        o.status(200).send({ "ok": "create shop success" })
+        o.status(200).send(shop)
     }
     catch (e) {
         o.status(500).send({ "error": e.message })
