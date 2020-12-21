@@ -1,0 +1,117 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Requests list */
+@layer components {
+    .each-request {
+        /* Grid */
+        @apply grid grid-cols-12;
+    
+        /* Size */
+        width: 100%;
+        height: 120px;
+    
+        @apply text-3xl;
+    }
+    
+    .each-request:hover {
+        /* Background */
+        background-color: rgba(33, 150, 243, 0.5);
+    }
+    
+    .category-icon {
+        @apply col-span-3;
+    
+        /* Border radius */
+        @apply rounded-full;
+    
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+    
+        background-color: #cccccc;
+    
+        @apply justify-self-center self-center;
+    }
+    
+    .category-icon:hover {
+        background-color: rgba(33, 150, 243, 0.5);
+    }
+    
+    .title {
+        @apply col-span-9;
+    
+        /* Flex */
+        @apply justify-self-start self-center;
+    }
+}
+
+/* Request detail information */
+@layer components {
+    #request-info {
+        @apply grid grid-cols-12 grid-rows-3;
+        margin-bottom: 60px;
+    }
+    
+    #email-info {
+        @apply row-start-1 col-start-5 col-end-12;
+        @apply text-2xl;
+    }
+    
+    #request-details {
+        @apply row-start-2 row-end-4 col-start-5 col-end-12;
+        @apply text-4xl;
+    }
+    
+    
+    #avatar {
+        @apply row-span-3;
+        @apply col-span-3;
+    
+        background-image: url("../src/assets/image/phake.jpg");
+    
+        @apply rounded-full;
+    
+        width: calc(100vw / 8);
+        height: calc(100vw / 8);
+    }
+}
+/* Buttons container */
+@layer base {
+    #request-confirm-btn-container {
+        @apply flex flex-col justify-evenly items-center;
+        font-family: "Montserrat", "sans-serif";
+        height: 300px;
+    }
+    
+}
+
+/* Buttons */
+@layer components {
+    #request-accept-btn {
+        background-color: #4caf50;
+        width: 270px;
+        height: 90px;
+        @apply rounded-full;
+        @apply text-white text-4xl;
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+    }
+    
+    #request-accept-btn:active {
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
+    }
+    
+    #request-reject-btn {
+        background-color: #e53935;
+        width: 270px;
+        height: 90px;
+        @apply rounded-full;
+        @apply text-white text-4xl;
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+    }
+    
+    #request-reject-btn:active {
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
+    }
+}
