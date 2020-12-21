@@ -51,8 +51,12 @@
         @apply text-2xl;
     }
     
-    #order-id {
+    #orderer-info {
         margin-bottom: 40px;
+    }
+
+    .display-customer-info {
+        margin-bottom: 5px;
     }
     
     #order-about {
@@ -69,6 +73,7 @@
     
     #detail-status-container-in-process {
         background-color: #2196F3;
+        @apply text-white;
     }
     
     #detail-order-shop-name {
