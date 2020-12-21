@@ -76,20 +76,21 @@ export default {
     },
     methods: {
         async login() {
-            const respond = await AccountService.login({
+            const response = await AccountService.login({
                 email: this.email,
                 password: this.password,
             });
 
-            store.dispatch("setToken", respond.data.token);
-            store.dispatch("setType", respond.data.accountType);
+            console.log(response);
 
-            if (respond.data.accountType === "customer") {
-                this.$router.push("/customer");
-            } else if (respond.data.accountType === "shopowner") {
-                this.$router.push("/shopowner");
-            } else if (respond.data.accountType === "admin") {
-                this.$router.push("/admin");
+            store.dispatch("setAccount", response.data);
+
+            if (response.data.accountType === "customer") {
+                this.$router.push("/customer/");
+            } else if (response.data.accountType === "shopowner") {
+                this.$router.push("/shopowner/");
+            } else if (response.data.accountType === "admin") {
+                this.$router.push("/admin/");
             }
         },
     },

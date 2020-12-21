@@ -1,18 +1,21 @@
 <template>
-  <div id="content">
-      <ShopAction />
-      <ShopDetails />
-  </div>
+    <div id="content">
+        <ShopAction />
+        <ShopDetails />
+        <Cart />
+    </div>
 </template>
 
 <script>
-import ShopAction from "../../components/Shop/ShopAction"
-import ShopDetails from "../../components/Shop/ShopDetails"
+import ShopAction from "../../components/Shop/ShopAction";
+import ShopDetails from "../../components/Shop/ShopDetails";
+import Cart from "../../components/Shop/Cart";
 
 export default {
-    components:{
+    components: {
         ShopAction,
-        ShopDetails
-    }
-}
+        ShopDetails,
+        Cart,
+    },
+};
 </script>

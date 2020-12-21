@@ -172,7 +172,8 @@
         @apply col-span-6 row-span-1 col-start-4 col-end-10 row-start-1 row-end-2;
         
         /* Text */
-        @apply text-black text-lg;
+        @apply text-black;
+        font-size: 20px;
     
         /* Flex */
         @apply justify-self-start self-center;

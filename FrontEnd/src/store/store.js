@@ -6,32 +6,20 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     strict: true,
     state: {
-        account: {
-            token: null,
-            accountType: null,
-            status: false,
-        },
+        account: null,
+        status: false
     },
     mutations: {
-        setToken(state, token) {
-            state.account.token = token;
-            if (token) {
-                state.account.status = true;
+        setAccount(state, account) {
+            state.account = account;
+            if (account.token) {
+                state.status = true;
             }
-            else {
-                state.account.status = false;
-            }
-        },
-        setType(state, type) {
-            state.account.accountType = type;
         }
     },
     actions: {
-        setToken({ commit }, token) {
-            commit('setToken', token);
-        },
-        setType({ commit }, type) {
-            commit('setType', type);
+        setAccount({ commit }, account) {
+            commit('setAccount', account);
         }
     },
 });

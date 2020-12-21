@@ -77,15 +77,17 @@
 </template>
 
 <script>
+import store from "../../store/store";
+
 export default {
     data() {
         return {
             account: {
-                joindate: "31/12/2020",
-                email: "abc@email.com",
-                name: "This is my name",
-                phone: "This is my phone",
-                address: "This is my address",
+                joindate: this.getDate(),
+                email: store.state.account.email,
+                name: store.state.account.name,
+                phone: store.state.account.phone,
+                address: store.state.account.address,
             },
             editable: false,
         };
@@ -97,6 +99,10 @@ export default {
             } else {
                 this.editable = true;
             }
+        },
+        getDate() {
+            var d = new Date(store.state.account.joinDate);
+            return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
         },
     },
 };

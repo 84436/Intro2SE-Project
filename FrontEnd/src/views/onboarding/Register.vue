@@ -106,7 +106,6 @@
                         type="password"
                         id="confirm-password"
                         placeholder="Confirm Password"
-                        v-model="cfpassword"
                     />
                     <span class="form-error">{{ errors[0] }}</span>
                 </ValidationProvider>
@@ -142,7 +141,7 @@ export default {
     },
     methods: {
         async register() {
-            const respond = await AccountService.register({
+            const response = await AccountService.register({
                 email: this.email,
                 name: this.name,
                 address: this.address,
@@ -150,8 +149,7 @@ export default {
                 password: this.password,
             });
 
-            store.dispatch("setToken", respond.data.token);
-            store.dispatch("setType", respond.data.accountType);
+            store.dispatch("setAccount", response.data.token);
 
             this.$router.push("/customer");
         },
