@@ -13,7 +13,7 @@ app.get('/', async(i, o) => {
     try{
         if (i.body.hasOwnProperty('token') == false)
         {
-            let response = await db.models.account.find({}, { name: 1, email: 1,phone:1, _id: 0 },(err) => {
+            let response = await db.models.account.find({}, {password:0},(err) => {
                 if (err) throw new Error('Something went in find function');
             })
             return o.status(200).send(response)
@@ -26,10 +26,16 @@ app.get('/', async(i, o) => {
             })
             if (doc && Object.keys(doc).length > 0)
             {
-                await db.models.account.findOne({"email":token.email},(err,res)=>{
+                await db.models.account.findOne({"email":token.email},(err,acc)=>{
                     if (err) throw new Error('Something went wrong with find function.');
-                    if (res && Object.keys(res).length > 0)
-                        return o.status(200).send({"email":res.email,"address":res.address,"name":res.name,"phone":res.phone,"accountType":doc.accountType});
+                    if (acc && Object.keys(acc).length > 0)
+                        return o.status(200).send(
+                            {"name":acc.name,
+                            "email":acc.email,
+                            "phone":acc.phone,
+                            "address":acc.address,
+                            "joinDate":acc.joinDate,
+                            "accountType":doc.accountType});
                     else
                         return o.status(404).send({"error":"Cannot find email from this token"});
                 })
@@ -158,15 +164,20 @@ app.post('/login', async(i, o) => {
             'email': i.body.email,
             'password': Hash(i.body.password)
         }
-        let doc = await db.models.account.findOne(account, (err) => { // Verify password, the lazy way
+        acc = await db.models.account.findOne(account, (err) => { // Verify password, the lazy way
             if (err) throw new Error('Something went in find function');
         })
-        if (doc && Object.keys(doc).length > 0) {
+        if (acc && Object.keys(acc).length > 0) {
             await db.models.token.findOne({'email': i.body.email}, (err, tok) => {
                 if (err) throw new Error('Something went in find function');
                 o.status(200).send({
+                    "name":acc.name,
+                    "email":acc.email,
+                    "phone":acc.phone,
+                    "address":acc.address,
+                    "joinDate":acc.joinDate,
                     'token': tok.token,
-                    'accountType': tok.accountType
+                    'accountType': tok.accountType,
                 })
                 return
             })
@@ -186,10 +197,11 @@ app.post('/register', async(i, o) => {
         i.body.password = Hash(i.body.password);
     }
     let token;
+    let acc;
     try
     {
         // Write to Accounts
-        let acc = db.models.account(i.body)
+        acc = db.models.account(i.body)
         await acc.save()
         token = Hash(i.body.email)
         // Write to Tokens
@@ -204,6 +216,11 @@ app.post('/register', async(i, o) => {
     }
     // If everything's OK so far, throw the user that new token
     o.status(200).send({
+        "name":acc.name,
+        "email":acc.email,
+        "phone":acc.phone,
+        "address":acc.address,
+        "joinDate":acc.joinDate,
         'token': token,
         'accountType': ACCOUNT_TYPE_CUSTOMER
     })

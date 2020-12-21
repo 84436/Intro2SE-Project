@@ -21,18 +21,26 @@ dbSchemas = {
         phone: {
             type:String,
             required:[true,"phone is require"],
+            default: "",
         },
         password: {
             type:String,
             required:[true,"password is require"],
+            default: "",
         },
         name: {
             type:String,
             require:[true,"name is require"],
+            default: "",
         },
         address: {
             type:String,
             require:[true,"address is require"],
+            default: "",
+        },
+        joinDate:{
+            type:Date,
+            default: Date.now,
         }
     }),
     order: new mongoose.Schema({
@@ -98,8 +106,8 @@ dbSchemas = {
         hours: {
             type:Object,
             default:{
-                "open": 00,
-                "close": 00,
+                "open": Number(0),
+                "close": Number(0),
             },
         },
         menu: {
