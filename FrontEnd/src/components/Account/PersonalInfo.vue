@@ -1,7 +1,30 @@
 <template>
     <div id="detail-content-container">
         <div id="overview-info">
-            <div id="avatar"></div>
+            <a v-if="this.editable" @click="toggleShow">Lemme edit this</a>
+            <Uploader
+                field="img"
+                @crop-success="cropSuccess"
+                v-model="show"
+                :width="128"
+                :height="128"
+                img-format="png"
+                langType="en"
+            />
+
+            <!-- When there is an avatar -->
+            <img id="avatar" :src="this.account.avatar" alt="avatar" v-if="this.account.avatar">
+
+            <!-- When there is none -->
+            <Avatar
+                v-else
+                id="avatar"
+                :username="this.account.name"
+                :size="calcSize()"
+                :src="this.account.avatar"
+            />
+
+            <!-- Edit button -->
             <button
                 id="settings-btn"
                 v-if="!this.editable"
@@ -9,9 +32,12 @@
             >
                 <i class="fal fa-user-edit"></i>
             </button>
+
             <div id="join-date">{{ this.account.joindate }}</div>
             <div id="email-info">{{ this.account.email }}</div>
         </div>
+
+        <!-- When not updating -->
         <div id="detail-infomation" v-if="!this.editable">
             <div class="detail-information-container">
                 <div class="display-label">Display Name</div>
@@ -32,6 +58,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- When updating -->
         <div id="info-form" v-else>
             <form>
                 <div class="form-control">
@@ -78,6 +106,8 @@
 
 <script>
 import store from "../../store/store";
+import Avatar from "vue-avatar";
+import Uploader from "vue-image-crop-upload";
 
 export default {
     data() {
@@ -88,8 +118,10 @@ export default {
                 name: store.state.account.name,
                 phone: store.state.account.phone,
                 address: store.state.account.address,
+                avatar : "",
             },
             editable: false,
+            show: false,
         };
     },
     methods: {
@@ -104,6 +136,19 @@ export default {
             var d = new Date(store.state.account.joinDate);
             return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
         },
+        calcSize() {
+            return window.width / 8;
+        },
+        toggleShow() {
+            this.show = !this.show;
+        },
+        cropSuccess(imgDataUrl, field) {
+            this.account.avatar = imgDataUrl;
+        },
+    },
+    components: {
+        Avatar,
+        Uploader,
     },
 };
 </script>

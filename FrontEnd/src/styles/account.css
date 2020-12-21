@@ -135,7 +135,7 @@
         @apply row-span-4;
         @apply col-span-4;
 
-        background-image: url("../src/assets/image/phake.jpg");
+        /* background-image: url("../src/assets/image/phake.jpg"); */
 
         @apply rounded-full;
 

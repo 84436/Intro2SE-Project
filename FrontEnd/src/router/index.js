@@ -90,6 +90,9 @@ router.beforeEach((to, from, next) => {
         if (store.state.status) {
             next();
         }
+        else {
+            next("/");
+        }
     } else {
         if (store.state.status) {
             if (store.state.account.accountType === "customer") {

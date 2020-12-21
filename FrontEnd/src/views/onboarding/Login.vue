@@ -80,9 +80,7 @@ export default {
                 email: this.email,
                 password: this.password,
             });
-
-            console.log(response);
-
+            
             store.dispatch("setAccount", response.data);
 
             if (response.data.accountType === "customer") {
