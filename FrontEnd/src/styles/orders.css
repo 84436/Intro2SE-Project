@@ -2,5 +2,180 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* Container */
+/* Orders list */
+@layer components {
+    #orders-list-container {
+        margin: 40px 0 40px 0;
+        font-family: "Montserrat", "sans-serif";
+        @apply text-2xl;
+    }
+    
+    .each-order {
+        @apply grid grid-cols-3 grid-rows-2;
+        height: 120px;
+        padding: 0 40px 0 40px;
+    }
+    
+    .each-order:hover {
+        background-color: #2196F3;
+    }
 
+    #order-date {
+        @apply col-span-2;
+        @apply self-center;
+    }
+    
+    #order-shop-name {
+        @apply col-span-2 row-start-2 row-end-3;
+        @apply self-center;
+    }
+    
+    #order-total-price {
+        @apply col-start-3 col-end-4 row-span-2;
+        @apply text-right;
+        @apply self-center;
+    }
+}
+
+/* Order details */
+@layer components {
+    #order-about {
+        height: 300px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    
+    #order-info-container {
+        margin: 40px 40px 40px 40px;
+        font-family: "Montserrat", "sans-serif";
+        @apply text-2xl;
+    }
+    
+    #order-id {
+        margin-bottom: 40px;
+    }
+    
+    #order-about {
+        @apply grid grid-cols-2 gap-x-4;
+    }
+    
+    #detail-status-container, #detail-status-container-in-process {
+        background-color: #c4c4c4;
+        @apply text-3xl;
+        @apply content-center;
+        @apply grid grid-rows-2;
+        @apply text-center;
+    }
+    
+    #detail-status-container-in-process {
+        background-color: #2196F3;
+    }
+    
+    #detail-order-shop-name {
+        @apply text-5xl;
+        @apply text-center;
+        @apply self-end;
+        margin-bottom: 10px;
+    }
+    
+    #detail-date-container {
+        background-color: #c4c4c4;
+        padding: 40px 40px 40px 40px;
+    }
+    
+    .row {
+        @apply grid grid-cols-2;
+        margin-bottom: 10px;
+    }
+    
+    .row-name {
+        @apply text-left;
+    }
+    
+    .row-content {
+        @apply text-right;
+    }
+    
+    #display-order-total, #display-order-final-price {
+        @apply font-bold;
+    }
+}
+
+/* Items list in each order */
+@layer components {
+    #order-items-list {
+        padding: 40px 40px 40px 40px;
+        background-color: #eeeeee;
+        font-family: "Roboto", "sans-serif";
+    }
+    
+    .item-row {
+        @apply grid grid-cols-3 grid-rows-2;
+        margin-bottom: 20px;
+    }
+    
+    .item-row-img {
+        @apply row-span-2;
+        background-image: url("../src/assets/image/phake.jpg");
+        
+        /* Size */
+        width: 80px;
+        height: 80px;
+    
+        /* Border radius */
+        @apply rounded-lg;
+    
+        /* Flex */
+        @apply justify-self-center self-center;
+    }
+    
+    .item-row-name {
+        @apply font-medium;
+    }
+    
+    .item-row-quantity {
+        @apply row-start-2 col-start-2;
+        @apply text-gray-500;
+    }
+    
+    .item-row-total {
+        @apply row-span-2;
+        @apply self-center;
+        @apply text-right;
+    }
+}
+
+@layer base {
+    #order-confirm-btn-container {
+        @apply flex flex-col justify-evenly items-center;
+    }
+}
+
+/* Button container */
+@layer components {
+    #order-accept-btn {
+        background-color: #4caf50;
+        width: 270px;
+        height: 90px;
+        @apply rounded-full;
+        @apply text-white text-4xl;
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+    }
+
+    #order-accept-btn:active {
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
+    }
+
+    #order-reject-btn {
+        background-color: #e53935;
+        width: 270px;
+        height: 90px;
+        @apply rounded-full;
+        @apply text-white text-4xl;
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+    }
+
+    #order-reject-btn:active {
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
+    }
+}
