@@ -17,7 +17,7 @@
     }
     
     .each-order:hover {
-        background-color: #2196F3;
+        background-color: rgba(33, 150, 243, 0.5);
     }
 
     #order-date {
