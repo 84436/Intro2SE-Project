@@ -12,7 +12,6 @@
 
     #list {
         @apply col-span-3;
-        padding: 40px 0;
         font-family: "Montserrat", "sans-serif";
     }
 

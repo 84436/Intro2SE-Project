@@ -79,28 +79,6 @@ const routes = [
             },
         ],
     },
-    {
-        path: "/shopowner",
-        component: () =>
-            import(
-                /* webpackChunkName: "shophome" */
-                "../views/shopowner/Home.vue"
-            ),
-        meta: {
-            requiresAuth: true,
-        },
-    },
-    {
-        path: "/admin",
-        component: () =>
-            import(
-                /* webpackChunkName: "admin" */
-                "../views/admin/Home.vue"
-            ),
-        meta: {
-            requiresAuth: true,
-        },
-    },
 ];
 
 const router = new VueRouter({

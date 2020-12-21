@@ -14,13 +14,13 @@
 import AccountAction from "../../components/Account/AccountAction";
 import PersonalInfo from "../../components/Account/PersonalInfo";
 import PassChanging from "../../components/Account/PassChanging";
-import ShopOpening from "../../components/Customer/ShopOpening";
-import AccountClosing from "../../components/Customer/AccountClosing";
+import ShopOpening from "../../components/Shop/ShopOpening";
+import AccountClosing from "../../components/Account/AccountClosing";
 
 export default {
     data() {
         return {
-            activeFrame: null,
+            activeFrame: 'info',
         };
     },
     components: {
@@ -31,9 +31,6 @@ export default {
         AccountClosing,
     },
     methods: {
-        created() {
-            this.activeFrame = "info";
-        },
         updateframe(frame) {
             this.activeFrame = frame;
         },

@@ -87,13 +87,10 @@ export default {
                 phone: "This is my phone",
                 address: "This is my address",
             },
-            editable: null,
+            editable: false,
         };
     },
     methods: {
-        created() {
-            this.editable = false;
-        },
         changeEditState() {
             if (this.editable === true) {
                 this.editable = false;
