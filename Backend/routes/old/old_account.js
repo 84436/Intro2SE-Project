@@ -10,6 +10,7 @@ app.get("/", async (i, o) => {
             let response = await accountModel.find({}, { password: 0 }, (err) => {
                 if (err) throw new Error("Something went in find function");
             })
+            response = JSON.parse(JSON.stringify(response).split('"_id":').join('"id":'));
             return o.status(200).send(response)
         }
         else {
@@ -23,6 +24,7 @@ app.get("/", async (i, o) => {
                     if (acc && Object.keys(acc).length > 0)
                         return o.status(200).send(
                             {
+                                "id": acc._id,
                                 "name": acc.name,
                                 "email": acc.email,
                                 "phone": acc.phone,
@@ -157,6 +159,7 @@ app.post("/login", async (i, o) => {
             await db.models.token.findOne({ "email": i.body.email }, (err, tok) => {
                 if (err) throw new Error("Something went in find function");
                 o.status(200).send({
+                    "id": acc._id,
                     "name": acc.name,
                     "email": acc.email,
                     "phone": acc.phone,
@@ -200,6 +203,7 @@ app.post("/register", async (i, o) => {
     }
     // If everything"s OK so far, throw the user that new token
     o.status(200).send({
+        "id": acc._id,
         "name": acc.name,
         "email": acc.email,
         "phone": acc.phone,

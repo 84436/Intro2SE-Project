@@ -17,12 +17,15 @@ app.get("/", async (i, o) => {
             if (!(acc && Object.keys(acc).length > 0))
                 return o.status(404).send({ "error": "Cannot find email from token" })
             if (doc.accountType == "customer") {
-                if (i.body.hasOwnProperty("_id") == true) {
-                    let response = await db.models.order.findOne({ "_id": i.body._id, "customerID": acc._id }, (err) => {
-                        if (err) throw new Error("Something went in find function");
+                if (i.body.hasOwnProperty('id') == true) {
+                    let response = await db.models.order.findOne({ "_id": i.body.id, "customerID": acc._id }, (err) => {
+                        if (err) throw new Error('Something went in find function');
                     })
                     if (response && Object.keys(response).length > 0)
+                    {
+                        response = JSON.parse(JSON.stringify(response).split('"_id":').join('"id":'));
                         o.status(200).send(response)
+                    }
                     else
                         o.status(200).send({ "error": "Not found this id" })
                 }
@@ -31,7 +34,10 @@ app.get("/", async (i, o) => {
                         if (err) throw new Error("Something went in find function");
                     })
                     if (response && Object.keys(response).length > 0)
+                    {
+                        response = JSON.parse(JSON.stringify(response).split('"_id":').join('"id":'));
                         o.status(200).send(response)
+                    }
                     else
                         o.status(200).send([])
                 }
@@ -42,7 +48,10 @@ app.get("/", async (i, o) => {
                         if (err) throw new Error("Something went in find function");
                     })
                     if (response && Object.keys(response).length > 0)
+                    {
+                        response = JSON.parse(JSON.stringify(response).split('"_id":').join('"id":'));
                         o.status(200).send(response)
+                    }
                     else
                         o.status(200).send({ "error": "Not found this id" })
                 }
@@ -51,7 +60,10 @@ app.get("/", async (i, o) => {
                         if (err) throw new Error("Something went in find function");
                     })
                     if (response && Object.keys(response).length > 0)
+                    {
+                        response = JSON.parse(JSON.stringify(response).split('"_id":').join('"id":'));
                         o.status(200).send(response)
+                    }
                     else
                         o.status(200).send([])
                 }
