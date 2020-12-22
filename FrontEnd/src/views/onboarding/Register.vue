@@ -104,8 +104,8 @@
                 >
                     <input
                         type="password"
-                        id="confirm-password"
                         placeholder="Confirm Password"
+                        v-model="confirmation"
                     />
                     <span class="form-error">{{ errors[0] }}</span>
                 </ValidationProvider>
@@ -122,7 +122,6 @@
 
 <script>
 import AccountService from "../../services/AccountService";
-import store from "../../store/store";
 import { ValidationProvider, ValidationObserver } from "vee-validate";
 
 export default {
@@ -137,6 +136,7 @@ export default {
             address: "",
             password: "",
             phone: "",
+            confirmation: ""
         };
     },
     methods: {
@@ -149,7 +149,7 @@ export default {
                 password: this.password,
             });
 
-            store.dispatch("setAccount", response.data.token);
+            this.$store.dispatch("setAccount", response.data);
 
             this.$router.push("/customer");
         },

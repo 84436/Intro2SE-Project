@@ -60,7 +60,6 @@
 
 <script>
 import AccountService from "../../services/AccountService";
-import store from "../../store/store";
 import { ValidationProvider, ValidationObserver } from "vee-validate";
 
 export default {
@@ -81,13 +80,13 @@ export default {
                 password: this.password,
             });
             
-            store.dispatch("setAccount", response.data);
+            this.$store.dispatch("setAccount", response.data);
 
-            if (response.data.accountType === "customer") {
+            if (response.data.type === "customer") {
                 this.$router.push("/customer/");
-            } else if (response.data.accountType === "shopowner") {
+            } else if (response.data.type === "shopowner") {
                 this.$router.push("/shopowner/");
-            } else if (response.data.accountType === "admin") {
+            } else if (response.data.type === "admin") {
                 this.$router.push("/admin/");
             }
         },

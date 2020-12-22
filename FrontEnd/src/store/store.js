@@ -12,7 +12,7 @@ const store = new Vuex.Store({
     mutations: {
         setAccount(state, account) {
             state.account = account;
-            if (account.token) {
+            if (account._id) {
                 state.status = true;
             }
         }
