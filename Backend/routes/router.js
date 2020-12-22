@@ -1,26 +1,26 @@
-const express = require('express')
+const express = require("express")
 const app = express()
 
-const account = require('./account')
-const order = require('./order')
-const shop = require('./shop')
+const account = require("./account/account")
+const request = require("./account/request")
+// const shop = require("./shop/shop")
+// const order = require("./order/order")
+const invalidRoutes = require("./helpers/invalidRoutes")
 
-var db
-
-app.get('/', (i, o) => {
-    o.send('Hi. This is InTransit API for... stuff.')
+const greetingMessage = {
+    "_error": null,
+    "_greeting": "Hi. This is the InTransit API."
+}
+app.get("/", (i, o) => {
+    o.send(greetingMessage)
 })
 
-app.use('/account', account.routes)
-app.use('/order', order.routes)
-app.use('/shop', shop.routes)
+app.use("/account", account.routes)
+app.use("/request", request.routes)
+// app.use("/shop", shop.routes)
+// app.use("/order", order.routes)
+app.use(invalidRoutes)
 
 module.exports = {
-    setDBObject: (dbObject) => {
-        db = dbObject
-        account.setDBObject(db) // propagate changes to subroutes
-        order.setDBObject(db)
-        shop.setDBObject(db)
-    },
     routes: app
 }
