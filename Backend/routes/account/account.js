@@ -34,6 +34,8 @@ async function checkEmail(email) {
     if (account) {
         r._error = "An account already exists with the given email"
     }
+    if (account.type != "shopowner")
+        r._error = "Only shopOwner can create and edit shop"
 
     return r
 }

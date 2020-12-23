@@ -38,6 +38,11 @@ var accountSchema = new mongoose.Schema({
         type: String,
         enum: ["customer", "shopowner", "admin"],
         default: "customer"
+    },
+    shopId:{
+        type: String,
+        unique: [true,"Shop ID is unique"],
+        default: null,
     }
 })
 

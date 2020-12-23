@@ -1,18 +1,13 @@
 const mongoose = require("mongoose")
 
 var shopSchema = new mongoose.Schema({
-    accountEmail: {
+    name: {
         type: String,
-        unique: [true, "One account have one shop"]
-    },
-    name:
-    {
-        type: String,
-        unique: [true, "Name of shop is unique"]
+        default: null,
     },
     address: {
         type: String,
-        default: "",
+        default: null,
     },
     averageRate: {
         type: Number,
@@ -27,11 +22,11 @@ var shopSchema = new mongoose.Schema({
     },
     menu: {
         type: Object,
-        default: {}
+        default: null
     },
     coupons: {
         type: Object,
-        default: {}
+        default: null
     },
 })
 
