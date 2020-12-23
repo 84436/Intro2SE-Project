@@ -1,7 +1,9 @@
 <template>
     <div id="detail-content-container">
         <div id="overview-info">
-            <a v-if="this.editable" @click="toggleShow">Lemme edit this</a>
+            <button id="change-avatar-btn" v-if="this.editable" @click="toggleShow">
+                <i class="fal fa-image"></i>
+            </button>
             <Uploader
                 field="img"
                 @crop-success="cropSuccess"

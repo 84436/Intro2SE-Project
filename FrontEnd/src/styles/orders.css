@@ -13,6 +13,7 @@
     .each-order {
         @apply grid grid-cols-3 grid-rows-2;
         height: 120px;
+        width: 100%;
         padding: 0 40px 0 40px;
     }
     
@@ -23,11 +24,13 @@
     #order-date {
         @apply col-span-2;
         @apply self-center;
+        @apply text-left;
     }
     
     #order-shop-name {
         @apply col-span-2 row-start-2 row-end-3;
         @apply self-center;
+        @apply text-left;
     }
     
     #order-total-price {
