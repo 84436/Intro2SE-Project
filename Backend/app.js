@@ -1,10 +1,9 @@
 // imports, external
-const express = require('express')
-const cors    = require('cors')
-const morgan  = require('morgan')
-const db      = require('./database/mongo')
-const router  = require('./routes/router')
-const invalid = require('./routes/invalid')
+const express  = require("express")
+const cors     = require("cors")
+const morgan   = require("morgan")
+const mongoose = require("./database/mongo")
+const router   = require("./routes/router")
 
 // Express
 const app = express()
@@ -19,15 +18,14 @@ app.use(express.json())
 app.use(cors())
 
 // Morgan: logging
-morgan_instance = morgan(':method :url :status :res[content-length] - :response-time ms')
+morgan_instance = morgan(":method :url :status :res[content-length] - :response-time ms")
 app.use(morgan_instance)
 
 // App
-db.connection.once('open', () => {
-    router.setDBObject(db)
+mongoose.connection.once("open", () => {
+    console.log(`Database: connected to ${mongoose.connection.host}:${mongoose.connection.port}`)
     app.use(router.routes)
-    app.use(invalid.routes)
     app.listen(port, () => {
-        console.log(`InTransit API live at port ${port}. Check morgan output for incoming requests.`)
+        console.log(`InTransit API live at port ${port}.`)
     })
 })
