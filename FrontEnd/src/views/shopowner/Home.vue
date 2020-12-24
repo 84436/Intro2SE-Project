@@ -1,9 +1,16 @@
 <template>
-    <h1>Shout out for Shop owner</h1>
+    <div id="app">
+        <TheShopOwnerNav />
+        <router-view />
+    </div>
 </template>
 
 <script>
-export default {};
-</script>
+import TheShopOwnerNav from "../../components/Navigation/TheSNavBar";
 
-<style></style>
+export default {
+    components: {
+        TheShopOwnerNav,
+    },
+};
+</script>

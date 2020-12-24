@@ -79,6 +79,40 @@ const routes = [
             },
         ],
     },
+    {
+        path: "/shopowner",
+        component: () =>
+            import(
+                /* webpackChunkName: "shopowner/home" */
+                "../views/shopowner/Home.vue"
+            ),
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: "",
+                component: () =>
+                    import(
+                        "../views/shopowner/Shop.vue"
+                    ),
+            },
+            {
+                path: "account",
+                component: () =>
+                    import(
+                        "../views/shopowner/Account.vue"
+                    ),
+            },
+            {
+                path: "order",
+                component: () =>
+                    import(
+                        "../views/shopowner/Order.vue"
+                    ),
+            },
+        ]
+    }
 ];
 
 const router = new VueRouter({
