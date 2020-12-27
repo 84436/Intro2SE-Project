@@ -112,7 +112,33 @@ const routes = [
                     ),
             },
         ]
-    }
+    },
+    {
+        path: "/support",
+        component: () =>
+            import(
+                "../views/support/Home.vue"
+            ),
+        meta: {
+            requiresAuth: true,
+        },
+        children: [
+            {
+                path: "",
+                component: () =>
+                    import(
+                        "../views/support/Account.vue"
+                    ),
+            },
+            {
+                path: "",
+                component: () =>
+                    import(
+                        "../views/support/Request.vue"
+                    ),
+            },
+        ]
+    },
 ];
 
 const router = new VueRouter({
