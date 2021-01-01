@@ -86,11 +86,60 @@ async function add(info) {
     return r
 }
 
+async function edit(id, new_info) {
+    let r = { _error: null }
+
+    r = {...await checkID(id)}
+    if (r._error) return r
+
+    let updated_fields = {
+        "name": new_info.name,
+        "address": new_info.address,
+        "averageRate": new_info.averageRate,
+        "hours": new_info.hours,
+        "menu": new_info.menu,
+        "coupons": new_info.coupons,
+    }
+
+    // remove undefined fields
+    // https://stackoverflow.com/a/38340374
+    Object.keys(updated_fields).forEach(key => {
+        (updated_fields[key] === undefined) && (delete updated_fields[key])
+    })
+
+    // if everything"s undefined, silently return
+    if (Object.keys(updated_fields).length === 0) {
+        return r
+    }
+
+    await shopModel.findByIdAndUpdate(id, updated_fields, (err) => {
+        if (err) { r._error = err; return r }
+    })
+
+    return r
+}
+
 async function remove(id,shopOwnerId) {
     let r = { _error: null }
 
     r = {...await checkID(id)}
     if (r._error) return r
+
+    let projection = {
+        __v: 0
+    }
+    let account = await accountModel.findById(ShopOwnerId, projection, (err) => {
+        if (err) { r._error = err; return r }
+    })
+    if (!account) {
+        r._error = "No account found with given ID"
+        return r
+    }
+    if (account.shopId != id)
+    {
+        r._error = "Shop from shopOwnerID not same shop id"
+        return r
+    }
 
     await accountModel.findByIdAndUpdate(shopOwnerId, {"shopId":null}, (err) => {
         if (err) { r._error = err; return r }
@@ -140,7 +189,23 @@ app.post('/', async (i, o) => {
 })
 
 app.put('/', async (i, o) => {
+    let missing = missingKeys(i.body, [
+        "id"
+    ])
+    if (missing) {
+        o.status(400).send(missing)
+        return
+    }
 
+    // split i body to id and info
+    let id = i.body.id
+    let new_info = i.body
+    delete(new_info.id)
+
+    let r = await edit(id, new_info)
+    if (r._error) { o.status(404) }
+    else { o.status(200) }
+    o.send(r)
 })
 
 app.delete('/', async (i, o) => {
