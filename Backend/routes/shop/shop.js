@@ -226,6 +226,21 @@ app.delete('/', async (i, o) => {
     else { o.status(200) }
     o.send(r)
 })
+
+app.get('/search', async (i, o) => {
+    let r = { _error: null }
+    let missing = missingKeys(i.body, [
+        "text"
+    ])
+    if (missing) {
+        o.status(400).send(missing)
+        return
+    }
+    var re = new RegExp(i.body.text,"i");
+    var account = await shopModel.find({$or: [{name: re}, {address: re}]})
+    o.send(account)
+})
+
 module.exports = {
     routes: app
 }
