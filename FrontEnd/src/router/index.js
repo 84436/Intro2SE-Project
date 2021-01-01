@@ -131,7 +131,7 @@ const routes = [
                     ),
             },
             {
-                path: "",
+                path: "request",
                 component: () =>
                     import(
                         "../views/support/Request.vue"

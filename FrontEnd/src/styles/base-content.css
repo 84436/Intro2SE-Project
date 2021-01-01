@@ -17,7 +17,7 @@
 
     #details {
         @apply col-span-4;
-        background-color: #ffffff;
+        background-color: #000000;
         overflow-y: auto;
         font-family: "Roboto", "sans-serif";
     }

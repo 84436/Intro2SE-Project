@@ -7,11 +7,12 @@
 
 <script>
 import RequestAction from "../../components/Request/RequestAction"
-import RequestDetails from "../..components/Request/RequestDetails"
+import RequestDetails from "../../components/Request/RequestDetails"
+
 export default {
     components: {
         RequestAction,
         RequestDetails,
-    }
+    },
 }
 </script>

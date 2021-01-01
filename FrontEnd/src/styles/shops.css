@@ -253,6 +253,131 @@
     }
 }
 
+/* Cart view */
+@layer components {
+    #cart-container {
+        /* Position */
+        @apply absolute;
+        top: 25%;
+        right: 38%;
+
+        /* Size */
+        height: 530px;
+        width: 430px;
+
+        /* Padding */
+        padding: 0 30px 0 30px;
+
+        /* Z-index */
+        z-index: 1000;
+
+        /* Background color */
+        @apply bg-white;
+
+        /* Border radius */
+        @apply rounded-lg;
+    }
+
+    .each-item {
+        @apply grid grid-cols-3 grid-rows-2;
+        
+        /* Margin */
+        margin: 30px 0 30px 0;
+    }
+
+    .display-ordered-img {
+        @apply row-span-2 col-start-1 col-end-2;
+
+        /* Background image */
+        background-image: url("../src/assets/image/phake.jpg");
+    
+        /* Size */
+        width: 80px;
+        height: 80px;
+    
+        /* Border radius */
+        @apply rounded-lg;
+    
+        /* Flex */
+        @apply justify-self-center self-center;
+    }
+
+    .display-ordered-name {
+        @apply row-start-1 row-end-2 col-start-2 col-end-3;
+    }
+
+    .display-ordered-quantity {
+        @apply row-start-2 row-end-3 col-start-2 col-end-3;
+
+        /* Flex  */
+        @apply flex flex-row;
+    }
+
+    .remove-btn {
+        @apply row-span-2 col-start-3 col-end-4;
+
+        /* Background color */
+        background-color: #cccccc;
+
+        /* Size */
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+
+        /* Border radius */
+        @apply rounded-full;
+
+        /* Flex */
+        @apply justify-self-end self-center;
+
+        /* Text size */
+        @apply text-center text-lg;
+    }
+
+
+    #item-quantity {
+        margin-left: 10px;
+        @apply font-semibold;
+    }
+
+    #confirm-container {
+        @apply relative;
+        top: 342px;
+        background-color: #eaeaea;
+        margin: 0 -30px 0 -30px;
+        @apply rounded-lg;
+    }
+
+    #total-container {
+        margin: 0 30px 0 30px;
+        padding: 15px 0 15px 0;
+        @apply grid grid-cols-2;
+        @apply gap-x-4;
+        @apply text-2xl;
+    }
+    
+    #display-total {
+        @apply col-start-1 col-end-2;
+        @apply font-semibold;
+        @apply justify-self-start self-center;
+    }
+
+    #total-price {
+        @apply col-start-2 col-end-3;
+        @apply justify-self-end self-center;
+    }
+
+    #check-out-btn {
+        background-color: #2196f3;
+        @apply rounded-full;
+        @apply text-white text-xl text-center;
+        height: 40px;
+        width: 350px;
+        margin: 15px 40px 15px 40px;
+    }
+
+}
+
 /* #shop-name {
     @apply col-span-9 row-span-1 col-start-1 col-end-10 row-start-1 row-end-2;
     @apply text-black text-3xl;
