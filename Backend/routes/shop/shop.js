@@ -233,7 +233,9 @@ app.get('/search', async (i, o) => {
         "text"
     ])
     if (missing) {
-        o.status(400).send(missing)
+        var re = new RegExp("","i");
+        var shop = await shopModel.find({$or: [{name: re}, {address: re}]})
+        o.send(shop)
         return
     }
     var re = new RegExp(i.body.text,"i");
