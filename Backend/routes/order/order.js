@@ -104,7 +104,7 @@ async function remove(id,customerId,type) {
 
     await orderModel.findOne({"_id":id,"customerId":accountId}, (err,order) =>{
         if (err) { r._error = err; return r }
-        if (!order) {r._error = "No found order with this accountID";return r}
+        if (!order) {r._error = "No found order with this accountId";return r}
     })
 
     await orderModel.findByIdAndRemove(id, (err) => {
@@ -235,7 +235,7 @@ app.put('/', async (i, o) => {
     o.send(r)
 })
 
-app.delete('/', async (i, o) => {
+/*app.delete('/', async (i, o) => {
     let r = { _error: null }
     let missing = missingKeys(i.body, [
         "id",
@@ -256,7 +256,7 @@ app.delete('/', async (i, o) => {
     if (r._error) { o.status(404) }
     else { o.status(200) }
     o.send(r)
-})
+})*/
 
 module.exports = {
     routes: app
