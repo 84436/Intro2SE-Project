@@ -1,4 +1,6 @@
 const orderModel = require("./orderModel").orderModel
+const accountModel = require("../account/accountModel").accountModel
+const shopModel = require("../shop/shopModel").shopModel
 const missingKeys = require("../helpers/missingKeys")
 const express = require("express")
 const app = express()
@@ -15,7 +17,25 @@ async function checkID(id) {
         }
     }
     catch (referenceExc) {
-        r._error = "Invalid ID"
+        r._error = "Invalid order ID"
+    }
+
+    return r
+}
+
+async function checkShopID(id) {
+    let r = { _error: null  }
+
+    try {
+        let shop = await shopModel.findById(id, (err) => {
+            if (err) { r._error = err }
+        })
+        if (!shop) {
+            r._error = "No shop found with given ID"
+        }
+    }
+    catch (referenceExc) {
+        r._error = "Invalid shop ID"
     }
 
     return r
@@ -36,7 +56,7 @@ async function checkAccountID(id,type) {
         }
     }
     catch (referenceExc) {
-        r._error = "Invalid ID"
+        r._error = "Invalid account ID"
     }
 
     return r
@@ -52,8 +72,8 @@ async function add(info) {
     
     r = {
         ...r,
-        "_id": new_shop.id,
-        ...new_shop
+        "_id": new_order.id,
+        ...new_order
     }
     return r
 }
@@ -131,31 +151,40 @@ async function getByID(id) {
     return r
 }
 
+async function getAllByShop(shopId) {
+    let r = { _error: null }
+    var orders = await orderModel.find({"shopId":shopId,"status":"pending"},(err)=>{
+        if (err) { r._error = err; return r }
+    })        
+    r = {...r, orders}
+    return r
+}
+
 async function getAll(accountId,type) {
     let r = { _error: null }
     if (type === "customer")
     {
-        var orders = orderModel.find({"accountId":accountId},(err)=>{
+        var orders = await orderModel.find({"customerId":accountId},(err)=>{
             if (err) { r._error = err; return r }
-        })        
-        r = {...r, ...orders._doc}
+        })    
+        r = {...r, orders}
         return r
     }
     else
     {
-        if (type === "shop")
+        if (type === "shopowner")
         {
-            let account = await accountModel.findById(id, (err) => {
+            let account = await accountModel.findById(accountId, (err) => {
                 if (err) { r._error = err }
             })
             if (!account) {
                 r._error = "No account found with given ID"
                 return r
             }
-            var orders = orderModel.find({"shopId":account.shopId,"status":"pending"},(err)=>{
+            var orders = await orderModel.find({"shopId":account.shopId,"status":"pending"},(err)=>{
                 if (err) { r._error = err; return r }
             })        
-            r = {...r, ...orders._doc}
+            r = {...r, orders}
             return r
         }
     }
@@ -170,15 +199,27 @@ app.get('/', async (i, o) => {
     ])
     if (missing) {
         let missing2 = missingKeys(i.body, [
-           "accountId",
-           "type"
+            "shopId"
         ])
         if (missing2)
         {
-            o.status(400).send(missing2)
+            let missing3 = missingKeys(i.body, [
+                "accountId",
+                "type"
+            ])
+            if (missing3) {
+                o.status(400).send(missing3)
+                return
+            }
+            r = await checkAccountID(i.body.accountId,i.body.type)
+            if (r._error) return o.send(r)
+            r = await getAll(i.body.accountId,i.body.type)
+            if (r._error) { o.status(404) }
+            else { o.status(200) }
+            o.status(200).send(r)
             return
         }
-        r = await getAll(i.body.accountId,i.body.type)
+        r = await getAllByShop(i.body.shopId)
         if (r._error) { o.status(404) }
         else { o.status(200) }
         o.status(200).send(r)
@@ -194,19 +235,22 @@ app.get('/', async (i, o) => {
 app.post('/', async (i, o) => {
     let r = { _error: null }
     let missing = missingKeys(i.body, [
-        "accountId",
-        "type"
+        "customerId",
+        "type",
+        "shopId"
     ])
     if (missing) {
         o.status(400).send(missing)
         return
     }
-    if (type === "shop"){
+    if (i.body.type === "shopowner"){
         r._error = "Shop can't create order"
         return o.send(r)
     }
+    r = await checkShopID(i.body.shopId)
+    if (r._error) return o.send(r)
 
-    r = await checkAccountID(i.body.accountId,i.body.type)
+    r = await checkAccountID(i.body.customerId,i.body.type)
     if (r._error) return o.send(r)
 
     r = await add(i.body)

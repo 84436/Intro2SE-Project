@@ -38,9 +38,10 @@ var orderSchema = new mongoose.Schema({
         },
     },
     status: {
-        type: Number,
+        type: String,
         require: [true, "Status is required"],
-        enum: ["pending", "cancelled", "accepted", "rejected", "delivered"]
+        enum: ["pending", "cancelled", "accepted", "rejected", "delivered"],
+        default: "pending"
     },
 })
 
