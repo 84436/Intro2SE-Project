@@ -228,7 +228,7 @@ app.delete('/', async (i, o) => {
 })
 
 app.get('/search', async (i, o) => {
-    let r = { _error: null }
+    //let r = { _error: null }
     let missing = missingKeys(i.body, [
         "text"
     ])
@@ -237,8 +237,8 @@ app.get('/search', async (i, o) => {
         return
     }
     var re = new RegExp(i.body.text,"i");
-    var account = await shopModel.find({$or: [{name: re}, {address: re}]})
-    o.send(account)
+    var shop = await shopModel.find({$or: [{name: re}, {address: re}]})
+    o.send(shop)
 })
 
 module.exports = {

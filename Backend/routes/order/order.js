@@ -93,16 +93,16 @@ async function edit(id, new_info) {
     return r
 }
 
-async function remove(id,accountId,type) {
+async function remove(id,customerId,type) {
     let r = { _error: null }
 
     r = {...await checkID(id)}
     if (r._error) return r
 
-    r = await checkAccountID(accountId,type);
+    r = await checkAccountID(customerId,type);
     if (r._error) return o.send(r)
 
-    await orderModel.findOne({"_id":id,"accountID":accountId}, (err,order) =>{
+    await orderModel.findOne({"_id":id,"customerId":accountId}, (err,order) =>{
         if (err) { r._error = err; return r }
         if (!order) {r._error = "No found order with this accountID";return r}
     })
@@ -113,14 +113,75 @@ async function remove(id,accountId,type) {
 
     return r
 }
+
+async function getByID(id) {
+    let r = { _error: null }
+
+    r = {...await checkID(id)}
+    if (r._error) return r
+
+    let projection = {
+        __v: 0
+    }
+    let order = await orderModel.findById(id, projection, (err) => {
+        if (err) { r._error = err; return r }
+    })
+        
+    r = {...r, ...order._doc}
+    return r
+}
+
+async function getAll(accountId,type) {
+    let r = { _error: null }
+    if (type === "customer")
+    {
+        var orders = orderModel.find({"accountId":accountId},(err)=>{
+            if (err) { r._error = err; return r }
+        })        
+        r = {...r, ...orders._doc}
+        return r
+    }
+    else
+    {
+        if (type === "shop")
+        {
+            let account = await accountModel.findById(id, (err) => {
+                if (err) { r._error = err }
+            })
+            if (!account) {
+                r._error = "No account found with given ID"
+                return r
+            }
+            var orders = orderModel.find({"shopId":account.shopId,"status":"pending"},(err)=>{
+                if (err) { r._error = err; return r }
+            })        
+            r = {...r, ...orders._doc}
+            return r
+        }
+    }
+    r._error = "Only customer,shopOwner can get all order"
+    return r
+}
 /********************************************************************************/
 app.get('/', async (i, o) => {
     let r = { _error: null }
     let missing = missingKeys(i.body, [
-        "id"
+        "id",
     ])
     if (missing) {
-        o.status(400).send(missing)
+        let missing2 = missingKeys(i.body, [
+           "accountId",
+           "type"
+        ])
+        if (missing2)
+        {
+            o.status(400).send(missing2)
+            return
+        }
+        r = await getAll(i.body.accountId,i.body.type)
+        if (r._error) { o.status(404) }
+        else { o.status(200) }
+        o.status(200).send(r)
         return
     }
     r = await getByID(i.body.id)
@@ -185,7 +246,12 @@ app.delete('/', async (i, o) => {
         o.status(400).send(missing)
         return
     }
-
+    if (type != "customer")
+    {
+        r._error = "Only customer can remove order"
+        o.send(r)
+        return
+    }
     r = await remove(i.body.id,i.body.accountId,i.body.type)
     if (r._error) { o.status(404) }
     else { o.status(200) }
