@@ -11,27 +11,28 @@ var orderSchema = new mongoose.Schema({
     },
     items: {
         type: Object,
-        default: {},
+        default: {
+            "nullItem":0
+        },
     },
     coupons: {
         type: Object,
-        default: {},
+        default: {
+            "nullItem":0
+        },
     },
     fees: {
         type: Object,
-        default: {},
+        default: {
+            "nullItem":0
+        },
     },
     dateTime: {
         type: Date,
         default: Date.now,
     },
     review: {
-        rate: {
-            type: Number,
-            min: 0,
-            max: 5,
-        },
-        comment: String,
+        type:Object,
         default: {
             "rate": 0,
             "comment": "",

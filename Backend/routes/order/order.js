@@ -94,7 +94,6 @@ async function edit(id, new_info) {
         "review": new_info.review,
         "status": new_info.status,
     }
-
     // remove undefined fields
     // https://stackoverflow.com/a/38340374
     Object.keys(updated_fields).forEach(key => {
@@ -237,7 +236,8 @@ app.post('/', async (i, o) => {
     let missing = missingKeys(i.body, [
         "customerId",
         "type",
-        "shopId"
+        "shopId",
+        "items"
     ])
     if (missing) {
         o.status(400).send(missing)
