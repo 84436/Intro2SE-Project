@@ -11,21 +11,15 @@ var orderSchema = new mongoose.Schema({
     },
     items: {
         type: Object,
-        default: {
-            "nullItem":0
-        },
+        default: null
     },
     coupons: {
         type: Object,
-        default: {
-            "nullItem":0
-        },
+        default: null
     },
     fees: {
         type: Object,
-        default: {
-            "nullItem":0
-        },
+        default: null
     },
     dateTime: {
         type: Date,
@@ -33,10 +27,7 @@ var orderSchema = new mongoose.Schema({
     },
     review: {
         type:Object,
-        default: {
-            "rate": 0,
-            "comment": "",
-        },
+        default: null
     },
     status: {
         type: String,
