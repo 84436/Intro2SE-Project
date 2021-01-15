@@ -203,16 +203,16 @@ app.get('/', async (i, o) => {
         if (missing2)
         {
             let missing3 = missingKeys(i.body, [
-                "accountId",
+                "customerId",
                 "type"
             ])
             if (missing3) {
                 o.status(400).send(missing3)
                 return
             }
-            r = await checkAccountID(i.body.accountId,i.body.type)
+            r = await checkAccountID(i.body.customerId,i.body.type)
             if (r._error) return o.send(r)
-            r = await getAll(i.body.accountId,i.body.type)
+            r = await getAll(i.body.customerId,i.body.type)
             if (r._error) { o.status(404) }
             else { o.status(200) }
             o.status(200).send(r)
