@@ -259,6 +259,32 @@ app.post('/', async (i, o) => {
     o.send(r)
 })
 
+app.post('/status', async (i, o) => {
+    let r = { _error: null }
+    let missing = missingKeys(i.body, [
+        "id",
+        "shopId",
+        "status"
+    ])
+    if (missing) {
+        o.status(400).send(missing)
+        return
+    }
+    r = await checkShopID(i.body.shopId)
+    if (r._error) return o.send(r)
+
+    r = await getByID(i.body.id)
+    if (r._error) { o.status(404) }
+
+    if (r && r.shopId !== i.body.shopId)
+        return o.send("Shop not same");
+
+    r = await edit(i.body.id, {status:i.body.status})
+    if (r._error) { o.status(500) }
+    else { o.status(200) }
+    o.send(r)
+})
+
 app.put('/', async (i, o) => {
     let missing = missingKeys(i.body, [
         "id",
