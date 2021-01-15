@@ -145,27 +145,27 @@ const router = new VueRouter({
     routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//     if (to.matched.some((record) => record.meta.requiresAuth)) {
-//         if (store.state.status) {
-//             next();
-//         }
-//         else {
-//             next("/");
-//         }
-//     } else {
-//         if (store.state.status) {
-//             if (store.state.account.type === "customer") {
-//                 next("/customer/");
-//             } else if (store.state.account.type === "shopowner") {
-//                 next("/shopowner/");
-//             } else if (store.state.account.type === "admin") {
-//                 next("/admin/");
-//             }
-//         } else {
-//             next();
-//         }
-//     }
-// });
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if (store.state.status) {
+            next();
+        }
+        else {
+            next("/");
+        }
+    } else {
+        if (store.state.status) {
+            if (store.state.account.type === "customer") {
+                next("/customer/");
+            } else if (store.state.account.type === "shopowner") {
+                next("/shopowner/");
+            } else if (store.state.account.type === "admin") {
+                next("/support/");
+            }
+        } else {
+            next();
+        }
+    }
+});
 
 export default router;
