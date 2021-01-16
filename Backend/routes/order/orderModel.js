@@ -11,36 +11,29 @@ var orderSchema = new mongoose.Schema({
     },
     items: {
         type: Object,
-        default: {},
+        default: null
     },
     coupons: {
         type: Object,
-        default: {},
+        default: null
     },
     fees: {
         type: Object,
-        default: {},
+        default: null
     },
     dateTime: {
         type: Date,
         default: Date.now,
     },
     review: {
-        rate: {
-            type: Number,
-            min: 0,
-            max: 5,
-        },
-        comment: String,
-        default: {
-            "rate": 0,
-            "comment": "",
-        },
+        type:Object,
+        default: null
     },
     status: {
-        type: Number,
+        type: String,
         require: [true, "Status is required"],
-        enum: ["pending", "cancelled", "accepted", "rejected", "delivered"]
+        enum: ["pending", "cancelled", "accepted", "rejected", "delivered"],
+        default: "pending"
     },
 })
 
